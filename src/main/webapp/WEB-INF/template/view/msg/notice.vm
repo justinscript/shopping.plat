@@ -1,0 +1,112 @@
+<link rel="stylesheet" type="text/css" href="/css/notice.css" />
+
+<script type="text/javascript" src="/js/notice.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	var pageIndex = "1";//当前页
+	var jid = "";	//当前用户的id
+	var nextPage = "false";//下一页按钮有效否,类型boolean
+	NS_person_notice.init({
+		pageIndex: pageIndex,
+		nextPage: nextPage,
+		jid: jid
+	}); 
+});
+</script>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		//当用户登录后才去判断
+		if($("#userProNick").length > 0) {
+			$("#userProNick").html(chouti.subNickLength($("#userProNick").html(), 5));
+		}
+	})
+</script>
+
+
+<div class="main-content-band">
+	
+	<div class="main-content">
+      <div class="notice">
+        <div class="sum-count">
+        <span class="notice-name">通知</span>
+        <span style="color:#CC3300">未读(<em>$!{unReadCount}</em>)</span>
+         
+        </div>
+        <div class="head">
+        	<div class="l_ljm"><input type="checkbox" id="chkSelectAll"><label for="chkSelectAll">全选</label></div>
+        	<a href="javascript:;" class="btn btn-4" id="readedBtn"><span>已读</span></a>
+            <a href="javascript:;" class="btn btn-4" id="delBtn"><span>删除</span></a>
+        </div>
+        
+        #if($!{list.size()}=="0") 
+	        <div class="no-contanier">您的通知列表为空</div>
+		#else
+        	<ul class="contanier" id="contanier_body">  
+        	 
+        	 #foreach($!item in $list)  
+        	  #if($!{item.notificationType}=="3") 
+	          <li class="line">
+	            #if($!{item.unRead}=="1")
+               	    <div class="message" style="background-color: rgb(255, 255, 221);">
+                #elseif($!{item.unRead}=="0")
+                	<div class="message-readed" style="font-weight: normal; padding: 9px 0px 8px 5px; cursor: pointer; background-color: rgb(255, 255, 255);">
+                #end
+             	  <span class="checkbox"><input type="checkbox" name="$!{item.id}" value="$!{item.id}"></span> 
+                  <div class="titlediv"><div class="title">您的评论"$!{item.content}"收到了一条新回复</div></div> 
+                  <span class="time">$!{item.getCreateTime()}</span>
+                  <input type="hidden" id="noticeGuid" name="noticeGuid" value="$!{item.id}">
+                  <input type="hidden" id="noticeColor" name="noticeColor" value="0">
+                </div>
+	            <div class="notice-content">
+	               <div class="content-title"><div class="title-icon"></div>
+	               <div class="title-contanier">
+	               <div class="content">$!{item.actionNick}回复了您的评论
+	               <a href="/link/$!{item.linkId}/comments/$!{item.commentsId}">"$!{item.content}"</a></div></div></div>
+	              <div class="content-detail"></div>
+	              <div class="op-bottom"><a href="javascript:;" class="deleteNotice link-default">删除</a><a href="javascript:;" class="closeNotice link-default">关闭</a></div>
+	            </div>
+	          </li>
+	          #elseif($!{item.notificationType}=="2")
+	          <li class="line">
+                #if($!{item.unRead}=="1")
+               	    <div class="message" style="background-color: rgb(255, 255, 221);">
+                #elseif($!{item.unRead}=="0")
+                	<div class="message-readed" style="font-weight: normal; padding: 9px 0px 8px 5px; cursor: pointer; background-color: rgb(255, 255, 255);">
+                #end
+                  <span class="checkbox"><input type="checkbox" name="noticeChkbox" value="$!{item.id}"></span>
+                  <div class="titlediv"><div class="title">您发布的"$!{item.content}"收到了一条评论</div></div> 
+                   <span class="time">$!{item.getCreateTime()}</span>
+                  <input type="hidden" id="noticeGuid" name="noticeGuid" value="$!{item.id}">
+                  <input type="hidden" id="noticeColor" name="noticeColor" value="0">
+                </div>
+	            <div class="notice-content" style="display: none;">
+	               <div class="content-title"><div class="title-icon"></div><div class="title-contanier">
+	               <div class="content">$!{item.actionNick}评论了你发布的<a href="/link/$!{item.linkId}/comments/$!{item.commentsId}">
+	               "$!{item.content}"</a></div></div></div>
+	              <div class="content-detail"></div>
+	              <div class="op-bottom"><a href="javascript:;" class="deleteNotice link-default">删除</a><a href="javascript:;" class="closeNotice link-default">关闭</a></div>
+	            </div>
+	          </li>
+	          #end
+	          #end
+	          
+    		</ul>
+        #end
+        
+        <div id="notice-page" style="border-top-width: 0px; border-top-style: solid; border-top-color: rgb(255, 255, 255);">
+        	<div class="l_ljm"><input type="checkbox" id="chkSelectAll"><label for="chkSelectAll">全选</label></div>
+        	<a href="javascript:;" class="btn btn-4" id="readedBtn2"><span>已读</span></a>
+            <a href="javascript:;" class="btn btn-4" id="delBtn2"><span>删除</span></a>
+            <div class="pages" style="margin-top:-2px;">
+            	 <div id="dig_lcpage"></div>	
+            </div>
+            <input type="hidden" id="curtPage" name="curtPage" value="1">
+        </div>
+      </div>
+    </div>
+		
+	
+#parse("/widget/common/footer.vm") 
+</div>

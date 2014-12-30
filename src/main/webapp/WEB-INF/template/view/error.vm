@@ -1,0 +1,30 @@
+<html>
+    <head>
+    <title>系统错误</title>
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1">
+    <link rel="stylesheet" type="text/css" href="/css/common.css">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    
+    <style id="style-1-cropbar-clipper">/* Copyright 2014 Evernote Corporation. All rights reserved. */
+    .en-markup-crop-options {
+        top: 18px !important;
+        left: 50% !important;
+        margin-left: -100px !important;
+        width: 200px !important;
+        border: 2px rgba(255,255,255,.38) solid !important;
+        border-radius: 4px !important;
+    }
+    .en-markup-crop-options div div:first-of-type {
+        margin-left: 0px !important;
+    }
+    </style>
+    </head>
+    <body>
+        <div class="no-page">
+        	<div style="text-align:center;position:relative;"><img src="/images/404.gif" style="position:relative;left:27px;"></div>
+        </div>
+        <div class="error-box">
+        	<a href="/" class="error-a" id="backFirst">点击回到买买君首页 &gt;&gt;</a>
+        </div>
+    </body>
+</html>

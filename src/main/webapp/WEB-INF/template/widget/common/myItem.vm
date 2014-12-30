@@ -1,0 +1,201 @@
+#if($!{myItem.id} && $!{myItem.id}!='null' && $!{myItem.id}!='')
+  	#set($topicId=$!{myItem.id})
+  	#set($topicStatus=$!{myItem.status})
+#else
+  	#set($topicId=$!{myItem.topicId})
+  	#set($topicStatus=$!{myItem.topicStatus})
+#end
+#set($linkUrl="/link/$!{topicId}")
+#if($!{topicStatus}=="0")
+<div class="item">
+	
+    <div class="timeIntoPool">$!{myItem.gmtCreate.getTime()}000,$!{dateViewTools.currentTimeMillis()}000</div>
+	
+	#if($!{myItem.imgUrl} && $!{myItem.imgUrl}!='null' && $!{myItem.imgUrl}!='')
+    <div class="news-pic">
+    	<img lang="$!{topicId}" original="$!{myItem.imgUrl}" src="$!{myItem.imgUrl}" alt="买买君热榜" style="display: inline;">
+    </div>
+	#end
+	
+	<div class="null-item"></div>
+	
+	#set($contentId="newsContent"+$!{topicId})
+	<div class="news-content" id="$!{contentId}">
+		
+		<div class="part1">	
+			#if($!{myItem.originalUrl} && $!{myItem.originalUrl}!="null" && $!{myItem.originalUrl}!='')							
+				<a href="$!{myItem.originalUrl}" class="show-content" target="_blank" onmousedown="linksClickStat($!{topicId});">$!{myItem.title}</a>
+			#else
+				<a href="$!{linkUrl}" class="show-content" target="_blank" onmousedown="linksClickStat($!{topicId});">$!{myItem.title}</a>
+			#end
+			<span class="content-source">-$!{myItem.contentSource}</span>
+			<!-- 段子和谣言类别不显示类别名称 -->
+			#set($hotUrl="/r/"+$!{enumViewTools.subjectEnumName($!myItem.subjectId)}+"/hot")
+			<a href="$hotUrl" class="n2"><span class="content-kind">$!{enumViewTools.subjectEnumDesc($!myItem.subjectId)}</span></a>
+			<!-- 来源手机客户端 -->
+			<!-- 显示话题标签 -->
+		</div>
+		####$!{myItem.content} 
+		<!-- 显示摘要 -->
+		#if($!{myItem.content} && $!{myItem.content}!='null' && $!{myItem.content}!='')
+		<div class="area-summary"><span class="summary">$!{myItem.content}</span></div>
+		#end
+		
+		<div class="part2" share-pic="http://www.maimaijun.com$!{myItem.imgUrl}" share-title="$!{myItem.title}" share-summary="$!{myItem.content}" share-linkid="$!{topicId}" share-subject="$!{enumViewTools.subjectEnumDesc($!myItem.subjectId)}" style="padding-top: 15px;">
+			#if(($!myLikedList && $!myLikedList.contains($!{topicId})) || ($!{myItem.userId} && $!{webUser.getUid()} && $!{myItem.userId} == $!{webUser.getUid()}))
+			<a href="javascript:;" class="isVoted" title="取消推荐">
+				<span class="hand-icon icon-digg vote-actived"></span>
+				<b class="green">$!{myItem.recommend}</b>
+				<i style="display:none">$!{topicId}</i>
+			</a>
+			#else
+			<a href="javascript:;" class="digg-a" title="推荐">
+				<span class="hand-icon icon-digg"></span>
+				<b>$!{myItem.recommend}</b>
+				<i style="display:none">$!{topicId}</i>
+			</a>
+			#end
+			
+			<a href="javascript:;" class="discus-a" id="discus-a-$!{topicId}" lang="$!{topicId}">
+				<span class="hand-icon icon-discus"></span>
+				<b>$!{myItem.comments}</b>
+			</a>
+			
+			#if($!mySavedList && $!mySavedList.contains($!{topicId}))
+			<a href="javascript:;" class="remove-col-a" id="collect-a-$!{topicId}" lang="$!{topicId}" title="移出私藏" destjid="$!{webUser.getName()}" jid="$!{myItem.name}">
+				<span class="hand-icon icon-collect collect-actived"></span><b>私藏</b>
+			</a>
+			#else
+			<a href="javascript:;" class="collect-a" id="collect-a-$!{topicId}" lang="$!{topicId}" title="加入私藏" destjid="$!{webUser.getName()}" jid="$!{myItem.name}">
+				<span class="hand-icon icon-collect"></span><b>私藏</b>
+			</a>
+			#end
+			
+			#set($userUrl="/user/"+$!{myItem.name}+"/publish")
+			<a href="$!userUrl" class="user-a">
+				<span>
+					#if($!{myItem.nickImgurl} && $!{myItem.nickImgurl}!='null' && $!{myItem.nickImgurl}!='')
+						<img src="$!{myItem.nickImgurl}" width="19px" height="19px">
+					#else
+						<img src="/images/image30.png" width="19px" height="19px" >
+					#end
+				</span>
+				<b>$!{myItem.nick}</b>
+			</a>
+			
+			
+			<span class="left time-into">
+				<a class="time-a" href="/link/$!{topicId}" target="_blank">
+					<b>$!{myItem.getPublishTime()}</b>
+				</a>
+				<i>$!{publishShow}</i>###入热榜
+			</span>
+			<!-- 分享各微博的按钮 -->
+			<span class="share-site-to" style="visibility: hidden;">
+				<i>分享到</i>
+				<span class="share-icon">
+					<a class="icon-sina" id="icon-sina" title="分享到新浪微博" href="javascript:;" hidefocus="true"></a>
+					<a class="icon-douban" id="icon-douban" title="分享到豆瓣" href="javascript:;" hidefocus="true"></a>
+					<a class="icon-qqzone" id="icon-qqzone" title="分享到QQ空间" href="javascript:;" hidefocus="true"></a>
+					<a class="icon-tenxun" id="icon-tenxun" title="分享到腾讯微博" href="javascript:;" hidefocus="true"></a>
+					<a class="icon-renren" id="icon-renren" title="分享到人人网" href="javascript:;" hidefocus="true"></a>
+					<a class="share-none"></a>
+				</span>
+			</span>
+        </div>
+			
+		<!-- 评论区域 -->
+		<div class="comment-box-area" id="comment-box-area-$!{topicId}">
+    		<div class="pinglun arrow" id="comt-arrow-$!{topicId}"></div>
+    		<a class="pinglun close-comt" title="关闭" href="javascript:;" lang="$!{topicId}"></a>
+    		<div class="corner comment-box" id="comment-box-$!{topicId}">
+    			<div class="loading-ico loading-ico-top" id="loading-comment-top-$!{topicId}" style="margin-left:230px;">加载中，请稍候...</div>
+    			<div class="comment-box-top" id="comment-box-top-$!{topicId}">
+    				<div class="tip-1">最热评论(<span id="newestCount-$!{topicId}">3</span>)</div>
+    				<div class="tip-2"><a href="/link/$!{topicId}" target="_blank"><em class="pinglun em1"></em><span>去评论页面</span></a></div>														
+    			</div>
+    			<!-- 评论树形 -->
+    			<ul class="filetree comment-list-top-2" id="comment-list-top-$!{topicId}"></ul>
+    			<!-- 谣言类别显示相信还是置疑选项 -->
+    			<!-- 判断该新闻评论是否关闭 -->
+    			<!-- 评论输入框和回复框 -->
+    			<div class="huifu-top-box" id="huifu-top-box-$!{topicId}">
+    				<div class="box-l txt-input-area-div-top corner no-corner-bottom">
+                        <div id="lab-comment-top-$!{topicId}" class="lab-comment-top">回复<span id="nick--$!{topicId}"></span>:</div>
+    					<!-- 针对谣言文本输入框无效 -->
+						<textarea lang="$!{topicId}" maxlength="150" name="txt-huifu-top" id="txt-huifu-top-$!{topicId}" class="txt-huifu txt-huifu-top"></textarea>
+    				</div>
+    				<div class="box-r">
+    					<a id="pub-btn-top-$!{topicId}" lang="$!{topicId}" href="javascript:;" class="pub-icons add-pub-btn add-pub-btn-unvalid">评论</a>
+    					<a id="pub-loading-top-$!{topicId}" href="javascript:;" class="loading-ico loading-ico-top pub-loading-top">发布中...</a>
+    				</div>
+    			</div>
+    			<div class="tip-3" id="hidden-comt-$!{topicId}">										
+    				<a href="javascript:;" class="hiddenCom-Btn" lang="$!{topicId}"><em class="pinglun em2"></em><span>收起</span></a>
+    			</div>
+    			<div class="write-error-box-top">					
+    				<div class="write-error-desc" id="write-error-desc-$!{topicId}"></div>
+    			</div>
+    		</div>
+    		<input type="hidden" id="hidsubjectid-$!{topicId}" value="$!{myItem.subjectId}" />
+		</div>
+	</div>
+</div>
+#else
+<div class="item">
+	#set($contentId="newsContent"+$!topicId)
+	<div class="news-content" id="$!{contentId}">
+		<div class="part1">								
+			<span class="content-source">该新闻已被删除</span>
+			<a href="" class="n2"><span class="content-kind"></span></a>									
+			<!-- 来源手机客户端 -->									
+			<!-- 显示话题标签 -->										
+		</div>
+		<!-- 显示摘要 -->								
+		<div class="part2" share-pic="$!{myItem.originalUrl}" share-title="$!{myItem.title}" share-summary="" share-linkid="$!{topicId}" share-subject="">								
+				<span href="javascript:;" class="digg-a">
+					<span class="hand-icon icon-digg vote-actived"></span>
+					<b class="green">$!{myItem.recommend}</b>
+				</span>
+				<span class="discus-a" target="_blank">	
+					<span class="hand-icon icon-discus"></span>
+					<b>$!{myItem.comments}</b>
+				</span>					
+				<span class="left time-into"><b>$!{myItem.getPublishTime()}</b><i>$!{publishShow}</i></span>		
+		</div>
+		<!-- 评论区域 -->
+		<!-- 评论区域 -->
+		<div class="comment-box-area" id="comment-box-area-$!{topicId}" style="display: none;">
+			<div class="pinglun arrow" id="comt-arrow-$!{topicId}"></div>
+			<a class="pinglun close-comt" title="关闭" href="javascript:;" lang="$!{topicId}"></a>
+			<div class="corner comment-box" id="comment-box-$!{topicId}">		
+				<div class="loading-ico loading-ico-top" id="loading-comment-top-$!{topicId}" style="margin-left:200px;">加载中，请稍候...</div>
+				<div class="comment-box-top" id="comment-box-top-$!{topicId}">
+					<div class="tip-1">最热评论(<span id="newestCount-$!{topicId}">3</span>)</div>
+					<div class="tip-2"><a href="/link/$!{topicId}" target="_blank"><em class="pinglun em1"></em><span>去评论页面</span></a></div>	
+				</div>
+				<!-- 评论树形 -->
+				<ul class="filetree comment-list-top-2" id="comment-list-top-$!{topicId}"></ul>		
+				<!-- 谣言类别显示相信还是置疑选项 -->
+				<!-- 评论输入框和回复框 -->
+				<div class="huifu-top-box" id="huifu-top-box-$!{topicId}">
+					<div class="box-l txt-input-area-div-top corner no-corner-bottom">
+		                <div id="lab-comment-top-$!{topicId}" class="lab-comment-top">回复  <span id="nick--$!{topicId}"></span>:</div>
+						<!-- 针对谣言文本输入框无效 -->				
+						<textarea lang="$!{topicId}" maxlength="150" name="txt-huifu-top" id="txt-huifu-top-$!{topicId}" class="txt-huifu txt-huifu-top"></textarea>
+					</div>
+					<div class="box-r">
+						<a id="pub-btn-top-$!{topicId}" lang="$!{topicId}" href="javascript:;" class="pub-icons add-pub-btn add-pub-btn-unvalid">评论</a>
+						<a id="pub-loading-top-$!{topicId}" href="javascript:;" class="loading-ico loading-ico-top pub-loading-top">发布中...</a>
+					</div>
+				</div>
+				<div class="tip-3" id="hidden-comt-$!{topicId}">										
+					<a href="javascript:;" class="hiddenCom-Btn" lang="$!{topicId}"><em class="pinglun em2"></em><span>收起</span></a>
+				</div>
+				<div class="write-error-box-top"><div class="write-error-desc" id="write-error-desc-$!{topicId}"></div></div>
+			</div>
+			<input type="hidden" id="hidsubjectid-$!{topicId}" value="$!{enumViewTools.subjectEnumValue($!myItem.subjectId)}">
+		</div>
+	</div>
+</div>
+#end

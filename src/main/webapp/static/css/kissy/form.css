@@ -1,0 +1,51 @@
+/**
+ * Form
+ * @creator fool2fish<fool2fish@gmail.com>
+ */
+
+.form hr{height:0;overflow:hidden;margin-bottom:10px;border:none;border-bottom:1px dashed #ccc;background:none;}
+.form fieldset{min-height:24px;margin-bottom:10px;border:1px solid #ddd;}
+.form legend{margin-left:10px;font-weight:bold;}
+.form legend i{display:inline-block;width:13px;height:13px;vertical-align:middle;cursor:pointer;background:url(/images/kissy/icon.png) no-repeat -40px 0;}
+.form .fieldset-collapsed legend i{background-position:-60px 0;}
+.form .fieldset-collapsed .field-box{display:none;}
+.form .field-box{padding-top:10px;}
+
+.form .field{overflow:hidden;clear:both;}
+.form .field .hd{float:left;width:140px;text-align:right;}
+.form .field .hd .required{display:inline;color:#f30;}
+.form .field .hd .label{display:inline;}
+.form .field .bd{padding:0 10px 0 146px;}
+.form .field .bd .cell{margin-bottom:10px;text-align:left;}
+.form .field .bd label{margin:0 6px 0 2px;}
+.form .field .text,
+.form .field .password{width:150px;height:24px;line-height:24px;border:1px solid #ccc;}
+.form .field textarea{width:400px;height:54px;line-height:18px;border:1px solid #ccc;}
+
+.form .button-box{margin:8px 0;padding-top:8px;text-align:center;}
+.form .button{min-width:80px;height:28px;margin-right:5px;padding:1px 6px;*padding:0;font-weight:bold;font-size:14px;border:1px solid #80b2ff;background:url(/images/kissy/bg-repeatx.png) repeat-x 0 -10px;cursor:pointer;}
+.form .button{
+    -moz-border-radius: 4px;
+    -khtml-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+    -moz-box-shadow: 1px 1px 2px #999;
+    -khtml-box-shadow: 1px 1px 2px #999;
+    -webkit-box-shadow: 1px 1px 2px #999;
+    box-shadow: 1px 1px 2px #999;
+}
+.form .button:hover,
+.form .button:active{
+    -moz-box-shadow: 0px 0px 2px #aaa;
+    -khtml-box-shadow: 0px 0px 2px #aaa;
+    -webkit-box-shadow: 0px 0px 2px #aaa;
+    box-shadow: 0px 0px 2px #aaa;
+}
+
+.form .field-msg-inline .cell{float:left;display:inline;margin-right:10px;}
+/**
+ * 上面代码中要加入display:inline的原因：IE67下，input和textarea的直接父元素如果float或者haslayout，且他们为第一个子元素，它们就会继承所有父元素的margin和
+ * 参见:http://blog.netscraps.com/bugs/ie6-ie7-margin-inheritance-bug.html
+ */
+
+ 

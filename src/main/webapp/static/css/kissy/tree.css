@@ -1,0 +1,86 @@
+/**
+ * Tree Style
+ * @author fool2fish<fool2fish@gmail.com>
+ */
+
+
+/***********************************************************************************************************************
+ * commen style
+ **********************************************************************************************************************/
+/*icon*/
+.tree .icon{float:left;width:16px;height:16px;margin:1px 3px 0 0;text-align:center;line-height:16px;}
+.tree .icon input{vertical-align:middle;}
+/*节点展开icon*/
+.tree .icon-expand{background:url(/images/kissy/icon.png) no-repeat -57px 2px;cursor:pointer;}
+/*节点的收起状态*/
+.tree .node-collapsed .icon-expand{background-position:-37px 2px;}
+.tree .node-collapsed .node{display:none;}
+
+/***********************************************************************************************************************
+ * tree-default
+ **********************************************************************************************************************/
+
+/*分支*/
+.tree-default .branch .branch{margin-left:16px;}
+/*节点*/
+.tree-default .node{background:url(/images/kissy/tree-vline.png) repeat-y 8px 1px;}
+/*同级最后一个节点（不支持css3的悲剧）*/
+.tree-default .node-last{background:url(/images/kissy/tree-vline.png) no-repeat 8px -91px;}
+/*节点主体*/
+.tree-default .anchor{overflow:hidden;zoom:1;background:url(/images/kissy/tree-corner.png) no-repeat 8px 0;*margin-bottom:-2px;}
+.tree-default .anchor:hover{background:#e1edff;}
+/*首列包裹*/
+.tree-default .wrapper{overflow:hidden;padding:2px 0 2px;}
+/*节点内容*/
+.tree-default .col{float:left;}
+
+/***********************************************************************************************************************
+ * tree grid
+ **********************************************************************************************************************/
+
+.tree-grid{border:1px solid #ccc;}
+.tree-grid .col{float:left;padding-left:10px;}
+
+.tree-grid .head{height:26px;background:#f2f2f2 url(/images/kissy/bg-repeatx.png) repeat-x scroll 0 -130px;*margin-bottom:2px;}
+.tree-grid .head .col{height:26px;margin-right:-1px;line-height:26px;font-weight:bold;border-right:1px solid #ccc;}
+
+.tree-grid .anchor{padding:4px 0;overflow:hidden;zoom:1;border-top:1px solid #ccc;*margin-top:-2px;}
+.tree-grid .node .node .anchor{border-top:1px dashed #ccc;}
+.tree-grid .anchor:hover{background-color:#e1edff;}
+.tree-grid .wrapper{float:left;_display:inline;}
+.tree-grid .wrapper .col{padding-left:0;border:none;}
+
+.tree-grid .node .wrapper{margin:0 -0px 0 10px;}
+.tree-grid .node .node .wrapper{margin:0 -20px 0 30px;}
+.tree-grid .node .node  .node .wrapper{margin:0 -40px 0 50px;}
+.tree-grid .node .node .node  .node .wrapper{margin:0 -60px 0 70px;}
+.tree-grid .node .node .node .node  .node .wrapper{margin:0 -80px 0 90px;}
+
+/***********************************************************************************************************************
+ * tree menu
+ **********************************************************************************************************************/
+
+.tree-menu{overflow:hidden;border:1px solid #ccc;border-top:none;}
+/**
+ * .tree-menu .anchor{position:relative;z-index:1;margin-bottom:-1px;*margin-bottom:-3px;}
+ * .tree-menu .node .node .anchor{position:static;margin-bottom:0;}
+ *  以上代码实现的功能是：
+ *     第一个层级的anchor产生一个负margin-bottom
+ *     以便遮盖住最邻近anchor的border-top
+ */
+.tree-menu .anchor{position:relative;z-index:1;margin-bottom:-1px;padding:4px 0;overflow:hidden;zoom:1;font-weight:bold;border-top:1px solid #ccc;border-bottom:1px solid #ccc;background:#f2f2f2 url(/images/kissy/bg-repeatx.png) repeat-x scroll 0 -130px;*margin-bottom:-3px;_padding:2px 0;}
+.tree-menu .node .node .anchor{position:static;margin-bottom:0;font-weight:normal;border-top:1px dashed #ccc;border-bottom:none;background:#fff;}
+.tree-menu .node .node .anchor:hover{background:#e1edff;}
+.tree-menu .wrapper{float:left;display:inline;}
+.tree-menu .col{float:left;}
+
+.tree-menu .node .wrapper{margin:0 -0px 0 10px;}
+.tree-menu .node .node .wrapper{margin:0 -20px 0 30px;}
+.tree-menu .node .node  .node .wrapper{margin:0 -40px 0 50px;}
+.tree-menu .node .node .node  .node .wrapper{margin:0 -60px 0 70px;}
+.tree-menu .node .node .node .node  .node .wrapper{margin:0 -80px 0 90px;}
+
+/**
+ * Note:
+ * 1、li元素内的子元素如果是浮动元素，在ie67下每个li之间会产生2px的间隔
+ */

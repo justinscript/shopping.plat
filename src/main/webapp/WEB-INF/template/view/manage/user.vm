@@ -1,0 +1,137 @@
+<link  rel="stylesheet" href="/js/uikit/css/uikit.min.css">
+<link id="data-uikit-theme" rel="stylesheet" href="/js/uikit/css/uikit.docs.min.css">
+<link rel="stylesheet" href="/js/uikit/css/docs.css">
+
+<script type="text/javascript" src="/js/uikit/js/uikit.min.js"></script>
+<script type="text/javascript" src="/js/uikit/js/addons/datepicker.js"></script>
+
+<div>
+    <ul class="uk-breadcrumb">
+        <li><a href="/manage/home">Home</a></li>
+        <li class="uk-active"><span>用户</span></li>
+    </ul>
+</div>
+<br/>
+
+<div>
+	<form class="uk-form uk-form-stacked searchForm" name="searchForm" action="/manage/user"  method="post">
+        <fieldset>
+            <input type="text" placeholder="用户名搜索" class="uk-form-width-medium" name="name" value="$!name">
+            <div class="uk-form-icon">
+	            <select name="sex">
+	                <option value="">性别</option>
+	                <option value="0" #if($!{sex} && $!{sex}=="0") selected #end>男性</option>
+	                <option value="1" #if($!{sex} && $!{sex}=="1") selected #end>女性</option>
+	            </select>
+            </div> 
+            <div class="uk-form-icon">
+	            <select name="state">
+	                <option value="">审核状态</option>
+	                <option value="0" #if($!{state} && $!{state}=="0") selected #end>未审核</option>
+	                <option value="1" #if($!{state} && $!{state}=="1") selected #end>正常</option>
+	                <option value="2" #if($!{state} && $!{state}=="2") selected #end>停止</option>
+	            </select>
+            </div>
+            <div class="uk-form-icon">
+			    <i class="uk-icon-calendar"></i>
+			    <input type="text" placeholder="记录起始时间" data-uk-datepicker="{format:'YYYY.MM.DD'}" name="start" value="$!start">
+			</div>
+			<div class="uk-form-icon">
+			    <i class="uk-icon-calendar"></i>
+			    <input type="text" placeholder="记录结束时间" data-uk-datepicker="{format:'YYYY.MM.DD'}" name="end" value="$!end">
+			</div>
+            <button class="uk-button uk-button-success" value="search">搜索</button>
+        </fieldset>
+    </form>
+
+    <table class="uk-table uk-table-hover uk-table-striped uk-table-condensed" cellspacing="0">
+        <caption>用户信息</caption>
+        <thead>
+            <tr>
+    			<th>ID</th>
+                <th width="10%">昵称</th>
+    			<th>name</th>
+    			<th>邮箱</th>
+    			<th>手机</th>
+    			<th>性别</th>
+    			<th>密码</th>
+    			<th>上次登录时间</th>
+    			<th>创建时间</th>
+    			<th>积分</th>
+    			<th>禁言状态</th>
+    			<th>审核状态</th>
+    			<th>记录状态</th>
+    			<th>省</th>
+    			<th>市</th>
+    			<th>操作</th>
+            </tr>
+        </thead>
+    	
+        <tbody>
+    		#foreach($!member in $list) 
+            <tr>
+				<input type="hidden" class="my-id" value="$!{member.id}" />
+    			<td>$!{member.id}</td>
+    			#set($userUrl="/user/"+$!{member.name}+"/publish")
+                <td>
+					<div class="uk-width-medium-1-1">
+						#if($!{member.pic} && $!{member.pic}!='null' && $!{member.pic}!='')
+							<img src="$!{member.pic}" width="30px" height="30px">
+    					#else
+    						<img src="/images/image30.png" width="30px" height="30px">
+    					#end
+						<a class="uk-text-success" href="$userUrl" target="_blank"><span class="uk-text-top">$!{member.nick}</span></a>
+                    </div>
+				</td>
+    			<td>$!{member.name}</td>
+    			<td>$!{member.email}</td>
+    			<td>#if($!{member.mobile}) $!{member.mobile} #else 无 #end</td>
+    			<td>$!{member.getSexDesc()}</td>
+    			<td>$!{member.password}</td>
+    			<td>$!{dateViewTools.format($!member.lastLogin,"yyyy-MM-dd HH:mm")}</td>
+    			<td>$!{dateViewTools.format($!member.gmtCreate,"yyyy-MM-dd HH:mm")}</td>
+    			<td><p class="uk-text-danger">$!{member.integral}</p></td>
+    			<td>
+					<p class="my-desc">$!{member.getIsBanDesc()}</p>
+					#if($!{member.isBan}=="0")
+						<p><button class="uk-button uk-button-mini uk-button-danger" type="button" value="ban" desc="禁言">禁言</button></p>
+					#elseif($!{member.isBan}=="1")
+						<p><button class="uk-button uk-button-mini uk-button-success" type="button" value="noban" desc="正常">恢复</button></p>
+					#end
+				</td>
+    			<td>
+					<p class="my-desc">$!{member.getUserStateDesc()}</p>
+					#if($!{member.userState}=="0")
+						<p><button class="uk-button uk-button-mini uk-button-success" type="button" value="state" desc="正常">审核通过</button></p>
+					#elseif($!{member.userState}=="1")
+						<p><button class="uk-button uk-button-mini uk-button-danger" type="button" value="nostate" desc="停止">审核不过</button></p>
+					#end
+				</td>
+    			<td>
+					<p class="my-desc">$!{enumViewTools.statusEnumDesc($!member.status)}</p>
+					#if($!{member.status}=="0")
+						<p><button class="uk-button uk-button-mini uk-button-danger" type="button" value="delete" desc="已删除">删除</button></p>
+					#elseif($!{member.status}=="1")
+						<p><button class="uk-button uk-button-mini uk-button-success" type="button" value="nodelete" desc="正常">恢复</button></p>
+					#end
+				</td>
+    			<td>#if($!{member.province}) $!{member.province} #else 无 #end</td>
+    			<td>#if($!{member.city}) $!{member.city} #else 无 #end</td>
+    			<td class="uk-text-center uk-text-middle">
+					<p>
+						#if($!{member.sex}=="1")
+							#set($he="她")
+						#else
+							#set($he="他")
+						#end
+						<a class="uk-button uk-button-mini uk-button-primary" href="/manage/publish/$!{member.id}/1">$!{he}的发布</a>
+						<a class="uk-button uk-button-mini uk-button-primary" href="/manage/comments/$!{member.id}/1">$!{he}的评论</a>
+    				</p>
+    			</td>
+            </tr>
+    		#end
+        </tbody>
+    </table>
+</div>	
+
+$widget.setTemplate("pagination/uikitPager").addParam('pagination',$!{list.getQuery()})

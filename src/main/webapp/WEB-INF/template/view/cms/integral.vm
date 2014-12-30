@@ -1,0 +1,51 @@
+<style>
+.jifen-item{
+	padding:25px 0;
+	border-bottom:1px solid #f6f6f6;
+	margin:0 auto;
+	width:708px;
+}
+.jifen-item .title{
+	font-size:14px;
+	font-weight:bold;
+	padding-bottom:18px;
+}
+.jifen-item .nr{
+	font-size:12px;
+	color:#666;
+}
+</style>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	chouti.Init();
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	//当用户登录后才去判断
+	if($("#userProNick").length > 0) {
+		$("#userProNick").html(chouti.subNickLength($("#userProNick").html(), 5));
+	}
+})
+</script>
+
+
+<div class="main-content-band">
+	<div class="main-content" style="min-height:790px;">
+		<div class="jifen-item" style="margin-top:-7px;">
+			<div class="title">什么是积分</div>
+			<div class="nr">买买君热榜积分系统是为奖励用户对社区的贡献而设立的。</div>
+		</div>
+		<div class="jifen-item">
+			<div class="title">如何获得积分</div>
+			<div class="nr">发布内容并进入热榜，获得100积分。</div>
+		</div>
+		<div class="jifen-item" style="border:0;">
+			<div class="title">积分有什么用</div>
+			<div class="nr">其他正在规划中的功能。</div>
+		</div>
+   </div>
+#parse("/widget/common/footer.vm") 
+</div>

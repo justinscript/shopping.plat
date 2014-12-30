@@ -1,0 +1,46 @@
+/**
+ * Message
+ * @author fool2fish<fool2fish@gmail.com>
+ */
+			
+.msg{margin-bottom:10px;}
+.msg .msg-default{padding:2px 5px;border:1px solid #ffcc7f;background:#ffffe5;position:relative;min-height:20px;_height:20px;}
+.msg .msg-icon{float:left;width:16px;height:16px;margin:1px 5px 1px 0;font-size:0;line-height:0;background:url(/images/kissy/msg.png) no-repeat 0 -160px;}
+.msg .msg-title{display:inline;padding-right:2px;font-weight:bold;}
+.msg .msg-content{display:inline;}
+
+.msg .msg-error{border:1px solid #ff8080;background:#fff2f2;}
+.msg .msg-error .msg-icon{background-position:0 0;}
+.msg .msg-stop{border:1px solid #ff8080;background:#fff2f2;}
+.msg .msg-stop .msg-icon{background-position:0 -40px;}
+.msg .msg-question{border:1px solid #ffcc7f;background:#ffffe5;}
+.msg .msg-question .msg-icon{background-position:0 -80px;}
+.msg .msg-attention{border:1px solid #40b3ff;background:#e5f5ff;}
+.msg .msg-attention .msg-icon{background-position:0 -120px;}
+.msg .msg-tips{border:1px solid #ffcc7f;background:#ffffe5;}
+.msg .msg-tips .msg-icon{background-position:0 -160px;}
+.msg .msg-ok{border:1px solid #4dbf00;background:#f0ffe5;}
+.msg .msg-ok .msg-icon{background-position:0 -200px;}
+.msg .msg-notice{border:1px solid #ffcc7f;background:#ffffe5;}
+.msg .msg-notice .msg-icon{background-position:0 -240px;}
+
+.msg-strong .msg-default{padding:6px 10px;min-height:40px;_height:40px;}
+.msg-strong .msg-icon{width:32px;height:32px;margin-right:10px;background-position:100% -160px;left:10px;top:6px;}
+.msg-strong .msg-title{display:block;margin-left:42px;padding:0;font-size:14px;}
+.msg-strong .msg-content{display:block;margin-left:42px;}
+
+.msg-strong .msg-error .msg-icon{background-position:100% 0;}
+.msg-strong .msg-stop .msg-icon{background-position:100% -40px;}
+.msg-strong .msg-question .msg-icon{background-position:100% -80px;}
+.msg-strong .msg-attention .msg-icon{background-position:100% -120px;}
+.msg-strong .msg-tips .msg-icon{background-position:100% -160px;}
+.msg-strong .msg-ok .msg-icon{background-position:100% -200px;}
+.msg-strong .msg-notice .msg-icon{background-position:100% -240px;}
+
+
+.msg-weak{margin-bottom:0;}
+.msg-weak .msg-default{padding:4px 6px;border:none;background:none;}
+.msg-weak .msg-icon{left:0;}
+
+.msg-inline,
+.msg-inline .msg-default{display:inline-block;*display:inline;*zoom:1;}

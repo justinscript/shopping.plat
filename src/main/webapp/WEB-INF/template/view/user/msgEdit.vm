@@ -1,0 +1,102 @@
+<link rel="stylesheet" type="text/css" href="/css/newSetting.css" />
+
+<script type="text/javascript" src="/js/person_notice_setting.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	 NS_person_notice_setting.init();
+});
+</script>
+<script type="text/javascript">
+$(document).ready(function(){
+	//当用户登录后才去判断
+	if($("#userProNick").length > 0) {
+		$("#userProNick").html(chouti.subNickLength($("#userProNick").html(), 5));
+	}
+})
+</script>
+
+<div id="H-avaupload-dialog" class="upload-dialog corner">
+	<div class="dialog-titlebar">
+		<div class="dialog-title ">
+			<span>头像上传</span>
+		</div>
+		<div class="dialog-titlebar-close"><a id="upload-dialog-btn-close" class="icons dialog-btn-close" title="关闭" href="javascript:;"></a></div>
+	</div>
+	   <div class="avaupload-dialog-content corner">
+	 		<object id="GozapToolComponentTest" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=10,0,0,0" width="541" height="452">
+  				<param name="movie" value="/images/upload.swf">
+  				<param name="quality" value="high">
+  				<param name="allowScriptAccess" value="always">
+  				<param name="FlashVars" value="swfId=hasScan&amp;showStyle=0&amp;uploadDataFieldName=upload&amp;uploadSvrURL=/ajaxUpload.htm?a=1">
+  
+  				<embed src="/images/upload.swf" id="GozapToolComponentTest" allowscriptaccess="always" swliveconnect="true" quality="high" pluginspage="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash" type="application/x-shockwave-flash" flashvars="swfId=hasScan&amp;showStyle=0&amp;uploadDataFieldName=upload&amp;uploadSvrURL=/ajaxUpload.htm?a=1" width="541" height="452">
+  				
+			</object>
+	 	 </div>
+</div>
+	
+<script>
+//上传头像，flash回调函数
+//头像上传成功
+function Head_Pic_Rece_URL(str,swfId){
+	chouti.Head_Pic_Rece_URL_info(str,swfId);
+}
+//关闭上传弹出框
+function Head_Pic_Cancel(swfId){
+	chouti.Head_Pic_Cancel_info();
+}
+</script>
+
+
+<div class="main-content-band">
+	
+	<div class="main-content" id="bind-content">
+	<div class="reset-area">
+		<div class="set-tags top30">
+		
+			<a href="/profile" class="tb">帐号设置</a>
+     		<a href="/message/edit" class="tb w-active">通知设置</a>
+     		<a href="/profile/bind" class="tb">绑定手机</a>
+     		<div class="set-line"></div>
+     		
+		</div>
+		<div class="set-nav">
+			当有以下情况时，通知我
+		</div>
+		<div class="content-list" style="overflow:none;">
+			<input type="hidden" value="zxc337" name="destJid" id="destJid">
+   			<div class="item">
+   				<div class="ask-title">当您的评论被回复时</div>
+   				<div class="ask-nr">
+   					<input type="radio" name="commentsMsg" id="isHui" value="true" #if($!{member.getTrunComment()} && $!{member.getTrunComment()}=='0') checked="checked" #end >
+					<label for="isHui">是</label>			
+					<input type="radio" name="commentsMsg" id="noHui" value="false" #if($!{member.getTrunComment()} && $!{member.getTrunComment()}=='1') checked="checked" #end >
+					<label for="noHui">否</label>
+   				</div>
+   			</div>
+   			<div class="item">
+   				<div class="ask-title">当您提供的新闻上榜时</div>
+   				<div class="ask-nr">
+   					<input type="radio" name="linksIntoHotMsg" id="isNews" value="true" #if($!{member.getTrunNews()} && $!{member.getTrunNews()}=='0') checked="checked" #end >
+					<label for="isNews">是</label>			
+					<input type="radio" name="linksIntoHotMsg" id="noNews" value="false" #if($!{member.getTrunNews()} && $!{member.getTrunNews()}=='1') checked="checked" #end >
+					<label for="noNews">否</label>
+   				</div>
+   			</div>
+   			<div class="item">
+   				<div class="ask-title">当您的发布被回复时</div>
+   				<div class="ask-nr">
+   					<input type="radio" name="linksMsg" id="isPublish" value="true" #if($!{member.getTrunReply()} && $!{member.getTrunReply()}=='0') checked="checked" #end >
+					<label for="isPublish">是</label>			
+					<input type="radio" name="linksMsg" id="noPublish" value="false" #if($!{member.getTrunReply()} && $!{member.getTrunReply()}=='1') checked="checked" #end >
+					<label for="noPublish">否</label>
+   				</div>
+   			</div>
+    	</div>	
+		</div>
+   </div>
+	
+   
+#parse("/widget/common/footer.vm") 
+</div>

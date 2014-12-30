@@ -1,0 +1,29 @@
+<br/>
+<br/>
+#if($!{pagination.getAllRecordNum()} && $!{pagination.getAllRecordNum()} >= 10)
+<div>
+	<ul class="uk-pagination">
+		#set($page = ${pagination.prevPage})
+		#if(!$page.current)
+			<li><a href="$page.url"><i class="uk-icon-angle-double-left">上一页</i></a></li>
+		#else
+			<li class="uk-disabled"><span><i class="uk-icon-angle-double-left">上一页</i></span></li>
+		#end
+		#set($subCount = $pagination.pages.size())
+		#foreach($indexPage in $!{pagination.pages})
+			#if($indexPage.current)
+				<li class="uk-active"><span>$indexPage.page</span></li>
+			#else
+				<li><a href="$indexPage.url">$indexPage.page</a></li>
+			#end
+		#end
+		#set($page = ${pagination.nextPage})
+		#if(!$page.current)
+			<li><a href="$page.url">下一页<i class="uk-icon-angle-double-right"></i></a></li>
+		#else
+			<li><a href="javascript:void(0);" class="ct_page_edge" >下一页</a></li>
+			<li class="uk-disabled"><span>下一页<i class="uk-icon-angle-double-right"></i></span></li>
+		#end
+	</ul>
+</div>
+#end	

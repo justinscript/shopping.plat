@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mmj.app.biz.mapper.MemberMapper" >
+	<resultMap id="BaseDOResultMap" type="com.mmj.app.biz.domain.BaseDO" >
+  		<id 		column="ID" 			property="id" 				jdbcType="DECIMAL" />
+    	<result 	column="GMT_CREATE" 	property="gmtCreate" 		jdbcType="TIMESTAMP" />
+    	<result 	column="GMT_MODIFIED" 	property="gmtModified" 		jdbcType="TIMESTAMP" />
+    	<result 	column="STATUS" 		property="status" 			jdbcType="DECIMAL" />
+  	</resultMap>
+  	
+  	<resultMap id="BaseResultMap" type="com.mmj.app.biz.domain.MemberDO" extends="BaseDOResultMap">
+  		<result 	column="NAME" 			property="name" 				jdbcType="VARCHAR" />
+  		<result 	column="PASSWORD" 		property="password" 			jdbcType="VARCHAR" />
+  		<result 	column="NICK" 			property="nick" 				jdbcType="VARCHAR" />
+  		<result 	column="PIC" 			property="pic" 					jdbcType="VARCHAR" />
+  		<result 	column="SEX" 			property="sex" 					jdbcType="DECIMAL" />
+  		<result 	column="PROVINCE" 		property="province" 			jdbcType="VARCHAR" />
+  		<result 	column="CITY" 			property="city" 				jdbcType="VARCHAR" />
+  		<result 	column="COUNTY" 		property="county" 				jdbcType="VARCHAR" />
+  		<result 	column="EMAIL" 			property="email" 				jdbcType="VARCHAR" />
+  		<result 	column="MOBILE" 		property="mobile" 				jdbcType="VARCHAR" />
+  		<result 	column="TRUN_COMMENT" 	property="trunComment" 			jdbcType="DECIMAL" />
+  		<result 	column="TRUN_NEWS" 		property="trunNews" 			jdbcType="DECIMAL" />
+  		<result 	column="TRUN_REPLY" 	property="trunReply" 			jdbcType="DECIMAL" />
+  		<result 	column="USER_TYPE" 		property="userType" 			jdbcType="DECIMAL" />
+  		<result 	column="ROLE" 			property="role" 				jdbcType="VARCHAR" />
+  		<result 	column="LAST_LOGIN" 	property="lastLogin" 			jdbcType="TIMESTAMP" />
+  		<result 	column="INTEGRAL" 		property="integral" 			jdbcType="DECIMAL" />
+  		<result 	column="IS_BAN" 		property="isBan" 		        jdbcType="DECIMAL" />
+  		<result 	column="LETTER_BAN" 	property="letterBan" 		    jdbcType="DECIMAL" />
+  		<result 	column="USER_STATE" 	property="userState" 			jdbcType="DECIMAL" />
+  	</resultMap>
+  	
+  	<sql id="table_columns_without_id">
+  		GMT_CREATE,GMT_MODIFIED,STATUS,
+  		NAME,PASSWORD,NICK,PIC,SEX,PROVINCE,CITY,COUNTY,EMAIL,MOBILE,TRUN_COMMENT,TRUN_NEWS,TRUN_REPLY,USER_TYPE,ROLE,LAST_LOGIN,INTEGRAL,IS_BAN,LETTER_BAN,USER_STATE
+   	</sql>
+  
+  	<sql id="columns" >
+  		ID,<include refid="table_columns_without_id"/>
+  	</sql>
+  	
+  	<sql id="table_name" >
+  		member
+  	</sql>
+  	
+  	<sql id="orderby_clause">
+        order by GMT_MODIFIED DESC
+    </sql>
+    
+  	<sql id="query_where_clause">
+  		<trim prefix="where" prefixOverrides="and|or"> 
+  			<if test="t.id !=null ">  
+	            ID = #{t.id, jdbcType=INTEGER}
+	        </if> 
+	        <if test="t.status != null ">  
+	            and STATUS = #{t.status, jdbcType=INTEGER}
+	        </if> 
+          	<if test="t.status == null and status != null ">  
+	            and STATUS = #{status, jdbcType=INTEGER}
+	        </if>
+	        <if test="startGmtCreate != null and startGmtCreate != '' ">  
+	            and <![CDATA[ GMT_CREATE >= date_format(#{startGmtCreate, jdbcType=VARCHAR},'%Y-%m-%d %H:%i:%s')]]>
+	        </if>
+	        <if test="endGmtCreate != null and endGmtCreate != '' ">  
+	            and <![CDATA[ GMT_CREATE <= date_format(#{endGmtCreate, jdbcType=VARCHAR},'%Y-%m-%d %H:%i:%s')]]> 
+	        </if>
+	        <if test="startGmtModified != null and startGmtModified != '' ">  
+	            and <![CDATA[ GMT_MODIFIED >= date_format(#{startGmtModified, jdbcType=VARCHAR},'%Y-%m-%d %H:%i:%s')]]>
+	        </if>
+	        <if test="endGmtModified != null and endGmtModified != '' ">  
+	            and <![CDATA[ GMT_MODIFIED <= date_format(#{endGmtModified, jdbcType=VARCHAR},'%Y-%m-%d %H:%i:%s')]]>
+	        </if>
+	        
+	        <if test="nameLike != null and nameLike != '' ">  
+	            and NAME like CONCAT('%',#{nameLike, jdbcType=VARCHAR},'%') or NICK like CONCAT('%',#{nameLike, jdbcType=VARCHAR},'%') 
+	        </if>
+	        
+	        <if test="t.name !=null and t.name != '' ">
+				and NAME = #{t.name, jdbcType=VARCHAR}
+			</if>
+			<if test="t.nick !=null and t.nick != '' ">
+				and NICK = #{t.nick, jdbcType=VARCHAR}
+			</if>
+			<if test="t.email !=null and t.email != '' ">
+				and EMAIL = #{t.email, jdbcType=VARCHAR}
+			</if>
+			<if test="t.mobile !=null ">
+				and MOBILE = #{t.mobile, jdbcType=VARCHAR}
+			</if>
+			<if test="t.sex !=null ">
+				and SEX = #{t.sex, jdbcType=INTEGER}
+			</if>
+			<if test="t.province !=null and t.province != '' ">
+				and PROVINCE = #{t.province, jdbcType=VARCHAR}
+			</if>
+			<if test="t.city !=null and t.city != '' ">
+				and CITY = #{t.city, jdbcType=VARCHAR}
+			</if>
+			<if test="t.userType !=null ">
+				and USER_TYPE = #{t.userType, jdbcType=INTEGER}
+			</if>
+			<if test="t.role !=null and t.role != '' ">
+				and ROLE = #{t.role, jdbcType=VARCHAR}
+			</if>
+			<if test="t.isBan !=null ">
+				and IS_BAN = #{t.isBan, jdbcType=INTEGER}
+			</if>
+			<if test="t.userState !=null ">
+				and USER_STATE = #{t.userState, jdbcType=INTEGER}
+			</if>
+	    </trim> 
+  	</sql>
+  		
+  	<sql id="update_where_clause">
+		<trim prefix="where" prefixOverrides="and|or"> 
+	        <if test="id !=null ">  
+	            ID = #{id, jdbcType=INTEGER}
+	        </if> 
+	        <if test="status !=null ">  
+	            and STATUS = #{status, jdbcType=INTEGER}
+	        </if>
+	        
+	        <if test="t.name !=null and t.name != '' ">
+				and NAME = #{t.name, jdbcType=VARCHAR}
+			</if>
+			<if test="t.nick !=null and t.nick != '' ">
+				and NICK = #{t.nick, jdbcType=VARCHAR}
+			</if>
+			<if test="t.email !=null and t.email != '' ">
+				and EMAIL = #{t.email, jdbcType=VARCHAR}
+			</if>
+			<if test="t.sex !=null ">
+				and SEX = #{t.sex, jdbcType=INTEGER}
+			</if>
+			<if test="t.province !=null and t.province != '' ">
+				and PROVINCE = #{t.province, jdbcType=VARCHAR}
+			</if>
+			<if test="t.city !=null and t.city != '' ">
+				and CITY = #{t.city, jdbcType=VARCHAR}
+			</if>
+			<if test="t.userType !=null ">
+				and USER_TYPE = #{t.userType, jdbcType=INTEGER}
+			</if>
+			<if test="t.role !=null and t.role != '' ">
+				and ROLE = #{t.role, jdbcType=VARCHAR}
+			</if>
+			<if test="t.isBan !=null ">
+				and IS_BAN = #{t.isBan, jdbcType=INTEGER}
+			</if>
+			<if test="t.userState !=null ">
+				and USER_STATE = #{t.userState, jdbcType=INTEGER}
+			</if>
+	    </trim>
+   	</sql>
+  		
+  	<sql id="update_set_clause">
+  		<trim prefix="set GMT_MODIFIED= now()," suffixOverrides=",">  
+	        <if test="status !=null ">  
+	            STATUS = #{status, jdbcType=INTEGER},
+	        </if>
+
+	        <if test="name !=null and name != '' ">  
+	            NAME = #{name, jdbcType=INTEGER},
+	        </if>
+	        <if test="password !=null and password != '' ">  
+	            PASSWORD = #{password, jdbcType=INTEGER},
+	        </if>
+	        <if test="nick !=null and nick != '' ">  
+	            NICK = #{nick, jdbcType=INTEGER},
+	        </if>
+	        <if test="pic != null and pic != '' ">  
+	            PIC = #{pic, jdbcType=VARCHAR},
+	        </if> 
+	        <if test="sex !=null ">  
+	            SEX = #{sex, jdbcType=INTEGER},
+	        </if>
+	        <if test="province !=null and province != '' ">  
+	            PROVINCE = #{province, jdbcType=INTEGER},
+	        </if>
+	        <if test="city !=null and city != '' ">  
+	            CITY = #{city, jdbcType=INTEGER},
+	        </if>
+	        <if test="county !=null and county != '' ">                 　  
+	            COUNTY = #{county, jdbcType=INTEGER},
+	        </if>
+	        <if test="email !=null and email != '' ">  
+	            EMAIL = #{email, jdbcType=INTEGER},
+	        </if>
+	        <if test="mobile !=null and mobile != '' ">  
+	            MOBILE = #{mobile, jdbcType=INTEGER},
+	        </if>
+	        <if test="trunComment !=null ">  
+	            TRUN_COMMENT = #{trunComment, jdbcType=INTEGER},
+	        </if>
+	        <if test="trunNews !=null ">  
+	            TRUN_NEWS = #{trunNews, jdbcType=INTEGER},
+	        </if>
+	        <if test="trunReply !=null ">  
+	            TRUN_REPLY = #{trunReply, jdbcType=INTEGER},
+	        </if>
+	        <if test="userType !=null ">  
+	            USER_TYPE = #{userType, jdbcType=INTEGER},
+	        </if>
+	        <if test="role !=null and role != '' ">  
+	            ROLE = #{role, jdbcType=INTEGER},
+	        </if>
+	        <if test="lastLogin !=null ">  
+	            LAST_LOGIN = #{lastLogin, jdbcType=TIMESTAMP},
+	        </if>
+	        <if test="integral !=null ">  
+	            INTEGRAL = #{integral, jdbcType=INTEGER},
+	        </if>
+	        <if test="isBan !=null ">  
+	            IS_BAN = #{isBan, jdbcType=INTEGER},
+	        </if>
+	        <if test="letterBan !=null ">  
+	            LETTER_BAN = #{letterBan, jdbcType=INTEGER},
+	        </if>
+	        <if test="userState !=null ">  
+	            USER_STATE = #{userState, jdbcType=INTEGER},
+	        </if>
+   		</trim>
+  	</sql>
+  		
+   	<select id="list" resultMap="BaseResultMap" parameterType="java.util.Map">
+   		select  <include refid="columns" /> 
+   		from <include refid="table_name" /> 
+   		<include refid="orderby_clause"/>
+	  	<if test="limitSize != null" >
+	        <include refid="PAGINATION.MYSQL_PAGINATION" />
+	    </if>
+  	</select>
+  	
+  	<select id="listQuery" resultMap="BaseResultMap" parameterType="com.mmj.app.biz.query.MemberQuery">
+   		select  <include refid="columns" /> 
+   		from <include refid="table_name" /> 
+   		<include refid="query_where_clause"/>
+   		<include refid="orderby_clause"/>
+  	</select>
+  
+  	<select id="listPagination" resultMap="BaseResultMap" parameterType="com.mmj.app.biz.query.MemberQuery">
+		select <include refid="columns"/>
+		from <include refid="table_name" /> 
+		<include refid="query_where_clause"/>
+		<if test="sortType !=null and sortType == 'GMT_MODIFIED' ">
+			order by GMT_MODIFIED DESC
+		</if>
+        <if test="sortType !=null and sortType == 'GMT_CREATE' ">
+			order by GMT_CREATE DESC
+		</if>
+		<include refid="PAGINATION.MYSQL_PAGINATION" />
+  	</select>
+  	
+  	<select id="find" resultMap="BaseResultMap" parameterType="com.mmj.app.biz.query.MemberQuery" >
+  		select <include refid="columns"/>
+        from <include refid="table_name" />
+        <include refid="query_where_clause"/>
+        <include refid="orderby_clause"/>
+  	</select>
+  	
+   	<insert id="insert" parameterType="com.mmj.app.biz.domain.MemberDO" useGeneratedKeys="true" keyProperty="id" keyColumn="ID" >
+	   	insert into <include refid="table_name" /> (<include refid="table_columns_without_id"/>)
+        values ( now(), now(), 0,
+                #{name,jdbcType=VARCHAR},
+                #{password,jdbcType=VARCHAR},
+                #{nick,jdbcType=VARCHAR},
+                #{pic,jdbcType=VARCHAR},
+                0,<!-- #{sex,jdbcType=INTEGER},-->
+                #{province,jdbcType=VARCHAR},
+                #{city,jdbcType=VARCHAR},
+                #{county,jdbcType=VARCHAR},
+                #{email,jdbcType=VARCHAR},
+                #{mobile,jdbcType=VARCHAR},
+                0,<!-- #{trunComment,jdbcType=INTEGER},-->
+                0,<!-- #{trunNews,jdbcType=INTEGER},-->
+                0,<!-- #{trunReply,jdbcType=INTEGER},-->
+                #{userType,jdbcType=INTEGER},
+                #{role,jdbcType=VARCHAR},
+                #{lastLogin,jdbcType=TIMESTAMP},
+                0,<!-- #{integral,jdbcType=INTEGER}, -->
+                0,<!--#{isBan,jdbcType=INTEGER},-->
+                0,<!--#{letterBan,jdbcType=INTEGER},-->
+                1 <!-- #{userState,jdbcType=INTEGER} -->
+        )
+        <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+            SELECT last_insert_id() as id
+        </selectKey> 
+   	</insert>
+   	
+   	<update id="update" parameterType="com.mmj.app.biz.domain.MemberDO">
+   		update <include refid="table_name" /> 
+       	<include refid="update_set_clause"/>
+       	<include refid="update_where_clause"/>
+  	</update>
+  	
+  	<select id="count" resultType="java.lang.Integer" parameterType="com.mmj.app.biz.query.MemberQuery">
+  		select count(1)
+        from <include refid="table_name" />  
+       	<include refid="query_where_clause"/>
+   	</select>
+   	
+  	<delete id="deleteById" parameterType="java.lang.Integer">
+  		delete from <include refid="table_name" /> where ID = #{id,jdbcType=INTEGER}
+  	</delete>
+  	
+  	<select id="getById" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  		select <include refid="columns" /> 
+  		from <include refid="table_name" /> 
+  		where ID = #{id,jdbcType=INTEGER}
+  	</select>
+  
+   	<update id="updateById" parameterType="com.mmj.app.biz.domain.MemberDO">
+   		update <include refid="table_name" /> 
+   		<include refid="update_set_clause"/>
+	    where ID = #{id,jdbcType=INTEGER}
+  	</update>
+</mapper>

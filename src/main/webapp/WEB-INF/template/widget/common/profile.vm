@@ -1,0 +1,50 @@
+<div class="profile-area corner">
+	<div class="t1">
+		<input type="hidden" id="hidjid" value="$!{webUser.getName()}">
+		<div class="photo">
+			<a href="/profile">
+				#if($!{member.getPic()} && $!{member.getPic()}!='null' && $!{member.getPic()}!='')
+					<img src="$!{member.getPic()}" />
+				#else
+					<img src="/images/image48.png" />
+				#end
+			</a>
+		</div>
+		<div class="profile-R">
+			<div class="tu">
+				<a href="/user/link/saved">$!{member.getNick()}</a>
+			</div>
+			<a class="jifenCount" href="/help/integral" target="_blank">积分：<span>$!{member.integral}</span></a>
+		</div>
+		#if($!{webUser.getName()}==$!{member.name})
+		
+        #else
+			<a href="javascript:;" id="sendToPersonBtn" class="heimdan mailkou" title="发私信" otherjid="$!{member.getName()}" nick="$!{member.getNick()}"></a>
+        #end
+	</div>
+	<div class="t2">
+		#if($!{webUser.hasLogin()} && $!{webUser.getName()}==$!{member.name})	
+		<div class="s1">
+			<a href="/user/link/saved" class="shu1" id="shu_collect">$!{savedCount}</a>
+			<a href="/user/link/saved" class="fa1">私藏</a>
+		</div>
+		<div class="xian">$!{member.getNick()}</div>
+		#end
+		<div class="s1">
+			<a href="/user/$!{member.getName()}/publish" class="shu1" id="shu_fa">$!{publishCount}</a>
+			<a href="/user/$!{member.getName()}/publish" class="fa1">发布</a>
+		</div>
+		<div class="xian"></div>
+		<div class="s1">
+			<a href="/user/$!{member.getName()}/liked" class="shu1" id="shu_digg">$!{likedCount}</a>
+			<a href="/user/$!{member.getName()}/liked" class="fa1">推荐</a>
+		</div>
+		<div class="xian"></div>
+		<div class="s1">
+			<a href="/user/$!{member.getName()}/comments" class="shu1" id="shu_comment">$!{commentsCount}</a>
+			<a href="/user/$!{member.getName()}/comments" class="fa1">评论</a>
+		</div>
+		<i style="display:none" id="i_destjid">$!{webUser.getName()}</i>
+		<i style="display:none" id="i_jid">$!{member.getName()}</i>
+	</div>
+</div>

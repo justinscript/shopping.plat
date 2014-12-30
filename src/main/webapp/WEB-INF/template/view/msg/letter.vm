@@ -1,0 +1,80 @@
+<link rel="stylesheet" type="text/css" href="/css/notice.css" />
+
+<script type="text/javascript" src="/js/person_mail.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	NS_person_mail.init(); 
+});
+</script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		//当用户登录后才去判断
+		if($("#userProNick").length > 0) {
+			$("#userProNick").html(chouti.subNickLength($("#userProNick").html(), 5));
+		}
+	})
+</script>
+
+
+<div class="main-content-band">
+	
+    <div class="main-content" style="padding-top:4px;min-height:765px;">
+      <div class="notice" style="width:725px;padding-bottom:0;">
+        <div class="sum-count" style="position:relative;font-size:12px;font-weight:normal;">
+        	<span class="notice-name">私信</span>
+        	<span style="color:#CC3300">未读(<em>$!{unReadCount}</em>)</span>
+         	<div id="pingbiBox" class="pingbi-box">
+     			<a id="pingbiBtn" href="javascript:;"><span class="heimdan pingbie"></span>屏蔽发给我的私信</a>
+         	</div>
+        </div>
+        <div class="head">
+        	<div class="l_ljm"><input type="checkbox" id="chkSelectAll"><label for="chkSelectAll">全选</label></div>
+        	<a href="javascript:;" class="btn btn-4" id="readedBtn"><span>已读</span></a>
+            <a href="javascript:;" class="btn btn-4" id="delBtn"><span>删除</span></a>
+        </div>
+        
+		#if($!{list.size()}=="0") 
+	        <div class="no-contanier">您的私信列表为空</div>
+		#else
+	        <div class="mail-box" id="mailBox">
+				#foreach($!item in $list)	
+		    	<div class="item">  
+		    		#if($!{item.unRead}=="1") 	
+		    		<span class="noDuP"></span>	
+		    		#end
+		    		<input type="checkbox" class="checkId" value="$!{item.dialogId}">
+		    		<div class="nr-r">   			
+		    			<a href="/user/$!{item.recipientName}/publish" target="_blank"><img src="$!{item.recipientNickImgUrl}" width="48" height="48" class="imgs"></a>
+		    			<div class="nr-r-r">
+		    				<div class="r1">
+		    					<a href="/user/$!{item.recipientName}/publish" class="nick" target="_blank">$!{item.recipientNick}</a>
+		    					<span class="nr">$!{item.content}</span>
+		    				</div>
+		    				<div class="r2">
+		    					<div class="sj">$!{item.getPublishTime()}</div>
+		    					<div class="caozuo">
+		    						<a href="/letter/show/1/$!{item.dialogId}/1">共$!{item.count}条对话</a>
+		    						<a href="/letter/show/1/$!{item.dialogId}/1">回复</a>
+		    						<a href="javascript:;" lang="$!{item.dialogId}" class="delMail">删除</a>
+		    					</div>
+		    				</div>
+		    			</div>
+		    	    </div>
+		       </div>
+		       #end
+		    </div>
+		#end
+        
+        <div id="mail-page">
+        	<div class="l_ljm"><input type="checkbox" id="chkSelectAll"><label for="chkSelectAll">全选</label></div>
+        	<a href="javascript:;" class="btn btn-4" id="readedBtn2"><span>已读</span></a>
+            <a href="javascript:;" class="btn btn-4" id="delBtn2"><span>删除</span></a>       
+            <div class="pages" style="margin-top:-2px;">
+            	 <div id="dig_lcpage"></div>	
+            </div><input type="hidden" id="curtPage" name="curtPage" value="1"></div>
+     	</div>
+    </div>
+
+#parse("/widget/common/footer.vm") 
+</div>

@@ -1,0 +1,47 @@
+<script type="text/javascript" src="/js/chouti_nav.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        chouti.Init();
+    });
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	//当用户登录后才去判断
+	if($("#userProNick").length > 0) {
+		$("#userProNick").html(chouti.subNickLength($("#userProNick").html(), 5));
+	}
+})
+</script>
+	
+	
+<style>
+    p{
+        font-size:14px;
+        margin: 10px 0;
+    }
+    h1{
+        border-bottom: 1px solid #CCDCEF;
+        color: #787878;
+        font-size: 16px;
+        padding: 39px 0 10px;
+    }
+</style>
+				
+<div class="main-content-band">
+    <div class="main-content">
+        <h1>聊天与评论规则。违反这些规则可能导致暂停您使用评论区或聊天室的特权。 多次违反这些规则将导致终止您的会员资格。</h1>
+        <div>
+            <p>1、请勿使用有损你本人或他人安全及人格的头像或昵称。</p>
+            <p>2、请勿在评论中灌水，发表评论尽量切题。</p>
+            <p>3、禁止讨论或发布色情、政治及其他不和谐内容。</p>
+            <p>4、发现有其他网友违规的地方，请联系管理员。</p>
+            <p>5、请不要使用淫秽的，粗鲁的，带攻击性的话语。</p>
+            <br><br><br>
+            <p>希望大家能够在买买君友好的环境下交流分享抑或探讨。如有任何异议或者对买买君发展的建议，请一定通过用户反馈系统提出，写明自己的id及联系方式，我们会及时回复。我们在处理违规行为的时候向来善意且真诚，除非有人再三地违反规则。</p>
+        </div>
+    </div>
+</div>
+	
+#parse("/widget/common/footer.vm") 

@@ -1,0 +1,73 @@
+
+/* CSS Document */
+body, button, td, select, textarea, input{
+    font: 12px Tahoma, Verdana, Arial, Helvetica, "\5b8b\4f53", sans-serif;
+    color: #333;
+}
+body{
+	/*
+	background:none repeat scroll 0 0 #FFFFFF;
+	*/
+}
+/*
+"\5fae\8f6f\96c5\9ed1",
+*/
+body, h1, h2, h3, h4, h5, h6, hr, p, blockquote,a, /* structural elements */
+dl, dt, dd, ul, ol, li, /* list elements */
+pre, /* text formatting elements */
+form, fieldset, legend, button, input, textarea, /* form elements */
+th, td /* table elements */
+{
+    margin: 0;
+    padding: 0;
+	word-wrap: break-word;
+	word-break: break-all;
+}
+
+textarea{
+	overflow: auto;
+	line-height: 1.3;
+	border: 1px solid #bbd1e9;
+}
+
+ul, ol{
+	list-style:none;
+}
+
+sup { 
+	vertical-align: text-top;
+} 
+sub { 
+	vertical-align: text-bottom;
+}
+
+fieldset, img { 
+	border: 0;
+}
+
+a {
+	text-decoration:none;
+}
+a:focus{
+	outline: none;
+	webkit-outline:none;
+}
+a img{
+	border:0 none;
+}
+em, i{
+	font-style:normal;
+}
+/* 屏蔽文本框高亮 */
+input {
+	outline: none;
+}
+
+textarea {
+	outline: none;
+	resize: none;
+	
+}
+b{
+	font-weight:normal;
+}

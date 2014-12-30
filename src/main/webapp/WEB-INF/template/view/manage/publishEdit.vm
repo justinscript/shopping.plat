@@ -1,0 +1,86 @@
+<link  rel="stylesheet" href="/js/uikit/css/uikit.min.css">
+<link id="data-uikit-theme" rel="stylesheet" href="/js/uikit/css/uikit.docs.min.css">
+<link rel="stylesheet" href="/js/uikit/css/docs.css">
+
+<script type="text/javascript" src="/js/uikit/js/uikit.min.js"></script>
+<script type="text/javascript" src="/js/uikit/js/addons/datepicker.js"></script>
+
+<script type="text/javascript" src="/js/upload/swfupload.js"></script>
+<script type="text/javascript" src="/js/upload/handlers.js"></script>
+<script type="text/javascript" src="/js/upload/swfuploadone.js"></script>
+
+<div>
+    <ul class="uk-breadcrumb">
+        <li><a href="/manage/home">Home</a></li>
+        <li class="uk-active"><span>新增发布</span></li>
+    </ul>
+</div>
+<br/>
+
+#if($!{errorMsg} && $!{errorMsg}!='null' && $!{errorMsg}!='')
+<div class="uk-alert uk-alert-danger" data-uk-alert="">
+    <a href="#" class="uk-alert-close uk-close"></a>
+    <p>$!errorMsg</p>
+</div>
+#end
+
+#if($!{successMsg} && $!{successMsg}!='null' && $!{successMsg}!='')
+<div class="uk-alert uk-alert-success" data-uk-alert="">
+    <a href="#" class="uk-alert-close uk-close"></a>
+    <p>$!successMsg</p>
+</div>
+#end
+
+<div>
+	<form class="uk-form uk-form-horizontal addForm" name="addForm" action="/manage/doPublish"  method="post">
+		<input type="hidden" class="my-id" value="$!{topic.id}" name="id"/>
+        <div class="uk-form-row">
+            <label class="uk-form-label" for="form-h-it">标题</label>
+            <div class="uk-form-controls">
+                <input type="text" id="form-h-it" placeholder="请输入标题..." name="title" value="$!{topic.title}" class="uk-form-width-large">
+            </div>
+        </div>
+        <div class="uk-form-row">
+            <label class="uk-form-label" for="form-h-ip">跳转URL</label>
+            <div class="uk-form-controls">
+                <input type="text" id="form-h-ip" placeholder="跳转的链接" name="url" value="$!{topic.originalUrl}" class="uk-form-width-large">
+            </div>
+        </div>
+        <div class="uk-form-row">
+            <label class="uk-form-label" for="form-h-s">类别</label>
+            <div class="uk-form-controls">
+                <select id="form-h-s" name="subjectId">
+                    #set($subjectEnums=$!{enumViewTools.getSubjectMenu()})
+					#foreach($subjectEnum in $subjectEnums)
+						<option value="$!{subjectEnum.getValue()}" #if($!{topic.subjectId}==$!{subjectEnum.getValue()}) selected="selected" #end >$!{subjectEnum.getDesc()}</option>
+					#end
+                </select>
+            </div>
+        </div>
+		<div class="uk-form-row">
+            <label class="uk-form-label" for="form-h-t">图片</label>
+            <div style="position:relative;padding:0;margin:0;">
+				<span id="spanButtonPlaceholder"></span>              
+				<div id="divFileProgressContainer" style="position:absolute;left:150px;top:0"></div>
+			</div>
+            <div class="uk-form-controls" name="content">
+                #if(!$!{topic.imgUrl} || $!{topic.imgUrl}=="")
+					<img style="width:113px;height:51px;" src="/images/meiyoupeitu.png" id="showImage"/>
+				#else
+					<img style="width:113px;height:51px" src="$!{topic.imgUrl}" id="showImage"/>
+				#end
+					<input type="hidden" value="$!{topic.imgUrl}" name="imgUrl" id="uploadImage"/>
+            </div>
+        </div>
+        <div class="uk-form-row">
+            <label class="uk-form-label" for="form-h-t">推荐内容</label>
+            <div class="uk-form-controls">
+                <textarea id="form-h-t" cols="70" rows="6" placeholder="请输写你认为的推荐原因吧...." value="$!{topic.content}" name="content">$!{topic.content} </textarea>
+            </div>
+        </div>
+        
+        <div class="uk-form-row uk-width-medium-1-2 uk-container-center">
+        	<button class="uk-button uk-button-success" type="button" value="addPublish">提交</button>
+        </div>
+    </form>
+</div>

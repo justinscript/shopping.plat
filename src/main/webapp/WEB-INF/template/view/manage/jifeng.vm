@@ -1,0 +1,61 @@
+<link  rel="stylesheet" href="/js/uikit/css/uikit.min.css">
+<link id="data-uikit-theme" rel="stylesheet" href="/js/uikit/css/uikit.docs.min.css">
+<link rel="stylesheet" href="/js/uikit/css/docs.css">
+	
+<script type="text/javascript" src="/js/uikit/js/uikit.min.js"></script>
+<script type="text/javascript" src="/js/uikit/js/addons/datepicker.js"></script>
+	
+<div>
+    <ul class="uk-breadcrumb">
+        <li><a href="/manage/home">Home</a></li>
+        <li class="uk-active"><span>积分</span></li>
+    </ul>
+</div>
+<br/>
+
+<div>
+    <table class="uk-table uk-table-hover uk-table-striped uk-table-condensed" cellspacing="0">
+        <caption>积分信息</caption>
+        <thead>
+            <tr>
+    			<th>用户ID</th>
+    			<th>用户昵称</th>
+                <th>用户总积分</th>
+				<th>用户评论数</th>
+    			<th>用户发布数</th>
+    			<th>积分累加</th>
+				<th>可用积分</th>
+    			<th>已兑换积分</th>
+    			<th>记录状态</th>
+    			<th>创建时间</th>
+    			<th>操作</th>
+            </tr>
+        </thead>
+    	
+        <tbody>
+    		#foreach($!member in $list) 
+            <tr>
+				<input type="hidden" class="my-id" value="$!{member.id}" />
+    			<td>$!{member.id}</td>
+    			#set($userUrl="/user/"+$!{member.name}+"/publish")
+                <td><a class="uk-text-success" href="$userUrl" target="_blank"><p>$!{member.nick}</p></a></td>
+    			<td><a class="uk-text-success" href="$userUrl" target="_blank"><p>$!{member.integral}</p></a></td>
+    			<td><a class="uk-text-success" href="$userUrl" target="_blank"><p>0</p></a></td>
+    			<td><a class="uk-text-success" href="$userUrl" target="_blank"><p>0</p></a></td>
+    			<td><p class="my-desc">发布数*10+评论数*1</p></td>
+				<td>$!{member.integral}</td>
+    			<td>0</td>
+    			<td><p>$!{enumViewTools.statusEnumDesc($!member.status)}</p></td>
+    			<td>$!{dateViewTools.format($!member.gmtCreate,"yyyy-MM-dd HH:mm")}</td>
+    			<td class="uk-text-center uk-text-middle">
+    				<p>
+						<a class="uk-button uk-button-mini uk-button-primary" href="#">查看详情</a>
+    				</p>
+    			</td>
+            </tr>
+    		#end
+        </tbody>
+    </table>
+</div>	
+
+$widget.setTemplate("pagination/uikitPager").addParam('pagination',$!{list.getQuery()})

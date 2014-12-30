@@ -1,0 +1,140 @@
+<div class="content-R"> 
+
+	#if($!{webUser.hasLogin()})
+		#set($userInfo="rJid=$!{webUser.getName()}@gozap.com&amp;rName=$!{webUser.getNick()}&amp;headURL=$!{webUser.getImg()}&amp;banStatus=$!{webUser.getBanStatus()}&amp;")
+	#end
+	
+    <div class="chat-area" id="chat-area"> 
+     <object id="chat-flash" name="chat-flash" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,29,0" width="300" height="475"> 
+		<param name="movie" value="/images/MucChatSecond.swf?v=2.6.15"> 
+        <param name="quality" value="high">
+		<param name="allowScriptAccess" value="always" > 
+        <!--该属性能让div掩盖住flash,因为有的浏览器(搜狗浏览器)加上该属性后不能输入中文，所以暂时不要该属性--> 
+	    <param name="allowfullscreen" value="true" > 
+	    <param name="allowFullScreenInteractive" value="true"> 
+	    <param name="wmode" id="par_wmode" value="Opaque" > 
+	    <param name="FlashVars" value="$!{userInfo}adminJids=curt_liu@gozap.com,matrix@gozap.com,hugh19871210@gozap.com,guofurongjiejie@gozap.com,muqinghua@gozap.com"> 
+	    <embed id="embed" width="300" height="475" allowscriptaccess="always" allowfullscreen="true" allowfullscreeninteractive="true" wmode="Opaque" flashvars="$!{userInfo}adminJids=curt_liu@gozap.com,matrix@gozap.com,hugh19871210@gozap.com,guofurongjiejie@gozap.com,muqinghua@gozap.com" type="application/x-shockwave-flash" pluginspage="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash" quality="high" src="/images/MucChatSecond.swf?v=2.6.15"> 
+	 </object> 
+	
+     <script>
+        //当用户没有登录时，点击发送时，需要弹出登录框
+        function mucChatLogin(str){
+            chouti.showLoginBox();
+        }
+        $("#chat-flash").mouseover(function(){
+          return true;
+        });
+            $("#embed").mouseover(function(){
+          return true;
+        });
+        $(document).ready(function(){
+            var downloadImg = new Image();
+            downloadImg.src = "/images/download_ad_icon.png";
+        });
+        function newcate(user) {
+            if(user) {
+                window.location = "/apply/category";
+            }else {
+                chouti.showLoginBox();
+            }
+        }
+    </script> 
+    </div> 
+	
+    <style>
+        .btn-notice:hover{
+            text-decoration:underline;
+        }
+    </style> 
+	
+    <div style="margin-top:10px;">
+     <a target="_blank" href="/help/notice" class="btn-notice" style="font-size:14px;font-weight:bold;color:#369;cursor:pointer;padding-left:30px;background:url(/images/view.png) no-repeat left center;height:20px;display:inline-block;">聊天与评论规则</a>
+    </div> 
+	
+    <style>
+    .btn-newcate{
+        display: block;
+        color: white;
+        background-color: #015e98;
+        padding: 10px 0;
+        text-align: center;
+        margin-top: 10px;
+        cursor: pointer;
+    }
+    .btn-newcate:hover{
+        background-color: #087bb5;
+        text-decoration: underline;
+    }
+    </style> 
+	
+    ##<div style="width:300px;height:190px;margin-top:12px;overflow:hidden;" width="300px" height="190px"> 
+    ## <a target="_blank" href="/help/news" id="download_bg"></a> 
+    ##</div> 
+
+    <link rel="stylesheet" type="text/css" href="/css/daohang.css" />
+
+    <div class="boxwrap">
+        <!-- 商家列表 E -->
+        <!-- 购物名站 S -->
+        <div class="famous_list">  
+            <div class="bd" id="famous_list">
+                <ul class="clearfix">
+                <li class=""><a class="pic" target="_blank" href="http://www.amazon.cn?t=mmj-23&tag=mmj-23" rel="nofollow">
+                    <img alt="亚马逊" src="/images/amazon.png"></a></li>                                
+                <li class=""><a class="pic" target="_blank" href="http://c.duomai.com/track.php?site_id=142869&aid=64&euid=&t=http%3A%2F%2Fwww.dangdang.com%2F" rel="nofollow">
+                    <img alt="当当网" src="/images/dang.png"></a></li>
+        
+                <li class=""><a class="pic" target="_blank" href="http://union.click.jd.com/jdc?e=&p=AiIBZRprFDJWWA1FBCVbV0IUEEULRFRBSkAOClBMW0srOnEBWlIKAV92C2RSB2UyEHBNeS1TKxkOIgZlGF4VAhQFVB5cJTJzdWU%3D&t=W1dCFBBFC0RUQUpADgpQTFtL" rel="nofollow">
+                    <img alt="京东商城" src="/images/jd.png"></a></li>
+            
+                <li class=""><a class="pic" target="_blank" href="http://www.womai.com/" rel="nofollow">
+                    <img alt="我买网" src="/images/womai.jpg"></a></li>
+            
+                <li class=""><a class="pic" target="_blank" href="http://www.amazon.com?ie=UTF8&camp=1789&creativeASIN=B003L1ZYYM&linkCode=xm2&tag=maimaijun-20/" rel="nofollow">
+                    <img alt="美亚" src="/images/amazonus.jpg"></a></li>
+            
+                <li class=""><a class="pic" target="_blank" href=" http://www.iherb.com/?rcode=QIQ538" rel="nofollow">
+                    <img alt="iherb" src="/images/iherb.jpg"></a></li>
+            
+                <li class=""><a class="pic" target="_blank" href="http://c.duomai.com/track.php?site_id=142869&aid=543&euid=&t=http%3A%2F%2Fwww.sfbest.com%2F" rel="nofollow">
+                    <img alt="顺丰优选" src="/images/sf.png"></a></li>
+            
+                <li class=""><a class="pic" target="_blank" href="http://union.suning.com/aas/open/vistorAd.action?userId=2010468&webSiteId=0&adInfoId=00&adBookId=0&vistURL=http://www.suning.com/" rel="nofollow">
+                    <img alt="苏宁" src="/images/suning.png"></a></li>
+            
+                <li class=""><a class="pic" target="_blank" href="http://www.vip.com" rel="nofollow">
+                    <img alt="唯品会" src="/images/vipshop.png"></a></li>
+            
+                <li class=""><a class="pic" target="_blank" href="http://www.yhd.com?tracker_u= 107792357" rel="nofollow">
+                    <img alt="一号店" src="/images/yihaodian.png"></a></li>
+            
+                <li class=""><a class="pic" target="_blank" href="http://c.duomai.com/track.php?site_id=142869&aid=337&euid=&t=http%3A%2F%2Fwww.yixun.com%2F" rel="nofollow">
+                    <img alt="易迅" src="/images/yixun.png"></a></li>
+            
+                <li class=""><a class="pic" target="_blank" href="http://c.duomai.com/track.php?site_id=142869&aid=70&euid=&t=http%3A%2F%2Fwww.yintai.com" rel="nofollow">
+                    <img alt="银泰" src="/images/yintai.png"></a></li>                 
+                </ul>
+            </div>
+        </div>
+    </div> 
+	
+    $widget.setTemplate("common/topBan").addParam('subjectId',$!{subjectId})
+
+    <!-- 条件判断,如果用户登录，则广告显示在最下面 ad--> 
+    <iframe src="http://rcm-cn.amazon-adsystem.com/e/cm?t=mmj-23&o=28&p=12&l=ez&f=ifr&f=ifr" width="300" height="250" scrolling="no" marginwidth="0" marginheight="0" border="0" frameborder="0" style="border:none;"></iframe>
+    &nbsp;
+    ##<iframe id="f" width="300px" height="250px" frameborder="no" border="0" marginwidth="0" marginheight="0" allowtransparency="yes" scrolling="NO" >
+    <script type="text/javascript">var jd_union_pid="242884113";var jd_union_euid="";</script><script type="text/javascript" src="http://ads.union.jd.com/static/js/union.js"></script>
+    ##</iframe>
+
+    <!--<a target="_blank" href="/feedback">
+    <img src="/images/ad.jpg" width="300" height="200" border="0">
+    </a>
+    &nbsp;
+    <a target="_blank" href="/feedback">
+    <img src="/images/bg2x.png" width="300" height="200" border="0">
+    </a>-->
+    
+	$widget.setTemplate("common/letter").addParam('othernick',$!{member.nick}).addParam('otherjid',$!{member.name})
+</div>

@@ -1,0 +1,42 @@
+<link rel="stylesheet" type="text/css" href="/css/setnewpassword.css" />
+<link rel="stylesheet" type="text/css" href="/css/about.css" />
+
+<script type="text/javascript">
+$(document).ready(function(){
+	chouti.Init();
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	//当用户登录后才去判断
+	if($("#userProNick").length > 0) {
+		$("#userProNick").html(chouti.subNickLength($("#userProNick").html(), 5));
+	}
+})
+</script>
+
+
+<div class="main-content-band">
+    <div class="main-content">
+    	 <div class="about_a">关于我们</div>
+         <div class="about_b">
+            在过去的30年间，电子商务的概念发生了很大的变化，互联网购物潮是一浪高过一浪，当我们回头面对互联网上绵绵不尽的商品，已经不知所措了。<br>
+			所幸，导购网站成长起来，指导我们在正确的时间正确的购物。但当导购网站由一而众，购物入口则又一次繁杂，我们更一步走在前面，精选出导购网站，实时聚合购物优惠新品发现信息，并精准推送至用户。继而在聚合基础上推进用户互动，使得用户分享和评价高效发散，积极的融合购物生态圈。
+         </div>
+         <div class="about_c">
+    		  <div class="about_imga"></div>
+              <div class="about_cont">
+              	   <div class="about_title">关于买买君</div>
+                    ####买买君属于即闻信息技术（上海）有限公司。<br>
+                    <br>
+                   	买买君处理的是人和商品的信息，在将来发展成社会化电商聚合平台，优秀的电商机构必须提供一个即满意又具有意义的经验给用户，包括向用户实时，互动，社区化，自助式的提供优惠的商品和信息，同时可以让用户分享资讯，评论得以更大范围的传播。
+    			<br>
+              </div>
+    	 </div>
+         <div class="about_c">
+        		  
+         </div>
+	</div>	
+#parse("/widget/common/footer.vm") 
+</div>

@@ -1,0 +1,34 @@
+<div class="nav-top-area"> 
+     <div class="child-nav"> 
+		#set($hotUrl='/all/hot/recent')
+		#set($newUrl='/all/new')
+		#if(!$!{subject}) 
+			#if($!{orderTime}) 
+				#set($hotUrl='/all/hot/'+$!{orderTime})
+			#else
+				#set($hotUrl='/all/hot/recent')
+			#end
+			#set($newUrl='/all/new')
+		#else
+			#set($hotUrl='/r/'+$!{subject}+'/hot')
+			#set($newUrl='/r/'+$!{subject}+'/new')
+		#end
+    	<a href="$hotUrl" hidefocus="false" class="hotbtn #if($!{order} && $!{order}=='hot') active icons #end " id="hotts-nav-btn">最热</a> 
+    	<a href="$newUrl" hidefocus="false" class="newbtn #if($!{order} && $!{order}=='new') active icons #end " id="newest-nav-btn">最新</a> 
+    	<!--<a href="/all/man/1" hidefocus="false" class="personbtn" id="person-nav-btn">人类发布</a> -->
+     </div> 
+	 #if(!$!{subject})  
+		#if($!{order} && $!{order}!="new")
+        <div class="sort-nav"> 
+        	<a href="/all/hot/recent/1" hidefocus="false" class="#if($!{orderTime} && $!{orderTime}=='recent') active #end hotbtn" id="sort-nav-btn">即时排序</a> 
+        	<a href="/all/hot/24hr/1" hidefocus="false" class="#if($!{orderTime} && $!{orderTime}=='24hr') active #end newbtn" id="sort24-nav-btn">24小时</a> 
+        	<a href="/all/hot/72hr/1" hidefocus="false" class="#if($!{orderTime} && $!{orderTime}=='72hr') active #end newbtn" id="sort3-nav-btn">3天</a> 
+        </div> 
+		#else
+		#end
+	 #end
+     <a href="javascript:;" class="publish-btn" id="publishBtn" lang="all"> 
+    	<span class="ico n1"></span>
+    	<span class="n2">发布</span> 
+     </a> 
+</div>

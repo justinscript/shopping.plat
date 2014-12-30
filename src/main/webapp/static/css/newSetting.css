@@ -1,0 +1,40 @@
+.content-list .item{
+	padding:25px 0;
+	border-bottom:1px solid #F6F6F6;
+}
+.ask-title{
+	font-weight:normal;
+	width:150px;
+}
+table .td3{
+	padding:25px 0;
+}
+table .td2 {
+    border-collapse: collapse;
+    font-weight: normal;
+    padding: 25px 0;
+    text-align: left;
+    width: 150px;
+    
+}
+
+/*新文本框样式（设置）*/
+.new-text{
+    font-weight: normal;
+    height: 31px;
+    line-height: 31px;
+    width: 138px;
+	border:1px solid #dadada;
+	position:relative;
+	background-color:#fff;
+	font-size:13px;
+	box-shadow:inset 0px 0px 2px #dadada;
+}
+.text-error{
+	border:1px solid #FF8996;
+	box-shadow:inset 0px 0px 2px #FF8996;
+}
+.text-active{
+	border:1px solid #9db7dd;
+	box-shadow:inset 0px 0px 2px #9db7dd;
+}

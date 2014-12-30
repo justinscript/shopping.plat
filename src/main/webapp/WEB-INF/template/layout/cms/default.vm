@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>买买君 | 每日精品新品特惠品海淘推荐，每日推出你买东西我买单。</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="买买君，海淘，今日免单，你买东西我买单，特惠，新品，特价，精品，京东，亚马逊，天猫，美亚，直邮" />
+    <meta name="description" content="买买君，每日精选新品，精品，特惠品以及海淘用品推荐，由数十万买友分享真正值得买的高质量商品打造国内购物社区实时交流第一社区，每日均有免单活动推出，买友人人都有实惠。" />
+    <meta name="robots" content="index,follow" />
+    <meta name="GOOGLEBOT" content="index,follow" />
+    <meta name="Author" content="搞笑" />
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8">
+    <link type="image/x-icon" href="/images/chouti.ico" rel="icon"/>
+    <link type="image/x-icon" href="/images/chouti.ico" rel="Shortcut Icon"/>
+    <link type="image/x-icon" href="/images/chouti.ico" rel="bookmark"/>
+    
+    <meta property="wb:webmaster" content="5cb5529a27fec7da" />
+    <meta property="qc:admins" content="214153431563075416375" />
+    
+    #parse("/widget/common/style.vm")
+	
+    <style id="style-1-cropbar-clipper">
+    .en-markup-crop-options {
+        top: 18px !important;
+        left: 50% !important;
+        margin-left: -100px !important;
+        width: 200px !important;
+        border: 2px rgba(255,255,255,.38) solid !important;
+        border-radius: 4px !important;
+    }
+    .en-markup-crop-options div div:first-of-type {
+        margin-left: 0px !important;
+    }
+    </style>
+</head>
+<style>
+	.text-box {
+		width: 194px;
+	}
+    .text {
+        height: 17px;
+        width: 189px;
+    }
+    .text-normal {
+		border: 1px solid #CDDDEF;
+		background-color: #fff;
+	}
+</style>
+<body id="home-page">
+	#parse("/widget/common/header.vm")
+    $body
+	<div id="tips_top_container" style="display: none;">
+		<div class="inline-block tips-top">
+			<span class="tips-top-text" style="margin: 0pt 30px 0pt 10px;"></span>
+			<a class="icon-common icon-close-success" href="javascript:;" style="display: block;"></a>
+		</div>
+	</div>
+</body>
+</html>

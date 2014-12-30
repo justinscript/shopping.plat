@@ -1,0 +1,76 @@
+/* page */
+/* 左中下（分页） */
+#dig_lcpage{
+	float:left;
+}
+
+#dig_lcpage .ct_pagepw {
+    margin-right: 6px;
+    font-weight:bold;
+    border:0 none;
+    color:#333;
+    *line-height:32px;
+}
+
+#dig_lcpage li{
+	display:inline;
+	/*
+	margin:0 2px;
+	*/
+}
+#dig_lcpage .ct_pageeli{
+	margin-right:6px;
+	border:0 none;
+}
+#dig_lcpage a, #dig_lcpage span{
+	
+	float:left;
+	color:#336699;
+	height:34px;
+	line-height:34px;
+	*line-height:32px;
+	text-align:center;
+	width:30px;
+	border:1px solid #e1e1e1;
+	border-radius:5px;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+}
+a.ct_pagepa{
+	font-size:12px;
+	margin-right:6px;
+}
+
+#dig_lcpage a.ct_page_edge{
+	
+	margin-right:9px;
+	width:50px;
+	font-weight:normal;
+}
+#dig_lcpage a:hover{
+	
+	color:#ffffff;
+	background-color:#336699;
+	border:1px solid #336699;
+}
+
+.ct_pagesp{
+	font-size:12px;
+	color:#787878;
+}
+.ct_pagepi{
+	width:40px;
+	border:1px solid #CCC;
+	*vertical-align:middle;
+	text-align:center;
+}
+.ct_pagenumber{
+	height:19px; 
+	width:44px;
+}
+.ct_goto{
+	font-size:12px;
+	color:#787878;
+	margin-left: 2px;
+	margin-right:10px;
+}

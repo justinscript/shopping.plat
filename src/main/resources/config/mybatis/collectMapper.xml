@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mmj.app.biz.mapper.CollectMapper" >
+  	<resultMap id="BaseDOResultMap" type="com.mmj.app.biz.domain.BaseDO" >
+  		<id 		column="ID" 			property="id" 				jdbcType="DECIMAL" />
+    	<result 	column="GMT_CREATE" 	property="gmtCreate" 		jdbcType="TIMESTAMP" />
+    	<result 	column="GMT_MODIFIED" 	property="gmtModified" 		jdbcType="TIMESTAMP" />
+    	<result 	column="STATUS" 		property="status" 			jdbcType="DECIMAL" />
+  	</resultMap>
+  	
+  	<resultMap id="BaseResultMap" type="com.mmj.app.biz.domain.CollectDO" extends="BaseDOResultMap">
+  		<result 	column="USER_ID" 			property="userId" 				jdbcType="DECIMAL" />
+    	<result 	column="TOPIC_ID" 			property="topicId" 				jdbcType="DECIMAL" />
+    	<result 	column="COLLECT_TYPE" 		property="collectType" 			jdbcType="DECIMAL" />
+  	</resultMap>
+  	
+  	<resultMap id="CollectFullResultMap" type="com.mmj.app.biz.domain.CollectFullDO" extends="BaseResultMap">
+  		<result 	column="TOPIC_GMT_CREATE" 		property="topicGmtCreate" 		jdbcType="TIMESTAMP" />
+    	<result 	column="TOPIC_GMT_MODIFIED"     property="topicGmtModified" 	jdbcType="TIMESTAMP" />
+    	<result 	column="TOPIC_STATUS" 			property="topicStatus" 			jdbcType="DECIMAL" />
+  		<result 	column="TOPIC_USER_ID" 			property="topicUserId" 			jdbcType="DECIMAL" />
+  		<result 	column="SUBJECT_ID" 			property="subjectId" 			jdbcType="DECIMAL" />
+ 		<result 	column="TITLE" 					property="title" 				jdbcType="VARCHAR" />
+  		<result 	column="CONTENT" 				property="content" 				jdbcType="VARCHAR" />
+  		<result 	column="LINK_URL" 				property="linkUrl" 				jdbcType="VARCHAR" />
+  		<result 	column="ORIGINAL_URL" 			property="originalUrl" 			jdbcType="VARCHAR" />
+  		<result 	column="CONTENT_SOURCE" 		property="contentSource" 		jdbcType="VARCHAR" />
+  		<result 	column="CONTENT_KIND" 	    	property="contentKind" 			jdbcType="DECIMAL" />
+  		<result 	column="PUBLISH_SOURCE" 		property="publishSource" 		jdbcType="VARCHAR" />
+  		<result 	column="IMG_URL" 				property="imgUrl" 				jdbcType="VARCHAR" />
+  		<result 	column="SUMMARY" 				property="summary" 				jdbcType="VARCHAR" />
+  		<result 	column="RECOMMEND" 				property="recommend" 			jdbcType="DECIMAL" />
+  		<result 	column="COMMENTS" 				property="comments" 			jdbcType="DECIMAL" />
+  		<result 	column="YELLOW" 				property="yellow" 				jdbcType="DECIMAL" />
+  		<result 	column="TAB_TYPE" 				property="tabType" 				jdbcType="DECIMAL" />
+  		<result 	column="TOPIC_STATE" 			property="topicState" 			jdbcType="DECIMAL" />
+  		<result 	column="HIT" 					property="hit" 					jdbcType="DECIMAL" />
+  		<result 	column="IS_VOTE" 				property="isVote" 				jdbcType="DECIMAL" />
+  		<result 	column="IS_BAN" 				property="isBan" 				jdbcType="DECIMAL" />
+  	</resultMap>
+  	
+  	<sql id="table_columns_without_id">
+  		GMT_CREATE,GMT_MODIFIED,STATUS,
+  		USER_ID,TOPIC_ID,COLLECT_TYPE
+   	</sql>
+  
+  	<sql id="columns" >
+  		ID,<include refid="table_columns_without_id"/>
+  	</sql>
+  	
+  	<sql id="table_name" >
+  		collect
+  	</sql>
+  	
+  	<sql id="orderby_clause">
+        order by GMT_MODIFIED DESC
+    </sql>
+    
+    <select id="collectListPagination" resultMap="CollectFullResultMap" parameterType="com.mmj.app.biz.query.CollectQuery">
+		select c.GMT_CREATE,c.GMT_MODIFIED,c.STATUS,c.USER_ID,c.TOPIC_ID,c.COLLECT_TYPE,
+		t.GMT_CREATE as TOPIC_GMT_CREATE,t.GMT_MODIFIED as TOPIC_GMT_MODIFIED,t.STATUS as TOPIC_STATUS,t.USER_ID as TOPIC_USER_ID,
+		t.SUBJECT_ID,t.TITLE,t.CONTENT,t.LINK_URL,t.ORIGINAL_URL,t.CONTENT_SOURCE,t.CONTENT_KIND,t.PUBLISH_SOURCE,t.IMG_URL,
+		t.SUMMARY,t.RECOMMEND,t.COMMENTS,t.YELLOW,t.TAB_TYPE,t.TOPIC_STATE,t.HIT,t.IS_VOTE,t.IS_BAN
+		from collect c inner join topic t on(c.TOPIC_ID = t.ID)
+		where 1=1
+		<if test="t.id !=null ">  
+            and c.ID = #{t.id, jdbcType=INTEGER}
+        </if> 
+        <if test="t.status != null ">  
+            and c.STATUS = #{t.status, jdbcType=INTEGER}
+        </if> 
+         	<if test="t.status == null and status != null ">  
+            and c.STATUS = #{status, jdbcType=INTEGER}
+        </if> 
+        <if test="startGmtCreate != null and startGmtCreate != '' ">  
+            and <![CDATA[ c.GMT_CREATE >= date_format(#{startGmtCreate, jdbcType=VARCHAR},'%Y-%m-%d %H:%i:%s')]]>
+        </if>
+        <if test="endGmtCreate != null and endGmtCreate != '' ">  
+            and <![CDATA[ c.GMT_CREATE <= date_format(#{endGmtCreate, jdbcType=VARCHAR},'%Y-%m-%d %H:%i:%s')]]> 
+        </if>
+        <if test="startGmtModified != null and startGmtModified != '' ">  
+            and <![CDATA[ c.GMT_MODIFIED >= date_format(#{startGmtModified, jdbcType=VARCHAR},'%Y-%m-%d %H:%i:%s')]]>
+        </if>
+        <if test="endGmtModified != null and endGmtModified != '' ">  
+            and <![CDATA[ c.GMT_MODIFIED <= date_format(#{endGmtModified, jdbcType=VARCHAR},'%Y-%m-%d %H:%i:%s')]]>
+        </if>
+        
+        <if test="t.userId !=null ">  
+            and c.USER_ID = #{t.userId, jdbcType=INTEGER}
+        </if> 
+        <if test="t.topicId != null ">  
+            and c.TOPIC_ID = #{t.topicId, jdbcType=INTEGER}
+        </if> 
+         	<if test="t.collectType != null ">  
+            and c.COLLECT_TYPE = #{t.collectType, jdbcType=INTEGER}
+        </if>
+		order by GMT_MODIFIED desc
+		<include refid="PAGINATION.MYSQL_PAGINATION" />
+  	</select>
+  	
+  	<select id="collectCount" resultType="java.lang.Integer" parameterType="com.mmj.app.biz.query.CollectQuery">
+  		select count(1)
+		from collect c inner join topic t on(c.TOPIC_ID = t.ID)
+		where 1=1
+		<if test="t.id !=null ">  
+            and c.ID = #{t.id, jdbcType=INTEGER}
+        </if> 
+        <if test="t.status != null ">  
+            and c.STATUS = #{t.status, jdbcType=INTEGER}
+        </if> 
+         	<if test="t.status == null and status != null ">  
+            and c.STATUS = #{status, jdbcType=INTEGER}
+        </if> 
+        <if test="startGmtCreate != null and startGmtCreate != '' ">  
+            and <![CDATA[ c.GMT_CREATE >= date_format(#{startGmtCreate, jdbcType=VARCHAR},'%Y-%m-%d %H:%i:%s')]]>
+        </if>
+        <if test="endGmtCreate != null and endGmtCreate != '' ">  
+            and <![CDATA[ c.GMT_CREATE <= date_format(#{endGmtCreate, jdbcType=VARCHAR},'%Y-%m-%d %H:%i:%s')]]> 
+        </if>
+        <if test="startGmtModified != null and startGmtModified != '' ">  
+            and <![CDATA[ c.GMT_MODIFIED >= date_format(#{startGmtModified, jdbcType=VARCHAR},'%Y-%m-%d %H:%i:%s')]]>
+        </if>
+        <if test="endGmtModified != null and endGmtModified != '' ">  
+            and <![CDATA[ c.GMT_MODIFIED <= date_format(#{endGmtModified, jdbcType=VARCHAR},'%Y-%m-%d %H:%i:%s')]]>
+        </if>
+        
+        <if test="t.userId !=null ">  
+            and c.USER_ID = #{t.userId, jdbcType=INTEGER}
+        </if> 
+        <if test="t.topicId != null ">  
+            and c.TOPIC_ID = #{t.topicId, jdbcType=INTEGER}
+        </if> 
+         	<if test="t.collectType != null ">  
+            and c.COLLECT_TYPE = #{t.collectType, jdbcType=INTEGER}
+        </if>
+   	</select>
+    
+  	<sql id="query_where_clause">
+  		<trim prefix="where" prefixOverrides="and|or"> 
+  			<if test="t.id !=null ">  
+	            ID = #{t.id, jdbcType=INTEGER}
+	        </if> 
+	        <if test="t.status != null ">  
+	            and STATUS = #{t.status, jdbcType=INTEGER}
+	        </if> 
+          	<if test="t.status == null and status != null ">  
+	            and STATUS = #{status, jdbcType=INTEGER}
+	        </if> 
+	        <if test="startGmtCreate != null and startGmtCreate != '' ">  
+	            and <![CDATA[ GMT_CREATE >= date_format(#{startGmtCreate, jdbcType=VARCHAR},'%Y-%m-%d %H:%i:%s')]]>
+	        </if>
+	        <if test="endGmtCreate != null and endGmtCreate != '' ">  
+	            and <![CDATA[ GMT_CREATE <= date_format(#{endGmtCreate, jdbcType=VARCHAR},'%Y-%m-%d %H:%i:%s')]]> 
+	        </if>
+	        <if test="startGmtModified != null and startGmtModified != '' ">  
+	            and <![CDATA[ GMT_MODIFIED >= date_format(#{startGmtModified, jdbcType=VARCHAR},'%Y-%m-%d %H:%i:%s')]]>
+	        </if>
+	        <if test="endGmtModified != null and endGmtModified != '' ">  
+	            and <![CDATA[ GMT_MODIFIED <= date_format(#{endGmtModified, jdbcType=VARCHAR},'%Y-%m-%d %H:%i:%s')]]>
+	        </if>
+	        
+	        <if test="t.userId !=null ">  
+	            and USER_ID = #{t.userId, jdbcType=INTEGER}
+	        </if> 
+	        <if test="t.topicId != null ">  
+	            and TOPIC_ID = #{t.topicId, jdbcType=INTEGER}
+	        </if> 
+          	<if test="t.collectType != null ">  
+	            and COLLECT_TYPE = #{t.collectType, jdbcType=INTEGER}
+	        </if>
+	    </trim> 
+  	</sql>
+  		
+  	<sql id="update_where_clause">
+		<trim prefix="where" prefixOverrides="and|or"> 
+	        <if test="id !=null ">  
+	            ID = #{id, jdbcType=INTEGER}
+	        </if> 
+	        <if test="status !=null ">  
+	            and STATUS = #{status, jdbcType=INTEGER}
+	        </if> 
+	        
+	        <if test="t.userId !=null ">  
+	            and USER_ID = #{t.userId, jdbcType=INTEGER}
+	        </if> 
+	        <if test="t.topicId != null ">  
+	            and TOPIC_ID = #{t.topicId, jdbcType=INTEGER}
+	        </if> 
+          	<if test="t.collectType != null ">  
+	            and COLLECT_TYPE = #{t.collectType, jdbcType=INTEGER}
+	        </if>
+	    </trim>
+   	</sql>
+  		
+  	<sql id="update_set_clause">
+  		<trim prefix="set GMT_MODIFIED= now()," suffixOverrides=",">  
+	        <if test="status !=null ">  
+	            STATUS = #{status, jdbcType=INTEGER},
+	        </if>  
+	        
+	        <if test="userId !=null ">  
+	            USER_ID = #{userId, jdbcType=INTEGER},
+	        </if>
+	        <if test="topicId !=null ">  
+	            TOPIC_ID = #{topicId, jdbcType=INTEGER},
+	        </if>
+	        <if test="collectType !=null ">  
+	            COLLECT_TYPE = #{collectType, jdbcType=INTEGER},
+	        </if>
+   		</trim>
+  	</sql>
+  		
+   	<select id="list" resultMap="BaseResultMap" parameterType="java.util.Map">
+   		select  <include refid="columns" /> 
+   		from <include refid="table_name" /> 
+   		<include refid="orderby_clause"/>
+	  	<if test="limitSize != null" >
+	        <include refid="PAGINATION.MYSQL_PAGINATION" />
+	    </if>
+  	</select>
+  	
+  	<select id="listQuery" resultMap="BaseResultMap" parameterType="com.mmj.app.biz.query.CollectQuery">
+   		select  <include refid="columns" /> 
+   		from <include refid="table_name" /> 
+   		<include refid="query_where_clause"/>
+   		<include refid="orderby_clause"/>
+  	</select>
+  
+  	<select id="listPagination" resultMap="BaseResultMap" parameterType="com.mmj.app.biz.query.CollectQuery">
+		select <include refid="columns"/>
+		from <include refid="table_name" /> 
+		<include refid="query_where_clause"/>
+		<include refid="orderby_clause"/>
+		<include refid="PAGINATION.MYSQL_PAGINATION" />
+  	</select>
+  	
+  	<select id="find" resultMap="BaseResultMap" parameterType="com.mmj.app.biz.query.CollectQuery" >
+  		select <include refid="columns"/>
+        from <include refid="table_name" />
+        <include refid="query_where_clause"/>
+        <include refid="orderby_clause"/>
+  	</select>
+  
+   	<insert id="insert" parameterType="com.mmj.app.biz.domain.CollectDO" useGeneratedKeys="true" keyProperty="id" keyColumn="ID" >
+	   	insert into <include refid="table_name" /> (<include refid="table_columns_without_id"/>)
+        values ( now(), now(), 0,
+        		#{userId,jdbcType=INTEGER},
+                #{topicId,jdbcType=INTEGER},
+                #{collectType,jdbcType=INTEGER}
+        )
+        <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+            SELECT last_insert_id() as id
+        </selectKey> 
+   	</insert>
+   	
+   	<update id="update" parameterType="com.mmj.app.biz.domain.CollectDO">
+   		update <include refid="table_name" /> 
+       	<include refid="update_set_clause"/>
+       	<include refid="update_where_clause"/>
+  	</update>
+  	
+  	<select id="count" resultType="java.lang.Integer" parameterType="com.mmj.app.biz.query.CollectQuery">
+  		select count(1)
+        from <include refid="table_name" />  
+       	<include refid="query_where_clause"/>
+   	</select>
+   	
+  	<delete id="deleteById" parameterType="java.lang.Integer">
+  		delete from <include refid="table_name" /> where ID = #{id,jdbcType=INTEGER}
+  	</delete>
+  	
+  	<select id="getById" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  		select <include refid="columns" /> 
+  		from <include refid="table_name" /> 
+  		where ID = #{id,jdbcType=INTEGER}
+  	</select>
+  
+   	<update id="updateById" parameterType="com.mmj.app.biz.domain.CollectDO">
+   		update <include refid="table_name" /> 
+   		<include refid="update_set_clause"/>
+	    where ID = #{id,jdbcType=INTEGER}
+  	</update>
+</mapper>

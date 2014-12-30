@@ -1,0 +1,112 @@
+<script type="text/javascript" src="/js/chouti_nav.js"></script>
+<script type="text/javascript" src="/js/topic.js"></script>
+
+#if($!{sort} && $!{sort}!='null' && $!{sort}!='')
+  	#set($sortStr='"'+$!{sort}+'"')
+#else
+  	#set($sortStr='"default"')
+#end
+#if($!{time} && $!{time}!='null' && $!{time}!='')
+  	#set($timeStr='"'+$!{time}+'"')
+#else
+  	#set($timeStr='"default"')
+#end
+
+<script type="text/javascript">
+$(document).ready(function(){
+	//初始化模块
+	 NS_links_nav.init({
+			subject: "all",	//模块名称(英文)
+			type: "search",
+			sort:$!{sortStr},
+			timeType:$!{timeStr}
+	 });
+	 //关注话题
+	 NS_HuaTi.init();
+	 //榜单页面评论初始化	
+	 NS_links_comment_top.init();
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	//当用户登录后才去判断
+	if($("#userProNick").length > 0) {
+		$("#userProNick").html(chouti.subNickLength($("#userProNick").html(), 5));
+	}
+})
+</script>
+
+
+<div class="main-content-band">
+
+
+<div class="main-content" id="main_content">
+		<div class="content-L">
+			<div class="search-nav-box" style="position:relative;">
+				<a class="search-nav-a active" href="javascript:;">内容</a><a class="search-nav-a" href="/search/user/show?words=$!words">用户</a>
+				<span style="position:absolute;right:106px;top:10px;color:#FF6600;display:none;" id="teshuZi">不能含有特殊字符</span>
+			</div>
+			<div class="search-area">
+				
+				<form id="searchFrm" name="searchFrm" method="post" action="/search/show">
+					<table width="610" border="0" cellspacing="0" cellpadding="0">
+						<tbody><tr>
+							<td style="padding-top:0;"><input type="text" id="txtSearch" name="words" class="search-txt" value="$!words"></td>
+							<td style="padding-left:12px;padding-top:0;"><a id="searchBtn" name="searchBtn" class="search-btn search-btn-big" href="javascript:;">搜索</a></td>
+						</tr>
+					</tbody></table>
+					<input type="hidden" name="page" id="page" value="$!page">
+					<input type="hidden" name="sort" id="sort" value="$!sort">
+					<input type="hidden" name="time" id="time" value="$!time">
+					
+				<div class="tijina-box">
+					<table width="630" border="0" cellspacing="0" cellpadding="0">
+						<tbody><tr>
+							<td style="width:40px;font-weight:bold;">排序</td>
+							<td style="width:84px"><a class="order-by" href="javascript:;" id="orderBy" num="0"><span id="orderBys" class="newest">相关性</span><span class="arrow"></span></a></td>
+							<td style="padding-left:54px;;font-weight:bold;width:72px;">时间范围</td>
+							<td style="width:84px;"><a class="order-by" href="javascript:;" id="timeBy" num="0"><span id="timeBys" class="newest">全部</span><span class="arrow"></span></a></td>
+							<td style="width:350px;text-align:right;color:#999;">找到<span id="serItems">$!searchcount</span>条结果</td>
+						</tr>
+					</tbody></table>
+				</div>
+				</form>
+			</div>
+			<!-- 内容显示区域 -->
+			<div class="content-list" id="content-list">
+				
+				#if(!$!words)
+				<div class="no-search-contanier">亲爱的抽友，想找点啥？</div>
+				#else
+					#if($list.size()=="0")
+					<div class="no-search-contanier">好像没有关于[$!words]的东西，要不换个关键词试试？</div>
+					#else
+					#foreach($!myItem in $list) 
+						$widget.setTemplate("common/myItem").addParam('myItem',$!{myItem}).addParam('publishShow',"发布").addParam('myLikedList',$!{myLikedList}).addParam('mySavedList',$!{mySavedList})
+					#end				
+					#end
+				#end
+			</div>
+			<!-- 排序 -->
+			<div class="orderByBox" id="orderByBox" style="display: none;">
+				<a href="javascript:;" lang="default" style="display: none;">相关性</a>
+				<a href="javascript:;" lang="time" style="display: block;">最新</a>
+				<a href="javascript:;" lang="score" style="display: block;">最热</a>				
+			</div>
+			<!-- 时间范围选择 -->
+			<div class="orderByBox" id="timeByBox" style="display: none;">
+				<a href="javascript:;" lang="all" style="display: none;">全部</a>
+				<a href="javascript:;" lang="1d" style="display: block;">24小时</a>
+				<a href="javascript:;" lang="3d" style="display: block;">三天</a>
+				<a href="javascript:;" lang="7d" style="display: block;">一周</a>
+				<a href="javascript:;" lang="30d" style="display: block;">一月</a>
+				<a href="javascript:;" lang="365d" style="display: block;">一年</a>
+			</div>
+			<div class="no-bottom"></div>
+			$widget.setTemplate("pagination/myPager").addParam('pagination',$!pagination)
+		</div>
+   </div>
+		
+#parse("/widget/common/footer.vm") 
+</div>

@@ -1,0 +1,40 @@
+<script type="text/javascript" src="/js/register.js"></script>
+<script type="text/javascript" src="/js/resetpasswordsuccess.js"></script>
+
+<link rel="stylesheet" type="text/css" href="/css/resetpassword.css">
+	
+<script type="text/javascript">
+$(document).ready(function(){
+		NS_resetpasswordsuccess.init({"result":{"code":"9999", "message":"", "data":{"cacheValue":"E2BA502ADEA562F6AD5407D68A2E7023","cachekey":"9c1106ab678842da90629a9ac6dffa90","mail":"****@11.com","mailPath":"http://mail.11.com"}}});
+		//初始化模块,邮件发送成功后，参数表示返回的保密邮箱及邮箱登陆地址
+});
+</script>
+
+<div class="main-content-band">
+	
+<div class="reset-area">
+	<div class="register-title">重置密码</div>
+	<div class="circle-bg">
+    	<p class="t-left"></p>
+        <p class="t-right"></p>
+        <div class="circle-pic first-circle"></div>
+        <span class="circle-title desc-select">向联系邮箱发送重置密码邮件</span>
+        <span class="circle-arrow">→</span>
+        <div class="circle-pic second-current"></div>
+        <span class="circle-title desc-delete title-current">登录联系邮箱根据说明重置密码</span>
+	</div>
+        
+  	<div id="register-form">
+ 		<div id="userpass_sucess_ico" class="sucess-ico sendMail-ico"></div>
+        <div class="mail-resetPassword">
+        	请到<span id="mailName"><a href="http://mail.11.com" target="_blank" class="rega">*****@11.com</a></span>邮箱查阅来自买买君的邮件，根据邮件说明重置密码。</div>
+        <div class="clear"></div>
+        <a class="common-btn" href="http://mail.11.com" id="loginMailBtn" style="width:113px;margin-top:30px;" target="_blank">
+    	 	登录邮箱
+		</a>
+    </div>
+</div>
+	
+   
+#parse("/widget/common/footer.vm") 
+</div>

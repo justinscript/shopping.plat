@@ -1,0 +1,113 @@
+<script type="text/javascript" src="/js/chouti_nav.js"></script>
+<script type="text/javascript" src="/js/hotts.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	//初始化模块
+	 NS_links_nav.init({
+		subject: "$!{subject}",	//模块名称(英文)
+		type: "$!{type}"
+	 });
+	 //榜单页面评论初始化	
+	 NS_links_comment_top.init();
+	 
+	 var pageIndex = "$!{page}";//当前页
+	 var nextPage = "";
+	 var destJid = "";
+	 //初始化模块
+	 NS_links_hotts.init(
+		{
+			pageIndex: pageIndex,
+			nextPage: nextPage,
+			destJid: destJid
+		}
+	 );
+})
+</script>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		//当用户登录后才去判断
+		if($("#userProNick").length > 0) {
+			$("#userProNick").html(chouti.subNickLength($("#userProNick").html(), 5));
+		}
+	})
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	//榜单页面评论初始化	
+	//NS_links_comment_top.init();
+	//新榜入热榜信息提示
+    var cnt=0;
+    var sh=setInterval(function(){
+    	var maxid=$('#maxid').val();
+    	$.post("/checknewfeed?maxId="+maxid, function(data){
+			var newsCount = parseInt(data,10);								
+	    	if(newsCount <= 0){
+	    		return;
+	    	} 
+			var tempCount = parseInt($("#newIntoHotCount").val(),10);
+			tempCount = newsCount;
+			$("#newIntoHotCount").val(tempCount);
+			$("#yellow-msg-box-intohot em").text(tempCount+"");
+			$("#yellow-msg-box-intohot").show().unbind();					
+			//新榜入热榜黄色提示框事件
+			NS_links_hotts.yellowIntohotBoxHover();
+			var curtitle="买买君 | 每日精品新品特惠品海淘推荐，每日推出你买东西我买单。";
+			var notifytitle='('+data+'条更新) '+curtitle;
+   			$(document).attr("title",notifytitle);
+			if(data>200)
+   			{
+   				clearInterval(sh);
+   			}
+    		//console.log(data);
+    	});
+    	cnt++;
+    	if(cnt>60)
+    	{
+    		clearInterval(sh);
+    	}
+    },90000);
+    
+    //如果是移动设备则用JS生成的聊天
+	if(true) {
+    //if(chouti.checkserAgent()) {         
+		//调用flash函数
+		$("#chat-area").html("");
+		if("" == "") {
+			#if($!{webUser.hasLogin()})
+			chouti.showChatSwf("chat-area", "$!{webUser.getName()}", "$!{webUser.getNick()}", "/images/");
+			#else
+			chouti.showChatSwf("chat-area", null, null, "/images/");
+			#end
+		} else {
+			chouti.showChatSwf("chat-area", "", "", "/images/", "");
+		}
+	}
+})		
+</script>
+
+<div class="main-content-band">
+  <input type="hidden" id="maxid" value="$!{maxid}" />
+  <input type="hidden" id="myPasswd" value="$!{webUser.getPasswd()}" />
+  <div class="main-content"> 
+       <div class="content-L"> 
+            <!-- 最新最热按钮 --> 
+            #parse("/widget/common/navTop.vm")
+            <!-- 内容显示区域 --> 
+            <div class="yellow-comment-msg-box" id="yellow-msg-box-intohot"><em></em><span>条入买买君，点击查看</span></div> 
+            <div class="loading-ico" style="margin-left:250px;" id="load_hotitems">加载中，请稍候...</div> 
+    	
+            <div class="content-list" id="content-list"> 
+				#foreach($!myItem in $list) 
+					$widget.setTemplate("common/myItem").addParam('myItem',$!{myItem}).addParam('publishShow',"入热榜").addParam('myLikedList',$!{myLikedList}).addParam('mySavedList',$!{mySavedList})
+				#end
+            </div> 
+			<div class="no-bottom"></div> 
+			$widget.setTemplate("pagination/myPager").addParam('pagination',$!{list.getQuery()})
+       </div> 
+	   #parse("/widget/common/right.vm")
+  </div>
+  #parse("/widget/common/footer.vm")
+</div>

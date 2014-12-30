@@ -1,0 +1,123 @@
+<link rel="stylesheet" type="text/css" href="/css/setnewpassword.css" />
+<link rel="stylesheet" type="text/css" href="/css/newSetting.css" />
+
+<script type="text/javascript" src="/js/register.js"></script>
+<script type="text/javascript" src="/js/person_mail_setting.js"></script>
+<script type="text/javascript" src="/js/registercommon.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	NS_person_mail_setting.init();
+});
+</script>
+<script type="text/javascript">
+$(document).ready(function(){
+	//当用户登录后才去判断
+	if($("#userProNick").length > 0) {
+		$("#userProNick").html(chouti.subNickLength($("#userProNick").html(), 5));
+	}
+})
+</script>
+
+<div class="main-content-band">
+
+
+<div class="main-content" id="bind-content">
+	<div class="reset-area" style="width:710px;">
+		<div class="set-tags top30" style="width:auto;">
+		
+			<a href="/profile" class="tb  w-active">帐号设置</a>
+     		<a href="/message/edit" class="tb">通知设置</a>
+     		<a href="/profile/bind" class="tb">绑定手机</a>
+     		<div class="set-line"></div>
+     		
+		</div>
+		<div class="set-nav">
+			<a href="/profile">基本信息</a>
+			<a href="/profile/password/edit">修改密码</a>
+			<a class="active" href="/profile/email/edit">修改联系邮箱</a>
+		</div>
+		
+		<div class="info-table">
+    	<table cellspacing="0" cellpadding="0" border="0" style="width:710px;">
+    	  <tbody>
+    	  <tr>
+    	    <td class="t1">旧邮箱</td>
+    	    <td class="td2">
+    	    	<div class="username" id="userMail" style="padding-top:0px;padding-bottom:0px">$!{member.getEmail()}</div>
+    	    </td>
+    	    <td class="td3"></td>
+    	  </tr>
+    	  <tr>
+    	    <td class="t1">新邮箱</td>
+    	    <td class="td2">
+            	
+            	<input type="text" tabindex="1" class="text text-normal new-text text-error" id="secret_mail">
+            		
+            </td>
+    	    <td class="td3">
+    	    	<div id="tips_userSecretMailNormal" class="tips-bigbox" style="display: none;">
+                    <div class="tips-smallbox-blue tips-info">输入联系邮箱用于找回密码</div>
+                    <div class="blue-corner arrow"></div>
+                    <div class="blue-vertical-back right-blue"></div>
+                    <div class="blue-cross-back bottom-blue"></div>
+                    <div class="blue-corner top-left"></div><div class="blue-corner top-right"></div>
+                    <div class="blue-corner bom-left"></div><div class="blue-corner bom-right"></div>
+                </div>
+                <div id="tips_userSecretMailError" class="tips-bigbox" style="display: block;">
+                    <div class="tips-smallbox-red tips-info">请输入联系邮箱</div>
+                    <div class="red-corner arrow"></div>
+                    <div class="red-vertical-back right-blue"></div>
+                    <div class="red-cross-back bottom-blue"></div>
+                    <div class="red-corner top-left"></div><div class="red-corner top-right"></div>
+                    <div class="red-corner bom-left"></div><div class="red-corner bom-right"></div>
+                </div>
+                <div id="usersecretmail_sucess_ico" class="sucess-ico" style="display: none;"></div>
+			</td>
+  	    </tr>
+  	    <tr>
+    	    <td class="t1 td-bottom">密码确认</td>
+    	    <td class="td2 td-bottom">
+            	<input type="password" tabindex="2" maxlength="16" id="old_password" class="text text-normal new-text" name="profile.password">
+            </td>
+    	    <td class="td3 td-bottom">
+    	    
+            	<div id="tips_userOldPassNormal" class="tips-bigbox" style="margin-top:-3px">
+                    <div class="tips-smallbox-blue tips-info">
+                    	密码长度为6-16位字符              	
+                    </div>              
+                    <div class="blue-corner arrow"></div>
+                    <div class="blue-vertical-back right-blue"></div>
+                    <div class="blue-cross-back bottom-blue"></div>
+                    <div class="blue-corner top-left"></div><div class="blue-corner top-right"></div>
+                    <div class="blue-corner bom-left"></div><div class="blue-corner bom-right"></div>
+                </div>
+                
+                <div id="tips_userOldPassError" class="tips-bigbox" style="margin-top:-3px">
+                    <div class="tips-smallbox-red tips-info">请输入密码</div>
+                    <div class="red-corner arrow"></div>
+                    <div class="red-vertical-back right-blue"></div>
+                    <div class="red-cross-back bottom-blue"></div>
+                    <div class="red-corner top-left"></div><div class="red-corner top-right"></div>
+                    <div class="red-corner bom-left"></div><div class="red-corner bom-right"></div>
+                </div>
+                <div id="userOldpass_sucess_ico" class="sucess-ico" style="display: none;"></div>
+            </td>
+  	    </tr>
+    	 <tr>
+    	 	<td class="t1" colspan="3">
+    	 		<a class="common-btn" href="javascript:;" id="saveMailBtn">保存</a>
+    	 		
+     			<div class="loading-ico" id="info_loading_ico">
+      				保存中，请稍候...
+      			</div>
+    	 	</td>
+    	 </tr>
+  	  </tbody></table>
+    </div>	
+	</div>
+   </div>
+   
+   
+#parse("/widget/common/footer.vm") 
+</div>

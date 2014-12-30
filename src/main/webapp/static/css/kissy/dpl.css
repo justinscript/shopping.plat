@@ -1,0 +1,218 @@
+/* 分页样式  */
+.pager{margin:8px 0;}
+.pager a,.pager span{padding:3px 8px;border:1px solid #d1d1d1;text-decoration:none;color:#555;}
+
+body .pagination a:hover,
+body .pagination a:active,
+.pager .current,body .pagination span.page{display:inline !important;color:#e0163c;background-color:#feead2;border:1px solid #e0163c;}
+
+/* list 分页 继承自 pager */
+.list-pager{zoom:1;height:30px;margin:0;margin-top:6px}
+.list-pager a, .list-pager span{vertical-align:middle;display:inline-block;background:#fff;padding-top:0;padding-bottom:0;height:22px;line-height:22px}
+.list-pager a:hover,.list-pager .current{text-decoration:none;border:#980101 solid 1px;background:#c10000;color:#fff;display:inline-block !important;}
+
+/* 带标题的信息模块 */
+.tlt-mod{border:1px solid #d1d1d1;}
+.tlt-mod .tlt{padding:3px 8px;background:url("/images/tip/bg-repeatx.png") repeat-x 0 -240px;border:1px solid #fff;}
+.tlt-mod .cnt{padding:4px 8px;color:#555;}
+.tlt-mod .cnt .tab-bd{clear:both}
+
+/* tooltip皮肤  */
+.tip-red,
+.tip-blue,
+.tip-hint,
+.tip-yellow,
+.tip-green{min-width:50px;max-width:300px;position:absolute;padding:8px 12px;z-index:1000;left:-999px;top:-999px;text-align:left;border-radius:3px;font:bold 12px/1.8 tahoma,arial,"\5b8b\4f53",sans-serif;}
+
+.tip-red .ctrl,
+.tip-blue .ctrl,
+.tip-hint .ctrl,
+.tip-yellow .ctrl,
+.tip-green .ctrl{color:#999;font-weight:normal;}
+
+.tip-red a,
+.tip-blue a,
+.tip-hint a,
+.tip-yellow a,
+.tip-green a{color:#333;font-weight:normal;text-decoration:none !important;}
+
+.tip-red a:hover{color:#d00;}
+.tip-blue a:hover{color:#2a6ebb;}
+.tip-hint a:hover{color:#2a6ebb;}
+.tip-yellow a:hover{color:#f90;}
+.tip-green a:hover{color:#719500;}
+
+.tip-yellow{background-color:#fff0c5;border:1px solid #fcda8d;color:#f90;}
+.tip-yellow .tip-arrow-top,
+.tip-yellow .tip-arrow-right,
+.tip-yellow .tip-arrow-bottom,
+.tip-yellow .tip-arrow-left{background: url(/images/tip/yellow.gif) no-repeat;}
+
+.tip-blue {color:#2a6ebb;background-color:#dfecf7;border:1px solid #a7c8e5;}
+.tip-blue .tip-arrow-top,
+.tip-blue .tip-arrow-right,
+.tip-blue .tip-arrow-bottom,
+.tip-blue .tip-arrow-left{background: url(/images/tip/blue.gif) no-repeat;}
+
+.tip-hint{padding:3px 8px;text-align:center;font-weight:normal;}
+.tip-hint {color:#2a6ebb;background-color:#dfecf7;border:1px solid #a7c8e5;}
+.tip-hint .tip-arrow-top,
+.tip-hint .tip-arrow-right,
+.tip-hint .tip-arrow-bottom,
+.tip-hint .tip-arrow-left{background: url(/images/tip/blue.gif) no-repeat;}
+
+.tip-green {color:#719500;background-color:#f4fece;border:1px solid #cce481;}
+.tip-green .tip-arrow-top,
+.tip-green .tip-arrow-right,
+.tip-green .tip-arrow-bottom,
+.tip-green .tip-arrow-left{background: url(/images/tip/green.gif) no-repeat;}
+
+.tip-red {color:#d00;background-color:#fddad3;border:1px solid #f5ab9d;}
+.tip-red .tip-arrow-top,
+.tip-red .tip-arrow-right,
+.tip-red .tip-arrow-bottom,
+.tip-red .tip-arrow-left{background: url(/images/tip/red.gif) no-repeat;}
+
+.tip-red .tip-arrow-top,
+.tip-blue .tip-arrow-top,
+.tip-hint .tip-arrow-top,
+.tip-yellow .tip-arrow-top,
+.tip-green .tip-arrow-top{
+	position:absolute;
+	margin-top:-6px;
+	margin-left:-5px;
+	background-position:0 0;
+	top:0;
+	left:50%;
+	width:9px;
+	height:6px;
+}
+
+.tip-red .tip-arrow-right,
+.tip-blue .tip-arrow-right,
+.tip-hint .tip-arrow-right,
+.tip-yellow .tip-arrow-right,
+.tip-green .tip-arrow-right{
+	position:absolute;
+	margin-top:-4px;
+	margin-left:0;
+	background-position:-9px 0;
+	top:50%;
+	left:100%;
+	width:6px;
+	height:9px;
+}
+
+.tip-red .tip-arrow-bottom,
+.tip-blue .tip-arrow-bottom,
+.tip-hint .tip-arrow-bottom,
+.tip-yellow .tip-arrow-bottom,
+.tip-green .tip-arrow-bottom{
+	position:absolute;
+	margin-top:0;
+	margin-left:-5px;
+	background-position:-18px 0;
+	top:100%;
+	left:50%;
+	width:9px;
+	height:6px;
+}
+
+.tip-red .tip-arrow-left,
+.tip-blue .tip-arrow-left,
+.tip-hint .tip-arrow-left,
+.tip-yellow .tip-arrow-left,
+.tip-green .tip-arrow-left{
+	position:absolute;
+	margin-top:-4px;
+	margin-left:-6px;
+	background-position:-27px 0;
+	top:50%;
+	left:0;
+	width:6px;
+	height:9px;
+}
+
+/* 气泡提示，也可用作指示信息模块  */
+.blk-bubble-up{border:1px solid #bae1f0;padding:0 8px 6px !important;}
+.blk-bubble-up .arrow{background:url("/images/tip/bubble_arrow_up.png") no-repeat scroll 0 0 transparent;height:6px;left:8px;position:relative;top:-6px;width:11px;}
+
+/* 校验表单信息样式  */
+.valid-default .field-msg{color:#d10302;display:none;}
+.valid-default .hint-msg{color:#999;display:inline;}
+/*
+ * 提示信息模块样式 
+ * <div class="notebox-h25 h25-info">
+ * <div class="msg-box">
+ * <i class="icon info-h20">&nbsp;</i>
+ * MESSAGE
+ * </div>
+ * </div>
+ */
+.notebox-h25,.notebox-h50{font-family:tahoma,arial,"\5b8b\4f53",sans-serif;color:#565656;}
+.notebox-h25{height:25px;font-size:12px;}
+.notebox-h50{height:50px;font-size:14px;}
+.notebox-h25 .icon,
+.notebox-h50 .icon{float:left;vertical-align:middle;margin-right:6px;}
+
+.notebox-h25 .msg-box{height:20px;line-height:20px;padding:1px 4px 2px;text-align:left;border:1px solid #f2f2f2;}
+.notebox-h50 .msg-box{height:30px;line-height:30px;padding:9px;text-align:left;border:1px solid #f2f2f2;}
+.h25-info,.h50-info{color:#2a6ebb;background-color:#dfecf7;border:1px solid #a7c8e5;}
+.h25-warn,.h50-warn{color:#f90;background-color:#fff0c5;border:1px solid #fcda8d;}
+.h25-success,.h50-success{color:#719500;background-color:#f4fece;border:1px solid #cce481;}
+.h25-error,.h50-error{color:#d00;background-color:#fddad3;border:1px solid #f5ab9d;}
+
+
+/* 数字调节器 */
+.app-numtunner-default{margin:auto;width:63px;height:18px;overflow:hidden;border:1px solid #dfdfdf;font-family:tahoma,arial,"\5b8b\4f53",sans-serif;background-color:#f2f2f2}
+.app-numtunner-default a{float:left;width:18px;height:18px;line-height:18px;line-height:21px\9;_line-height:18px;text-decoration:none;background-color:#f2f2f2;color:#666;text-align:center;outline:none;}
+.app-numtunner-default a:hover{text-decoration:none;color:#F90;background-color:#FFF0C5;}
+.app-numtunner-default .numtunner-plus{border-left:1px solid #dfdfdf;}
+.app-numtunner-default .numtunner-reduce{border-right:1px solid #dfdfdf;}
+.app-numtunner-default .numtunner-input{float:left;width:24px;height:18px;line-height:18px;background-color:#fff;border:0;text-align:center;color:#333}
+
+/* go top float pannel */
+#go-top {
+	position: fixed;
+	_position: absolute;
+	width: 203px;
+	height:42px;
+	overflow:hidden;
+	cursor: pointer;
+	z-index:50;
+	opacity:0.85;
+	filter:alpha(opacity=85);
+}
+#go-top:hover{
+	opacity:1;
+	filter:alpha(opacity=100);
+}
+/*
+ * oauth popup
+ */
+.oauth-popup{
+	padding:24px 24px 24px 130px;
+	color:#333;
+	background:url(/images/tip/balloons.png) no-repeat -5px 10px
+}
+.oauth-popup input{width:200px;height:20px;line-height:20px}
+.oauth-popup h3{margin-bottom:12px;margin-left:-16px;text-align:left;font-size:14px;color:#a00;}
+
+/* 面包屑 */
+/* << crumbs */
+.page-crumbs .crumbs .back-home,
+.page-crumbs .crumbs a,
+.page-crumbs .crumbs strong{background-image:url(/images/tip/help_sprites.png);background-repeat:no-repeat}
+.page-crumbs .crumbs strong{background-image:url(/images/tip/crumbs.png)}
+
+.page-crumbs .crumbs .back-home{display:inline-block}
+
+.page-crumbs .crumbs strong,
+.page-crumbs .crumbs a{background-position:-1296px center}
+.page-crumbs .crumbs a.back-home{background-position:-1600px center}
+.page-crumbs .crumbs strong{background-position:0 center}
+
+.page-crumbs .crumbs{height:32px;line-height:32px;font-size:12px;text-align:left}
+.page-crumbs .crumbs a,.page-crumbs .crumbs strong{padding-left:15px}
+.page-crumbs .crumbs a.back-home{padding-left:19px}	
+/* crumbs >> */

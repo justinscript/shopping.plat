@@ -1,0 +1,55 @@
+<link rel="stylesheet" type="text/css" href="/css/setnewpassword.css" />
+<script type="text/javascript">
+$(document).ready(function(){
+	chouti.Init();
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	//当用户登录后才去判断
+	if($("#userProNick").length > 0) {
+		$("#userProNick").html(chouti.subNickLength($("#userProNick").html(), 5));
+	}
+})
+</script>
+
+<div class="main-content-band">
+
+    <div class="main-content">
+    	<div class="sv_t_b" style="padding-top:20px;font-size:14px;color:#555">
+    		<div style="font-size:16px;color: #444;border-bottom: 1px solid #CCDCEF;font-weight: bold;padding-bottom:10px">商务合作请联系</div>
+    		<div style="margin-top:25px;margin-left:25px;">张先生</div>
+    		<div style="margin-left:25px;margin-top:8px;">QQ：875485818</div>
+    		<div style="margin-left:25px;margin-top:8px;">邮箱：875485818#qq.com（联系时请将“#”替换为“@”）</div>
+    		<div style="margin-top:26px;margin-left:25px;">陶女士</div>
+    		<div style="margin-left:25px;margin-top:8px;">QQ：41507707</div>
+    		<div style="margin-left:25px;margin-top:8px;">邮箱：41507707#qq.com（联系时请将“#”替换为“@”）</div>
+    	</div>
+    	<div class="sv_t_b" style="padding-top:20px;font-size:14px;color:#555">
+    		<div style="font-size:16px;color: #444;border-bottom: 1px solid #CCDCEF;font-weight: bold;padding-bottom:10px">广告投放请联系</div>
+    		<div style="margin-top:25px;margin-left:25px;">张先生</div>
+    		<div style="margin-left:25px;margin-top:8px;">QQ：875485818</div>
+    		<div style="margin-left:25px;margin-top:8px;">邮箱：875485818#qq.com（联系时请将“#”替换为“@”）</div>
+    	</div>
+    	<div class="sv_t_b" style="padding-top:36px;font-size:14px;color:#555">
+    		<div style="font-size:16px;color: #444;border-bottom: 1px solid #CCDCEF;font-weight: bold;padding-bottom:10px">客服反馈QQ群</div>
+			<div style="margin-top:25px;margin-left:25px;">客服反馈qq群：82139391</div>
+    	</div>
+    	<!--
+    	<div class="sv_t_b" style="padding-top:36px;font-size:14px;color:#555">
+    		<div style="font-size:16px;color: #444;border-bottom: 1px solid #CCDCEF;font-weight: bold;padding-bottom:10px">站长咨询请联系</div>
+    		<div style="margin-top:25px;margin-left:25px;">买买君站长群：</div>		
+    	</div>
+    	<div class="sv_t_b" style="padding-top:20px;font-size:14px;color:#555">
+    		<div style="font-size:16px;color: #444;border-bottom: 1px solid #CCDCEF;font-weight: bold;padding-bottom:10px">公司地址</div>
+    		<div style="margin-top:25px;margin-left:25px;">地址：上海市宝山区</div>
+    		<div style="margin-left:25px;margin-top:8px;">邮编：</div>
+    		<div style="margin-left:25px;margin-top:8px;">电话：</div>
+    		<div style="margin-top:8px;margin-left:25px;">联系邮箱：</div>
+    	</div>
+    	-->
+    </div>
+	
+#parse("/widget/common/footer.vm") 
+</div>

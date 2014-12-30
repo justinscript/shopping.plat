@@ -1,0 +1,47 @@
+<div class="head-band">
+	<div class="head-content">
+		<a href="/" class="digg-logo"></a>
+	    <input type="hidden" id="newIntoHotCount" value="0" />
+        <input value="1" type="hidden" class="isBan" >
+		<!-- 导航 -->
+    	<div class="action-menu">
+			<a href="/all/hot/recent"  class="tb #if($!{all}) active #end" >全部</a>
+			<a href="/r/news/hot" class="tb #if($!{subject} && $!{subject}=='news') active #end">国内买</a>
+			<a href="/r/scoff/hot" class="tb #if($!{subject} && $!{subject}=='scoff') active #end">海外买</a>
+			<a href="/r/pic/hot" class="tb #if($!{subject} && $!{subject}=='pic') active #end">晒单区</a>
+			<a href="/r/tec/hot" class="tb #if($!{subject} && $!{subject}=='tec') active #end">问答社</a>
+			<a href="http://ai.taobao.com/sales/index.htm?pid=mm_75147177_8510730_28876021&unid=" target="_blank" class="tb #if($!{subject} && $!{subject}=='ask') active #end">淘宝精选</a>
+		</div>
+		<div class="key-sera">
+			<form action="/search/show" method="post" name="searchFrm2" id="searchFrm2">
+				<input type="text" class="search-txt-s" name="words" id="txtSearch2" autocomplete="off">
+				
+				<a href="javascript:;" class="i" name="searchBtn_2" id="searchBtn_3"><span class="ico"></span></a>								
+				<input type="hidden" value="1" id="page" name="page">
+			</form>			
+		</div>	
+		
+		#if($!{webUser.hasLogin()})
+    		<div class="action-nav">
+            	<a href="/letter" style="float:left;position:relative;">私信<b class="notice-num-title" id="mail-num-title" style="right: 3px; display: none;"><em id="mail-em"></em><i>+</i></b></a>
+            	<a href="javascript:;" id="btnNotShw" class="notice-box">通知<b class="notice-num-title" id="notice-num-title" style="display: none;"><em id="notice-em"></em><i>+</i></b></a>
+            	<a href="/user/link/saved" id="loginUserNc" class="userPro-Box">
+					#if($!{webUser.getImg()} && $!{webUser.getImg()}!='null' && $!{webUser.getImg()}!='')
+						<img src="$!{webUser.getImg()}" id="userProImg" width="30px" height="30px">
+					#else
+						<img src="/images/image30.png" id="userProImg" width="30px" height="30px">
+					#end
+            		<span class="u-nick" id="userProNick">$!{webUser.getNick()}</span>
+            		<em id="userProArr"></em>
+            	</a>
+            </div>
+		#else
+			<div class="action-nav">
+    			<a href="javascript:;" class="login-btn-a" id="reg-link-a">注册</a><a href="javascript:;" class="login-btn-a" id="login-link-a">登录</a>
+    		</div>
+		#end
+		
+		<!-- 保存当前登录用户destJid -->
+		<input type="hidden" id="hidjid" value="$!{webUser.getName()}" />
+	</div>
+</div>

@@ -1,0 +1,196 @@
+<script type="text/javascript" src="/js/person_info_setting.js"></script>
+<script type="text/javascript" src="/js/city.js"></script>
+
+<link rel="stylesheet" type="text/css" href="/css/newSetting.css" />
+
+<script type="text/javascript">
+$(document).ready(function(){
+	NS_person_info_setting.init();
+	//initProvice();
+});
+</script>
+
+<style>
+.tags .w-active a{
+	color:#787878;
+}
+</style>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	//当用户登录后才去判断
+	if($("#userProNick").length > 0) {
+		$("#userProNick").html(chouti.subNickLength($("#userProNick").html(), 5));
+	}
+})
+</script>
+
+<div id="H-avaupload-dialog" class="upload-dialog corner">
+	<div class="dialog-titlebar">
+		<div class="dialog-title ">
+			<span>头像上传</span>
+		</div>
+		<div class="dialog-titlebar-close"><a id="upload-dialog-btn-close" class="icons dialog-btn-close" title="关闭" href="javascript:;"></a></div>
+	</div>
+	   <div class="avaupload-dialog-content corner">
+	 		<object id="GozapToolComponentTest" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=10,0,0,0" width="541" height="452">
+  				<param name="movie" value="/images/upload.swf">
+  				<param name="quality" value="high">
+  				<param name="allowScriptAccess" value="always">
+  				<param name="FlashVars" value="swfId=hasScan&amp;showStyle=0&amp;uploadDataFieldName=upload&amp;uploadSvrURL=/ajaxUpload.htm">
+  				<embed src="/images/upload.swf" id="GozapToolComponentTest" allowscriptaccess="always" swliveconnect="true" quality="high" pluginspage="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash" type="application/x-shockwave-flash" flashvars="swfId=hasScan&amp;showStyle=0&amp;uploadDataFieldName=upload&amp;uploadSvrURL=/ajaxUpload.htm?a=1" width="541" height="452">
+			</object>
+	 	 </div>
+</div>
+	
+<script>
+//上传头像，flash回调函数
+//头像上传成功
+function Head_Pic_Rece_URL(str,swfId){
+	chouti.Head_Pic_Rece_URL_info(str,swfId);
+}
+//关闭上传弹出框
+function Head_Pic_Cancel(swfId){
+	chouti.Head_Pic_Cancel_info();
+}
+</script>
+
+
+<div class="main-content-band">
+	
+	<div class="main-content" id="bind-content">
+	<div class="reset-area">
+		<div class="set-tags top30">
+			<a href="/profile" class="tb w-active">帐号设置</a>
+     		<a href="/message/edit" class="tb">通知设置</a>
+     		<a href="/profile/bind" class="tb">绑定手机</a>
+     		<div class="set-line"></div>
+		</div>
+		<div class="set-nav">
+			<a class="active" href="javascript:;">基本信息</a>
+			<a href="/profile/password/edit">修改密码</a>
+			<a href="/profile/email/edit">修改联系邮箱</a>
+		</div>
+		
+		<div class="info-table">
+    	<table cellspacing="0" cellpadding="0" border="0" style="width:710px;">
+    	  <tbody>
+    	  <tr>
+    	    <td class="t1">用户名</td>
+    	    <td class="td2">
+    	    	<span>$!{webUser.getName()}@maimaijun.com</span><span class="Domains"></span>
+    	    	<input type="hidden" name="jid" id="hidJid" value="$!{webUser.getName()}">
+            </td>
+    	    <td class="td3">           	
+            </td>
+  	    </tr>
+    	  <tr>
+    	    <td class="t1" style="padding-top:27px">昵称</td>
+    	    <td class="td2">
+            	<input type="text" tabindex="2" maxlength="20" id="nick" class="text text-normal new-text" name="nick" usernick="$!{member.getNick()}" value="$!{member.getNick()}">
+            </td>
+    	     <td class="td3" style="vertical-align:middle">
+    	    
+            	<div id="tips_userNick" class="tips-bigbox" style="margin-top:-3px">
+                    <div class="tips-smallbox-blue tips-info">
+                    	20个字符，支持中英文、数字或下划线           	
+                    </div>            
+                    <div class="blue-corner arrow"></div>
+                    <div class="blue-vertical-back right-blue"></div>
+                    <div class="blue-cross-back bottom-blue"></div>
+                    <div class="blue-corner top-left"></div><div class="blue-corner top-right"></div>
+                    <div class="blue-corner bom-left"></div><div class="blue-corner bom-right"></div>
+                </div>
+                
+                <div id="tips_userNickError" class="tips-bigbox" style="margin-top:-3px">	<!-- 支持中英文、数字、下划线 -->
+                    <div class="tips-smallbox-red tips-info">不能超过20个字符或10个汉字</div>
+                    <div class="red-corner arrow"></div>
+                    <div class="red-vertical-back right-blue"></div>
+                    <div class="red-cross-back bottom-blue"></div>
+                    <div class="red-corner top-left"></div><div class="red-corner top-right"></div>
+                    <div class="red-corner bom-left"></div><div class="red-corner bom-right"></div>
+                </div>
+                <div id="usernick_sucess_ico" class="sucess-ico" style="display: none;background-position:0px -616px;margin-top:-2px"></div>
+            </td>
+  	    </tr>
+    	 <tr>
+    	 <!-- /release/uploadPicture.do -->
+    	    <td class="t1" style="vertical-align:top">头像</td>
+    	    <td class="td2">
+    	    	<div class="my-photo" style="float:left">
+					#if($!{member.getPic()} && $!{member.getPic()}!='null' && $!{member.getPic()}!='')
+						<img src="$!{member.getPic()}" id="personImgUrl">
+					#else
+						<img src="/images/image48.png" id="personImgUrl">
+					#end
+				</div>
+    	    	<a href="javascript:;" class="portrait mod-head-a" id="modifyPersonPhoto">修改头像</a>
+            </td>
+    	    <td class="td3" style="padding-bottom:2px;padding-left:6px">        	
+            	<input type="hidden" name="imgUrl" id="hidImgUrl" value="" userimgurl="">
+            </td>
+  	    </tr>
+  	    <tr>
+    	    <td class="t1">性别</td>
+    	    <td class="td2">  	    	
+  				<input type="radio" name="sex" id="female" value="false" #if($!{member.getSex()} && $!{member.getSex()}=='1') checked="checked" usersex="true" #end >
+				<label for="female">女</label>			
+				<input type="radio" name="sex"  id="male" value="true" #if($!{member.getSex()} && $!{member.getSex()}=='0') checked="checked" usersex="true" #end >
+				<label for="male">男</label>
+            </td>
+    	    <td class="td3">
+            	
+            </td>
+  	    </tr>
+  	   
+  	    <tr>
+    	    <td class="t1">地区</td>
+    	    <td class="td2" style="width:155px;">
+				<select name="proveName" id="proveName" onchange="setcity(this.options[this.selectedIndex].value, '')">
+				</select> 
+				<select name="cityName" id="cityName">
+				</select>			
+            </td>
+            #if($!{member.getProvince()} && $!{member.getProvince()}!='null' && $!{member.getProvince()}!='')
+  				#set($province="'"+$!{member.getProvince()}+"'")
+  			#else
+  				#set($province='""')
+  			#end
+  			#if($!{member.getCity()} && $!{member.getCity()}!='null' && $!{member.getCity()}!='')
+  				#set($city="'"+$!{member.getCity()}+"'")
+  			#else
+  				#set($city='""')
+  			#end
+    	    <td class="td3" style="vertical-align:1px;">
+            	<script type="text/javascript">
+            	//城市选择
+            	$(document).ready(function(){
+            		if($!{province} == "") {
+            			initProvice("-请选择-", "-请选择-");
+            		} else {
+            			if($!{city} == "") {
+            				initProvice($!{province}, "-请选择-");
+            			}
+            			initProvice($!{province}, $!{city});
+            		}
+            	})
+				</script>
+            </td>
+  	    </tr>
+  	   
+  	    <tr>
+  	    	<td class="t1" colspan="3">
+    	 		<a class="common-btn" href="javascript:;" id="person_info_save_btn">保存</a>
+     			<div class="loading-ico" id="info_loading_ico">
+      				保存中，请稍候...
+      			</div>
+    	 	</td>
+  	    </tr>  
+  	  </tbody>
+  	  </table>      
+    </div>	
+		</div>
+   </div>
+	
+#parse("/widget/common/footer.vm") 
+</div>

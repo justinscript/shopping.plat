@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mmj.app.biz.mapper.NotificationMapper" >
+	<resultMap id="BaseDOResultMap" type="com.mmj.app.biz.domain.BaseDO" >
+  		<id 		column="ID" 			property="id" 				jdbcType="DECIMAL" />
+    	<result 	column="GMT_CREATE" 	property="gmtCreate" 		jdbcType="TIMESTAMP" />
+    	<result 	column="GMT_MODIFIED" 	property="gmtModified" 		jdbcType="TIMESTAMP" />
+    	<result 	column="STATUS" 		property="status" 			jdbcType="DECIMAL" />
+  	</resultMap>
+  	
+  	<resultMap id="BaseResultMap" type="com.mmj.app.biz.domain.NotificationDO" extends="BaseDOResultMap">
+  		<result 	column="USER_ID" 				property="userId" 				jdbcType="DECIMAL" />
+  		<result 	column="UN_READ" 				property="unRead" 				jdbcType="DECIMAL" />
+ 		<result 	column="ACTION_USER_ID" 		property="actionUserId" 		jdbcType="DECIMAL" />
+  		<result 	column="CONTENT" 				property="content" 				jdbcType="VARCHAR" />
+  		<result 	column="NOTIFICATION_ACTION" 	property="notificationAction" 	jdbcType="DECIMAL" />
+  		<result 	column="NOTIFICATION_TYPE" 		property="notificationType" 	jdbcType="DECIMAL" />
+  		
+  		<result 	column="COMMENTS_ID" 			property="commentsId" 			jdbcType="DECIMAL" />
+  		<result 	column="LINK_ID" 				property="linkId" 				jdbcType="DECIMAL" />
+  	</resultMap>
+  	
+  	<sql id="table_columns_without_id">
+  		GMT_CREATE,GMT_MODIFIED,STATUS,
+  		USER_ID,UN_READ,ACTION_USER_ID,CONTENT,NOTIFICATION_ACTION,NOTIFICATION_TYPE,COMMENTS_ID,LINK_ID
+   	</sql>
+  
+  	<sql id="columns" >
+  		ID,<include refid="table_columns_without_id"/>
+  	</sql>
+  	
+  	<sql id="table_name" >
+  		notification
+  	</sql>
+  	
+  	<sql id="orderby_clause">
+        order by GMT_MODIFIED DESC
+    </sql>
+    
+  	<sql id="query_where_clause">
+  		<trim prefix="where" prefixOverrides="and|or"> 
+  			<if test="t.id !=null ">  
+	            ID = #{t.id, jdbcType=INTEGER}
+	        </if> 
+	        <if test="t.status != null ">  
+	            and STATUS = #{t.status, jdbcType=INTEGER}
+	        </if> 
+          	<if test="t.status == null and status != null ">  
+	            and STATUS = #{status, jdbcType=INTEGER}
+	        </if>
+	        <if test="startGmtCreate != null and startGmtCreate != '' ">  
+	            and <![CDATA[ GMT_CREATE >= date_format(#{startGmtCreate, jdbcType=VARCHAR},'%Y-%m-%d %H:%i:%s')]]>
+	        </if>
+	        <if test="endGmtCreate != null and endGmtCreate != '' ">  
+	            and <![CDATA[ GMT_CREATE <= date_format(#{endGmtCreate, jdbcType=VARCHAR},'%Y-%m-%d %H:%i:%s')]]> 
+	        </if>
+	        <if test="startGmtModified != null and startGmtModified != '' ">  
+	            and <![CDATA[ GMT_MODIFIED >= date_format(#{startGmtModified, jdbcType=VARCHAR},'%Y-%m-%d %H:%i:%s')]]>
+	        </if>
+	        <if test="endGmtModified != null and endGmtModified != '' ">  
+	            and <![CDATA[ GMT_MODIFIED <= date_format(#{endGmtModified, jdbcType=VARCHAR},'%Y-%m-%d %H:%i:%s')]]>
+	        </if>
+	        
+	        <if test="t.userId != null ">  
+	            and USER_ID = #{t.userId, jdbcType=INTEGER}
+	        </if> 
+          	<if test="t.unRead != null ">  
+	            and UN_READ = #{t.unRead, jdbcType=INTEGER}
+	        </if>
+	        <if test="t.actionUserId != null ">  
+	            and ACTION_USER_ID = #{t.actionUserId, jdbcType=INTEGER}
+	        </if> 
+          	<if test="t.notificationAction != null ">  
+	            and NOTIFICATION_ACTION = #{t.notificationAction, jdbcType=INTEGER}
+	        </if>
+	        <if test="t.notificationType != null ">  
+	            and NOTIFICATION_TYPE = #{t.notificationType, jdbcType=INTEGER}
+	        </if> 
+	        <if test="t.content !=null and t.content != '' ">
+				and CONTENT like CONCAT('%',#{t.content, jdbcType=VARCHAR},'%') 
+			</if>
+	    </trim> 
+  	</sql>
+  		
+  	<sql id="update_where_clause">
+		<trim prefix="where" prefixOverrides="and|or"> 
+	        <if test="id !=null ">  
+	            ID = #{id, jdbcType=INTEGER}
+	        </if> 
+	        <if test="status !=null ">  
+	            and STATUS = #{status, jdbcType=INTEGER}
+	        </if>
+	        
+	        <if test="t.userId != null ">  
+	            and USER_ID = #{t.userId, jdbcType=INTEGER}
+	        </if> 
+          	<if test="t.unRead != null ">  
+	            and UN_READ = #{t.unRead, jdbcType=INTEGER}
+	        </if>
+	        <if test="t.actionUserId != null ">  
+	            and ACTION_USER_ID = #{t.actionUserId, jdbcType=INTEGER}
+	        </if> 
+          	<if test="t.notificationAction != null ">  
+	            and NOTIFICATION_ACTION = #{t.notificationAction, jdbcType=INTEGER}
+	        </if>
+	        <if test="t.notificationType != null ">  
+	            and NOTIFICATION_TYPE = #{t.notificationType, jdbcType=INTEGER}
+	        </if> 
+	        <if test="t.content !=null and t.content != '' ">
+				and CONTENT like CONCAT('%',#{t.content, jdbcType=VARCHAR},'%') 
+			</if>
+	    </trim>
+   	</sql>
+  		
+  	<sql id="update_set_clause">
+  		<trim prefix="set GMT_MODIFIED= now()," suffixOverrides=",">  
+	        <if test="status !=null ">  
+	            STATUS = #{status, jdbcType=INTEGER},
+	        </if> 
+	        
+	        <if test="userId !=null ">  
+	            USER_ID = #{userId, jdbcType=INTEGER},
+	        </if>
+	        <if test="unRead !=null ">  
+	            UN_READ = #{unRead, jdbcType=INTEGER},
+	        </if>
+	        <if test="actionUserId !=null ">  
+	            ACTION_USER_ID = #{actionUserId, jdbcType=INTEGER},
+	        </if>
+	        <if test="content != null and content != '' ">  
+	            CONTENT = #{content, jdbcType=VARCHAR},
+	        </if> 
+	        <if test="notificationAction !=null ">  
+	            NOTIFICATION_ACTION = #{notificationAction, jdbcType=INTEGER},
+	        </if>
+	        <if test="notificationType !=null ">  
+	            NOTIFICATION_TYPE = #{notificationType, jdbcType=INTEGER},
+	        </if>
+   		</trim>
+  	</sql>
+  		
+   	<select id="list" resultMap="BaseResultMap" parameterType="java.util.Map">
+   		select  <include refid="columns" /> 
+   		from <include refid="table_name" /> 
+   		<include refid="orderby_clause"/>
+	  	<if test="limitSize != null" >
+	        <include refid="PAGINATION.MYSQL_PAGINATION" />
+	    </if>
+  	</select>
+  	
+  	<select id="listQuery" resultMap="BaseResultMap" parameterType="com.mmj.app.biz.query.NotificationQuery">
+   		select  <include refid="columns" /> 
+   		from <include refid="table_name" /> 
+   		<include refid="query_where_clause"/>
+   		<include refid="orderby_clause"/>
+  	</select>
+  
+  	<select id="listPagination" resultMap="BaseResultMap" parameterType="com.mmj.app.biz.query.NotificationQuery">
+		select <include refid="columns"/>
+		from <include refid="table_name" /> 
+		<include refid="query_where_clause"/>
+		<include refid="orderby_clause"/>
+		<include refid="PAGINATION.MYSQL_PAGINATION" />
+  	</select>
+  	
+  	<select id="find" resultMap="BaseResultMap" parameterType="com.mmj.app.biz.query.NotificationQuery" >
+  		select <include refid="columns"/>
+        from <include refid="table_name" />
+        <include refid="query_where_clause"/>
+        <include refid="orderby_clause"/>
+  	</select>
+  
+   	<insert id="insert" parameterType="com.mmj.app.biz.domain.NotificationDO" useGeneratedKeys="true" keyProperty="id" keyColumn="ID" >
+	   	insert into <include refid="table_name" /> (<include refid="table_columns_without_id"/>)
+        values ( now(), now(), 0, 
+                #{userId,jdbcType=INTEGER},
+                #{unRead,jdbcType=INTEGER},
+                #{actionUserId,jdbcType=INTEGER},
+                #{content,jdbcType=VARCHAR},
+                #{notificationAction,jdbcType=INTEGER},
+                #{notificationType,jdbcType=INTEGER},
+                #{commentsId,jdbcType=INTEGER},
+                #{linkId,jdbcType=INTEGER}
+        )
+        <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+            SELECT last_insert_id() as id
+        </selectKey> 
+   	</insert>
+   	
+   	<update id="update" parameterType="com.mmj.app.biz.domain.NotificationDO">
+   		update <include refid="table_name" /> 
+       	<include refid="update_set_clause"/>
+       	<include refid="update_where_clause"/>
+  	</update>
+  	
+  	<select id="count" resultType="java.lang.Integer" parameterType="com.mmj.app.biz.query.NotificationQuery">
+  		select count(1)
+        from <include refid="table_name" />  
+       	<include refid="query_where_clause"/>
+   	</select>
+   	
+  	<delete id="deleteById" parameterType="java.lang.Integer">
+  		delete from <include refid="table_name" /> where ID = #{id,jdbcType=INTEGER}
+  	</delete>
+  	
+  	<select id="getById" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  		select <include refid="columns" /> 
+  		from <include refid="table_name" /> 
+  		where ID = #{id,jdbcType=INTEGER}
+  	</select>
+  
+   	<update id="updateById" parameterType="com.mmj.app.biz.domain.NotificationDO">
+   		update <include refid="table_name" /> 
+   		<include refid="update_set_clause"/>
+	    where ID = #{id,jdbcType=INTEGER}
+  	</update>
+</mapper>

@@ -1,0 +1,669 @@
+<div class="footer-band" id="footer-band">
+    <div class="user-opr-box" id="userOprBox">
+    	<a href="/user/link/saved" style="border-top:0;">我的买买君</a>
+    	<a href="/profile">设置</a>
+    	<a class="logout" href="javascript:;">退出</a>
+    	<a href="/user/link/saved" target="_blank" class="ie6-a"><em class="cangIcon ico"></em>我的收藏</a>
+    </div>
+	
+	<div class="notice-area" id="user_notice_page">
+		<div style="position:relative;z-index:3;" id="notice_b_box">
+			<div class="notice-box" id="notice_box">
+				<a id="nots-loading" href="javascript:;" class="loading" style="display: inline-block;padding:0px;padding-left:30px;color:#336699;font-weight:normal;margin-left:70px;">加载中...</a>
+			</div>
+		</div>
+	</div>
+			
+    <div class="foot-nav">
+    	<div style="display:none" id="y-destjid">$!{webUser.getName()}</div>
+    	<div style="display:none" id="y-destnick">$!{webUser.getNick()}</div>
+    	<a href="/help/about" target="_blank">关于我们</a><span>|</span>
+        <a href="/help/contact" target="_blank">联系我们</a><span>|</span>
+        <a href="/help/service" target="_blank">服务条款</a><span>|</span>
+        <a href="/help/privacy" target="_blank">隐私政策</a><span>|</span>
+        #####<a href="#" target="_blank">下载客户端</a><span>|</span>
+        <a href="/feedback" target="_blank">意见与反馈</a><span>|</span>
+        <a href="/help/goodlink" target="_blank">友情链接</a><span>|</span>
+        <a href="#" target="_self">公告</a>
+        <!--<span>|</span><a href="/points/gifts" target="_blank">积分商城</a>-->
+    </div>
+	
+    <div class="foot-nav2">
+    	<a target="_self" href="#"></a>
+        <span class="foot_d"></span>
+        <span class="foot_a">© 2014 maimaijun.com</span>
+        <a target="_blank" href="http://www.miibeian.gov.cn/" class="foot_b">沪ICP备14004670号-3</a>
+        ##<div style="margin-top:6px;">版权所有：即闻信息技术(上海)有限公司</div>
+    </div>
+	
+	<!-- 评论举报 的当前时间-->
+	<input type='hidden' value='' id='hidJubaoTime' />
+	<!-- 登录框中用到的保存信息 -->
+	<input type="hidden" id="isAjax" value="0" />
+	<input type="hidden" id="login_ajaxInfo" value="" />
+	<input type="hidden" id="isComment" value="" />
+
+	<iframe id="maskIframe" name="maskIframe" scrolling="no" height="475px" width="300px" frameborder="0" style="display:none;"></iframe>
+
+<!-- 首页通知 -->
+<script id="homeNotice-template" type="text/x-handlebars-template">				
+	{{#each data}}
+	<div class="f-list" id="{{id}}" messageid="{{messageId}}">
+		<span class="f-n-icon f-bs-s" id="bs_{{id}}"></span>
+		<div class="f-t" lang="{{id}}" id="ft_{{id}}">{{{title}}}</div>
+		
+		<a class="f-n-icon f-close" title="设为已读" lang="{{id}}" id="close_{{id}}">  </a>
+	</div>
+	{{/each}}
+	<div class="clear-div"></div>
+	<div class="opr-area" id="opr_{{id}}">
+		<a href="javascript:;" class="f-n-icon f-btn-read" id="btnReadAll">全部已读</a>
+		<a href="/notice" class="f-n-icon f-btn-all">查看所有<em>→</em></a>
+		<div class="clear-div"></div>
+	</div>
+</script>
+<!-- 邮件分享样式框 -->
+<script type="module" id="sendMail-model">
+    <div id="MailShare-dialog" class="mail-dialog dialog corner">
+    	<div class="dialog-titlebar">
+    		<div class="dialog-title" id="mailShareTitle">
+    			<span>邮件分享</span>
+    		</div>
+    		<div class="dialog-titlebar-close"><a id="dialog-mail-close" class="icons dialog-btn-close" title="关闭" href="javascript:;"></a></div>
+    	</div>
+    	<div class="m-dialog-content dialog-content corner-bottom">
+    		
+    		<div id="dialog-main-content" class="dialog-main-content">
+    			<div class="mail-area">
+    				<table border="0" cellspacing="0" cellpadding="0">
+      				<tr>
+        				<td class="tn">收件人</td>
+        				<td>
+        					<input type="text" class="text share-mail-txt" id="receiveName" name="receiveName">
+    					</td>
+      				</tr>
+      				<tr>
+        				<td class="tn">主题</td>
+        				<td><input type="text" class="text share-mail-txt" id="mailTitle" name="mailTitle"></td>
+      				</tr>
+      				<tr>
+        				<td class="tn">内容</br>(选填)</td>
+        				<td>
+        				<textarea class="text" id="mailContent" name="mailContent"></textarea>
+        				</td>
+      				</tr>
+    				</table>
+    			</div>
+    			<div id="dialog-pane1" class="dialog-buttonpane white bottom-null">
+    					<div id="error-box1" class="write-error-box">					
+    						<div class="write-error-desc" id="MailErrDesc"></div>
+    					</div>						
+    					<div class="button-container">
+    						<a id="clear-btn-mail" href="javascript:;" class="pub-clear-btn">取消</a>
+    						<a id="sendMailBtn" href="javascript:;" class="pub-icons new-pub-btn new-pub-btn-unvalid">发&nbsp;送</a>
+    						<a id="mailSend-loading" href="javascript:;" class="loading">发送中...</a>
+    					</div>
+    					
+    			</div>
+    			<div style="height:30px;clear:both;overflow:hidden"></div>
+    		</div>
+    	</div>
+    </div>
+</script>
+<!-- 登录及注册对话框 -->
+<script type="module" id="login-dialog-code">
+    <div class="dialog corner" id="digg-dialog-login">
+    <div class="dialog-titlebar">
+    	<div class="dialog-title ">
+    		<span class="dl">登录</span>
+    		<span class="zc">注册</span>
+    	</div>
+    	<div class="dialog-titlebar-close"><a href="javascript:;" title="关闭" class="icons dialog-btn-close" id="login-dialog-btn-close"></a></div>
+    </div>
+    <div class="user-login-area corner-bottom" style="background-color:#fff;">
+    <!-- 登录区域 -->
+    	<div id="login-form" class="login-area">
+    			<form id="loginFrm" method="post" action="/login">
+    	<table cellspacing="0" cellpadding="0" border="0" width="280px;" class="login-table">
+    	  <tbody>
+    	  <tr>
+    	    <td class="title yellow-warn padding5"><span id="login-wrong-info" style="vertical-align:-2px"></span></td>
+    	  </tr>
+    	  <tr>
+    	    <td class="title padding5" style="padding-top:0px;">用户名</td>
+    	  </tr>
+    	  <tr>
+    	    <td class="title">
+    	    	<div class="text-box text-box-normal">
+            		<div class="coner top-1eft"></div><div class="coner top-right"></div>
+            		<input type="text" name="jid" id="destJid" class="text text-normal" maxlength="20" tabindex="1" autocomplete="off" />
+            		<div class="coner botm-left"></div><div class="coner botm-right"></div>
+            	</div>
+            	<div style="clear:both;height:0px;overflow:hidden;font-size:0px"></div>
+            	<div class="Domains" style="padding-right:12px">@maimaijun.com</div>
+            	<input type="hidden" name="referer" value="" />
+            	<input type="hidden" name="url" value="" />
+            </td>
+    	    </tr>
+    	<tr>
+    	    <td class="title padding5" style="padding-top:0px">密码</td>
+    	</tr>
+    	<tr>
+    	    <td class="title">
+            	<div class="text-box text-box-normal">
+            		<div class="coner top-1eft"></div><div class="coner top-right"></div>
+            		<input name="password" type="password" class="text text-normal" id="password" maxlength="16" tabindex="2" onkeydown="loginWin.enterIn(event);" autocomplete="off" />
+            		<div class="coner botm-left"></div><div class="coner botm-right"></div>
+            	</div>              
+            </td>
+         </tr>   	 
+    	    <tr>
+    	    <td class="title padding74" style="padding-top:8px;">
+    	    	<label><input type="checkbox" name="autologin" id="autologin" checked="checked" value="1" />一个月内自动登录</label>
+    	    </td>   	    
+    	    </tr>
+    	    <tr>
+    	    	<td class="td2" style="padding-left:78px">
+    	    		<a id="login_btn" href="javascript:;" class="pub-icons pub-btn pub-btn-valid inline-block" style="float:left">登录</a>
+     			 <div class="loading-ico" id="info_loading_ico">
+      				登录中...
+      			</div>
+      			<a href="/profile/password/reset" class="forget-a">忘记密码？</a>
+      			<div style="clear:both;overflow:hidden;font:0;height:0px;"></div>
+    	    	</td>
+    	    </tr>  
+    	  </tbody>
+    	  </table>
+       
+      </form>
+    </div>	
+    <!-- 注册区域 -->
+    <div id="reg-form" class="reg-area">
+    	<form action="/register" method="post" id="regFrm">
+    	<table width="320px;" cellspacing="0" cellpadding="0" border="0" class="login-table">
+    	  <tbody>
+    	  <tr>
+    	    <td colspan="2" class="title yellow-warn" style="padding-left:63px;">
+    	    	<span id="reg-wrong-info" style="vertical-align:-2px"></span>
+    	    </td>
+    	  </tr>
+    	  <tr>
+    	    <td class="title padding5" style="padding-top:0px;padding-left:63px;">用户名</td><td></td>
+    	  </tr>
+    	  <tr>
+    	    <td class="title" style="padding-left:60px">
+    	    	<div id="reg_username_box" class="text-box text-box-normal reg-ie6">
+            		<div class="coner top-1eft"></div><div class="coner top-right"></div>
+            		<input type="text" tabindex="3" maxlength="20" class="text text-normal relative" id="reg_destJid" name="jid" autocomplete="off" />
+            		<label for="reg_destJid" id="lab-destJid" class="reg-lab">5-20位字母/数字/下划线或其组合</label>
+            		<div class="coner botm-left"></div><div class="coner botm-right"></div>
+            	</div>
+            	<div style="clear:both;height:0px;overflow:hidden;font-size:0px"></div>
+            	<div class="Domains" style="padding-right:5px">@maimaijun.com</div>
+            	<input type="hidden" value="" name="referer">
+            	<input type="hidden" value="" name="url">
+            </td>
+            <td class="td3"><div class="sucess-ico" id="reg_username_sucess_ico" style="margin-top:-19px"></div></td>
+    	    </tr>
+    	<tr>
+    	    <td class="title padding5" style="padding-top:0px;padding-left:63px;">密码</td><td></td>
+    	</tr>
+    	<tr>
+    	    <td class="title" style="padding-left:60px">
+            	<div id="reg_password_box" class="text-box text-box-normal reg-ie6">
+            		<div class="coner top-1eft"></div><div class="coner top-right"></div>
+            		<input type="password" tabindex="4" maxlength="16" id="reg_password" class="text text-normal relative" name="password" autocomplete="off" />
+            		<label for="reg_password" id="lab-password" class="reg-lab">密码长度为6-16位字符</label>
+            		<div class="coner botm-left"></div><div class="coner botm-right"></div>
+            	</div>              
+                
+            </td>
+            <td class="td3"><div class="sucess-ico" id="reg_userpassword_sucess_ico" style="margin-top:-7px"></div></td>
+         </tr>
+         <tr>
+    	    <td class="title padding5" style="padding-top:0px;padding-left:63px;">确认密码</td><td></td>
+    	</tr>
+    	<tr>
+    	    <td class="title" style="padding-left:60px">
+            	<div id="reg_confirmpassword_box" class="text-box text-box-normal reg-ie6">
+            		<div class="coner top-1eft"></div><div class="coner top-right"></div>
+            		<input name="profile.rePwd" type="password" class="text text-normal relative" id="reg_confirm_password" maxlength="16" tabindex="5" />
+            		<label for="reg_confirm_password" id="lab-conpassword" class="reg-lab">两次密码输入必须一致</label>
+            		<div class="coner botm-left"></div><div class="coner botm-right"></div>
+            	</div>              
+                
+            </td>
+            <td class="td3"><div class="sucess-ico" id="reg_userpasswordconfir_sucess_ico" style="margin-top:-7px"></div></td>
+         </tr> 
+         <tr>
+    	    <td class="title padding5" style="padding-top:0px;padding-left:63px;">联系邮箱</td><td></td>
+    	</tr>
+    	<tr>
+    	    <td class="title" style="padding-left:60px">
+            	<div id="reg_secretmail_box" class="text-box text-box-normal reg-ie6">
+            		<div class="coner top-1eft"></div><div class="coner top-right"></div>
+            		<input type="text" name="profile.regEmail" id="reg_secret_mail" class="text text-normal relative" tabindex="6" onkeydown="regWin.enterIn(event);" />
+            		<label for="reg_secret_mail" id="lab-mail" class="reg-lab">请输入联系邮箱</label>
+            		<div class="coner botm-left"></div><div class="coner botm-right"></div>
+            	</div>              
+                
+            </td>
+            <td class="td3"><div class="sucess-ico" id="reg_usermail_sucess_ico" style="margin-top:-7px"></div></td>
+         </tr>    
+         	 
+    	    <tr>
+    	    <td colspan="2" class="title" style="padding-top:8px;padding-left:63px"><label><input type="checkbox" checked="checked" id="readPl" name="readPl">我已仔细阅读接受<a href="/help/service" target="_blank">服务条款</a>和<a href="/help/privacy" target="_blank">隐私政策</a></label></td>
+    	      	    
+    	    </tr>
+    	    <tr>
+    	    	<td class="td2" style="padding-left:63px">
+    	    		<a style="float:left" class="pub-icons pub-btn pub-btn-valid inline-block" href="javascript:;" id="reg_btn">注册</a>
+     			 <div id="reg_info_loading_ico" class="loading-ico">
+      				注册中...
+      			</div>
+      			
+    	    	</td>
+    	    	<td></td>
+    	    </tr>  
+    	  </tbody>
+    	  </table>
+      </form>
+    </div>
+    <div style="clear:both;overflow:hidden;font:0;height:0px;"></div>
+    </div>
+    </div>
+</script>
+<!-- 分享新发现 ,放到script中是为了在页面加载时不需要渲染该项，只有在点击后才去渲染-->
+<script type="module" id="publish-dialog-code">
+	<div class="dialog corner" id="digg-dialog-publish">
+	<div class="dialog-titlebar">
+		<div class="dialog-title">
+			<span id="shareTitle">分享新发现</span>
+			<input type="hidden" id="hidHtTag" value="" topicId="" />
+		</div>
+		<div class="dialog-titlebar-close"><a href="javascript:;" title="关闭" class="icons dialog-btn-close" id="dialog-btn-close"></a></div>
+	</div>
+	<div class="dialog-content corner-bottom">
+		<div class="tab-tags nobrder W"  id="tabs">
+			
+				<a href="javascript:;" class="tb H w-active color" id="pubTabZixun">爆料</a>
+				<a href="javascript:;" class="tb H" id="pubTabDuanzi">文字</a>
+				<a href="javascript:;" class="tb H" id="pubTabPic">图片</a>
+				<div class="tags"></div>			
+		</div>
+		<div class="dialog-main-content" id="dialog-main-content">
+			<!-- 资讯区域 -->
+			<div class="publish-content-zixun" id="publish-content-zixun">
+				<div class="tab-alt">添加链接</div>
+				<div class="p1">
+					<div class="txt-input-area float-left corner" style="width:426px;" id="txt-zixun-area">
+						<input type="text" name="txt-zixun" id="txt-zixun" class="small-txt-input" />			
+						<label id="lab-zixun" for="txt-zixun" style="display: block;">http://</label>
+						<input id="url" name="url" type="hidden" value="" />				
+					</div>
+					<div class="button-container" id="zixun-button-container">
+						<a class="pub-icons pub-btn pub-btn-unvalid" href="javascript:;" id="add-pub-btn0">获取标题</a>
+						<a class="loading martop10" href="javascript:;" id="add-pub-loading0"></a>
+					</div>
+				</div>
+			<div id="zixun-big-area">
+				<div class="tab-alt martop8">标题</div>
+				<div class="small-txt-input-area corner" id="zixun-http-area">
+					<input name="txt-zixun-content" id="txt-zixun-content"  maxlength="150" class="small-txt-input w496" disabled="disabled" />
+				</div>
+				<div class="tab-alt martop8">推荐理由</div>
+				<div class="txt-input-area corner" style="padding:6px;">
+					<textarea id="txt-zhaiyao" name="txt-zhaiyao" maxlength="120" disabled="disabled"></textarea>
+				</div>
+				<div class="toclass-btn-area">
+					<span class="tospan">发布到:</span>
+					<a class="pub-icons toclass-btn toclass-btn-valid" href="javascript:;" id="to-btn-zixun" lang="1">国内买</a>
+                    <a class="pub-icons toclass-btn toclass-btn-unvalid" href="javascript:;" id="to-btn-duanzi" lang="2">海外买</a>
+                    <!--
+					<a class="pub-icons toclass-btn toclass-btn-unfavor-unvalid" href="javascript:;" id="to-btn-pic" lang="4">今日免单</a>
+					<a class="pub-icons toclass-btn toclass-btn-unvalid" href="javascript:;" id="to-btn-tec"  lang="100">问答社</a>
+					<a class="pub-icons toclass-btn toclass-btn-unvalid" href="javascript:;" id="to-btn-ask" lang="151">五元团</a>-->
+				</div>
+				<div class="dialog-buttonpane white bottom-null" id="dialog-buttonpane0">
+					<div class="write-error-box" id="write-error-box0">					
+						<div class="write-error-desc">您发布过于频繁，请2分钟后重新发布</div>
+					</div>						
+					<div class="button-container">
+						<a class="pub-clear-btn" href="javascript:;" id="clear-btn-link">清空</a>
+						<a class="pub-icons new-pub-btn new-pub-btn-unvalid" href="javascript:;" id="pub-btn0">发&nbsp;布</a>
+						<a class="loading" href="javascript:;" id="pub-loading0">发布中...</a>
+					</div>
+					<div class="write-error">标题已超出<span id="moreLength0">10</span>个字</div>
+				</div>
+			</div>
+				<div style="height:30px;clear:both;overflow:hidden">
+				</div>
+			</div>
+			<!-- 段子区域 -->
+			<div class="publish-content-duanzi" id="publish-content-duanzi">
+				<div class="txt-input-area corner no-corner-bottom">
+					<textarea name="txt-duanzi" id="txt-duanzi"></textarea>
+					<label id="lab-duanzi" for="txt-duanzi" style="display: block;">发布海淘...</label>
+				</div>
+				<div class="dialog-buttonpane corner-bottom" id="dialog-buttonpane1">								
+					
+					<div class="write-length">还可以输入<span id="showLength1">150</span>字</div>
+					<div class="write-error">标题已超出<span id="moreLength1">10</span>个字</div>
+				</div>
+								
+				<div class="toclass-btn-area">
+					<span class="tospan">发布到:</span>					
+					<!--<a class="pub-icons toclass-btn toclass-btn-unfavor-valid" href="javascript:;" id="to-btn-duanzi2" lang="2">海淘转让区</a>-->
+					<a class="pub-icons toclass-btn toclass-btn-valid" href="javascript:;" id="to-btn-ask2" lang="100">问答社</a>
+				</div>
+				<div class="dialog-buttonpane white bottom-null" id="dialog-buttonpane1">
+					<div class="write-error-box" id="write-error-box1">					
+						<div class="write-error-desc">您发布过于频繁，请2分钟后重新发布</div>
+					</div>						
+					<div class="button-container">
+						<a class="pub-clear-btn" href="javascript:;" id="clear-btn-wanzi">清空</a>
+						<a class="pub-icons new-pub-btn new-pub-btn-unvalid" href="javascript:;" id="pub-btn1">发&nbsp;布</a>
+						<a class="loading" href="javascript:;" id="pub-loading1">发布中...</a>
+					</div>
+				</div>
+				<div style="height:30px;clear:both;overflow:hidden">
+				</div>				
+			</div>
+			
+			<!-- 图片区域 -->
+			<div class="publish-content-pic" id="publish-content-pic">
+				<div class="tab-alt" id="img-alt-title">添加图片</div>
+					<div class="txt-input-area corner" id="upload-img-area">
+					<form enctype="multipart/form-data" method="post" target="uploadIframe" action="/link/pic/upload" id="uploadPicFrm">
+						<a class="pub-icons line-block add-pub-btn add-pub-btn-valid" href="javascript:;" id="add-pub-btn2">上传<input type="file" name="imgUrl" id="imgUrl" size="1" hidefocus="true" /></a>
+						<span class="imgRule">支持jpg、jpeg、gif、png格式，且不超过5MB</span>
+						<a class="loading" href="javascript:;" id="add-pub-loading2">上传中...</a>
+						<input type="hidden" id="timeHidden" name="identifie" value="">
+					</form>		
+					</div>
+				
+				<iframe id="uploadIframe" name="uploadIframe" scrolling="no" height="0px" frameborder="0" style="display:none" src="/blank.html"></iframe>					
+				<div class="txt-input-area corner" id="show-img-area">
+					<img id="upload-img" />
+					<a href="javascript:;" class="repeat-upload" id="repeat-upload-btn">重新上传</a>
+				</div>
+				<div class="txt-input-area martop10 corner no-corner-bottom">
+					<textarea name="txt-img" id="txt-img"></textarea>
+					<label id="lab-img" for="txt-img" style="display: block;">请输入图片描述...</label>
+				</div>
+				<div class="dialog-buttonpane corner-bottom" id="dialog-buttonpane2">
+					<!--
+					<div class="pic-yellow"><input type="checkbox" name="boxYellow" id="boxYellow" /><label for="boxYellow">这张图片很黄很暴力</label></div>
+					-->
+					<div class="write-length">还可以输入<span id="showLength2">150</span>字</div>
+					<div class="write-error">标题已超出<span id="moreLength2">10</span>个字</div>
+				</div>
+				<div class="toclass-btn-area">
+					<span class="tospan">发布到:</span>
+					<a class="pub-icons toclass-btn toclass-btn-valid" href="javascript:;" id="to-btn-pic2" lang="4">晒单区</a>	
+					<!--<a class="pub-icons toclass-btn toclass-btn-unvalid" href="javascript:;" id="to-btn-ask3" lang="151">问答社</a>-->
+				</div>
+				<div class="dialog-buttonpane white bottom-null" id="dialog-buttonpane2">
+					<div class="write-error-box" id="write-error-box2">					
+						<div class="write-error-desc">您发布过于频繁，请2分钟后重新发布</div>
+					</div>						
+					<div class="button-container">
+						<a class="pub-clear-btn" href="javascript:;" id="clear-btn-pic">清空</a>
+						<a class="pub-icons new-pub-btn new-pub-btn-unvalid" href="javascript:;" id="pub-btn2">发&nbsp;布</a>
+						<a class="loading" href="javascript:;" id="pub-loading2">发布中...</a>
+					</div>
+				</div>
+				<div style="height:30px;clear:both;overflow:hidden">
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</script>
+<!-- 积分商城兑换显示弹出框 -->
+<script  type="module" id="gift-dialog-code">
+    <div id="GiftShare-dialog" class="mail-dialog dialog corner">
+    	<div class="dialog-titlebar">
+    		<div class="dialog-title" id="giftTitle">
+    			<span>积分兑换</span>
+    		</div>
+    		<div class="dialog-titlebar-close" id="giftTClose"><a id="dialog-gift-close" class="icons dialog-btn-close" title="关闭" href="javascript:;"></a></div>
+    	</div>
+    	<div class="m-dialog-content dialog-content corner-bottom"  id="giftBox">
+    		
+    		<div id="dialog-main-content" class="dialog-main-content">
+    			<div class="mail-area">
+    				<table border="0" cellspacing="0" cellpadding="0">
+    				<tr>
+        				<td class="tn" style="padding-bottom:3px;text-align:left;"><strong>兑换信息</strong></td>
+        				<td></td>
+      				</tr>
+      				<tr>
+        				<td class="tn">兑换礼品:</td>
+        				<td></td>
+      				</tr>
+      				<tr>
+        				<td class="tn tn2">兑换积分:</td>
+        				<td></td>
+      				</tr>
+      				<tr>
+        				<td class="tn tn2">当前积分:</td>
+        				<td id="curPoints"></td>
+      				</tr>
+      				<tr>
+        				<td colspan="2" style="border-bottom:1px dashed #ccc;"></td>
+      				</tr>
+      				<tr>
+        				<td class="tn" style="padding-bottom:3px;text-align:left;"><strong>收货信息</strong></td>
+        				<td></td>
+      				</tr>
+      				<tr>
+        				<td class="tn tn2">邮箱(必填):</td>
+        				<td>
+        					<input type="text" class="text share-mail-txt" id="reEmail" name="reEmail" tabindex="1">
+    					</td>
+      				</tr>
+      				<tr>
+        				<td class="tn tn2">手机(选填):</td>
+        				<td><input type="text" class="text share-mail-txt" id="rePhone" name="rePhone" tabindex="2"></td>
+      				</tr>
+    				<tr>
+        				<td class="tn tn2">QQ/微信/MSN(选填):</td>
+        				<td><input type="text" class="text share-mail-txt" id="reContact" name="reContact" tabindex="3"></td>
+      				</tr>
+      				<!--
+      				<tr>
+        				<td class="tn">联系方式</br>(必填)</td>
+        				<td>
+        				
+        				<input type="text" class="text share-mail-txt" id="reAddress" name="reAddress">
+        				
+        				</td>
+      				</tr>
+      				-->
+    				</table>
+    			</div>
+    			<div id="dialog-pane1" class="dialog-buttonpane white bottom-null">
+    					<div id="error-box1" class="write-error-box">					
+    						<div class="write-error-desc" id="GiftErrDesc"></div>
+    					</div>						
+    					<div class="button-container">
+    						<a id="clear-btn-gift" href="javascript:;" class="pub-clear-btn">取消</a>
+    						<a id="sendGiftBtn" href="javascript:;" class="pub-icons new-pub-btn new-pub-btn-unvalid" giftId="">确&nbsp;定</a>
+    					</div>
+    			</div>
+    			<div style="height:30px;clear:both;overflow:hidden"></div>
+    		</div>
+    	</div>
+    	<div id="giftSuceBox"  class="gift-suc">
+    		<div class="cont">兑换成功，请等待审核！</div>
+    		<div class="button-opr">
+    			<a id="cancel-btn-gift" href="javascript:;" class="pub-clear-btn">取消</a>
+    			<a id="nextGiftBtn" href="javascript:;" class="pub-icons new-pub-btn new-pub-btn-valid">继续兑换</a>
+    					
+    		</div>
+    	</div>
+    </div>
+</script>
+<!-- 举报弹出框（举报原因） -->
+<script  type="module" id="jubao-dialog-code">
+    <div id="Jubao-dialog" class="mail-dialog dialog corner">
+    	<div class="dialog-titlebar">
+    		<div class="dialog-title" id="jubaoTitle">
+    			<span>举报</span>
+    		</div>
+    		<div class="dialog-titlebar-close" id="jbTClose"><a id="dialog-jubao-close" class="icons dialog-btn-close" title="关闭" href="javascript:;"></a></div>
+    	</div>
+    	<div class="m-dialog-content dialog-content corner-bottom"  id="JubaoBox">
+    		
+    		<div id="dialog-main-content" class="dialog-main-content">
+    			<div class="mail-area" style="margin-bottom:0px;">
+    						
+    				<table border="0" cellspacing="0" cellpadding="0" style="width:338px;">
+    				<tr>
+        				<td class="tn" style="padding-bottom:3px;text-align:left;"><strong>举报原因：</strong></td>
+        				<td></td>
+      				</tr>
+      				<tr>
+        				<td>
+        				<input type="radio" value="12" name="radio_bad" id="cukao" class="W_radio" checked="checked">
+    					<label class="cholab" for="cukao">爆粗口</label>
+    					</td>
+        				<td>
+        				<input type="radio" value="12" name="radio_bad" id="laji" class="W_radio">
+    					<label class="cholab" for="laji">广告、垃圾信息</label>
+        				</td>
+      				</tr>
+      				<tr>
+        				<td>
+        				<input type="radio" value="12" name="radio_bad" id="seqing" class="W_radio">
+    					<label class="cholab" for="seqing">淫秽色情</label>
+    					</td>
+        				<td>
+        				<input type="radio" value="12" name="radio_bad" id="mingan" class="W_radio">
+    					<label class="cholab" for="mingan">政治敏感话题</label>
+        				</td>
+      				</tr>
+      				<tr>
+        				<td>
+        				<input type="radio" value="12" name="radio_bad" id="qita" class="W_radio">
+    					<label class="cholab" for="qita">其它</label>
+        				</td>
+        				<td></td>
+      				</tr>
+      				<tr id="trJubao" style="display:none;">
+        				<td colspan="2">
+        					<textarea name="otherReson" id="otherReson" class="text"></textarea>
+        				</td>
+      				</tr>
+    				</table>
+    			</div>
+    			<div id="dialog-pane1" class="dialog-buttonpane white bottom-null">
+    					<div id="error-box1" class="write-error-box">					
+    						<div class="write-error-desc" id="JubaoErrDesc"></div>
+    					</div>						
+    					<div class="button-container">
+    						<a id="clear-btn-jubao" href="javascript:;" class="pub-clear-btn">取消</a>
+    						<a id="sendJubaoBtn" href="javascript:;" class="pub-icons new-pub-btn new-pub-btn-valid">确&nbsp;定</a>
+    					</div>
+    			</div>
+    			<div style="height:30px;clear:both;overflow:hidden"></div>
+    		</div>
+    	</div>
+    </div>
+</script>
+		
+<script type="text/javascript">
+	document.domain="maimaijun.com";
+	$(document).ready(function(){
+		//订阅用户未读通知数的通知
+		var messageCnt=0;
+        var messageSh=setInterval(function(){
+        	$.get("/letter/noread/count.do", function(info){
+        		if(info.code == "9999")
+        		{
+        			//改变未读私信数	
+        			var newsCount = info.data;
+        			if(newsCount != undefined){
+        				var letterCount2 = parseInt(info.data);
+        				//当为0时隐藏提示
+        				if(letterCount2 <=0) {
+        					$("#mail-num-title").hide().children("em").text("");
+        					return;
+        				}
+        				chouti.chgMailNum(letterCount2);
+        				if(newsCount>200)
+           				{
+           					clearInterval(messageSh);
+           				}
+        			}
+        		}
+        		//console.log(info);
+        	});
+        	
+        	$.get("/message/unread/count", function(info){
+        		if(info.code == "9999")
+        		{
+        			//改变未读通知数	
+        			var newsCount = info.data;
+        			if(newsCount != undefined){
+        				var newsCount2 = parseInt(info.data);
+        				//当为0时隐藏提示
+        				if(newsCount2 <=0) {
+        					$("#notice-num-title").hide().children("em").text("");
+        					return;
+        				}
+        				chouti.chgNoticeNum(newsCount2);
+        				if(newsCount>200)
+           				{
+           					clearInterval(messageSh);
+           				}
+        			}
+        		}
+        		//console.log(info);
+        	});
+        	
+        	messageCnt++;
+        	if(messageCnt>60)
+        	{
+        		clearInterval(messageSh);
+        	}
+        },90000);
+
+		//以下代码实现的功能为：
+		//在新热榜登录成功后，可点击 "我的买买君”进入后，相应的也是登录状态。
+		puid = $.cookie("puid");
+		$("#cookieIframe").attr("src", "http://www.chouti.com/cookieService?d="+puid);
+		chouti.showStreamNotice();	//触发显示通知数
+		chouti.showStreamMail();	//触发显示私信数
+		chouti.showUserOprBox();	//显示登录用户操作框（点击头部用户昵时）
+		chouti.showHomePageNotice();	//点击通知链接显示首页通知框
+		chouti.logout();	//退出登录
+		chouti.showGoTop();	//回到页面顶部
+					
+		 var userAgentInfo2=navigator.userAgent;
+		 //var userAgentKeywords=new Array("Android", "iPhone" ,"SymbianOS", "Windows Phone", "iPad", "iPod", "MQQBrowser");
+		  			  	
+		 if(userAgentInfo2.indexOf("Android") > 0 || userAgentInfo2.indexOf("iPhone") > 0 || userAgentInfo2.indexOf("iPad") > 0 || userAgentInfo2.indexOf("iPod") > 0){
+		    	
+		 } else {
+			  chouti.fixedAdvert();	//固定广告的位置
+		 }
+		 //chouti.playVido();	//展开视频
+	})	
+</script>
+
+<!-- 当操作平台为移动设备，如手机，ipad时，引入JS文件，用作flash聊天工具  -->
+<script type="text/javascript" src="/js/jquery/jquery.lazyload.js"></script>
+<script type="text/javascript" src="/js/publish-dialog.js"></script>
+<script type="text/javascript" src="/js/comment_top.js"></script>
+<script type="text/javascript" src="/js/jquery/jquery.treeview.js"></script>
+<script type="text/javascript" src="/js/jquery/jquery-position.js"></script>
+<script type="text/javascript" src="/js/handlebars.js"></script>
+<script type="text/javascript" src="/js/ZHttpBinding.js"></script>
+<script type="text/javascript" src="/js/GozapLogin.js"></script>
+<script type="text/javascript" src="/js/JsMucChat.js"></script>
+
+#parse("/widget/common/tongji.vm")
+
+</div>

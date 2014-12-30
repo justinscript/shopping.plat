@@ -1,0 +1,91 @@
+<link rel="stylesheet" type="text/css" href="/css/notice.css" />
+
+<script type="text/javascript" src="/js/person_mail.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	NS_person_mail.init();
+	//设置私信为已读
+	NS_person_mail.setReaded("3888");
+	//文本输入框获取焦点
+	$("#mailContent").focus();
+});
+</script>
+
+</script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		//当用户登录后才去判断
+		if($("#userProNick").length > 0) {
+			$("#userProNick").html(chouti.subNickLength($("#userProNick").html(), 5));
+		}
+	})
+</script>
+
+
+<div class="main-content-band">
+
+	<div class="main-content" style="padding-top:4px;min-height:765px;">
+	
+  <div class="notice" style="width:725px;padding-bottom:0;">
+    <div class="mbk-box">
+    	<a href="/letter" class="back">&lt;&lt;返回所有私信</a>
+    	<input type="hidden" id="groupId" value="$!{dialog.id}">    	
+    </div>
+    <div class="txt-box" style="width:690px;margin-top:30px;">
+    	<div class="lahei-box" id="laheiBox" style="top:-15px;">
+    		<a href="javascript:;" id="laHeiBtn" otherjid="$!{dialog.recipientName}" othernick="$!{dialog.recipientNick}"><span class="heimdan"></span>拉入黑名单</a>
+    	</div>
+    	<div class="toPerson">发私信给<span style="padding-left:5px;">$!{dialog.recipientNick}</span></div>
+    	<div class="txt-input-area-div-top corner" style="width:680px;">											
+			<textarea class="txt-huifu txt-huifu-top" style="text-indent: 0px; height: 50px; resize: none;width:674px;" id="mailContent" maxlength="150"></textarea>											
+		</div>
+		<div class="sendMbox">
+			<a class="common-btn" href="javascript:;" id="person_mail_btn" otherjid="$!{dialog.recipientName}" destuserjid="$!{dialog.senderName}" destuserimgurl="$!{dialog.getSenderNickImgUrlStr()}">发送</a>
+     		<div class="loading-ico" id="privateMailLoading" style="float:right;">发送中，请稍候...</div>
+		</div>
+    </div>
+    <div class="mail-box" id="mailBox" style="width:690px;">
+    
+    	#foreach($!item in $list)
+    	<div class="item" id="item$!{item.letterId}">
+    		<div class="nr-r" style="margin-left:0">
+	    		<!-- state 标识该私信的状态是发送还是接收 1为发送，2为接受-->
+	    		#if($!{webUser.getName()}==$!{item.name})
+	    			#set($url="/user/link/saved")
+	    			#set($name="我")
+	    		#else
+	    			#set($url="/user/"+$!{item.name}+"/publish")
+	    			#set($name=$!{item.nick})
+	    		#end
+				<a href="$!url" target="_blank">
+					<img src="$!{item.nickImgUrl}" width="48" height="48" class="imgs">
+				</a>
+				<div class="nr-r-r">
+					<div class="r1">
+						<a href="$url" class="nick" target="_blank">$!name:</a>
+						<span class="nr">$!{item.content}</span>
+					</div>
+					<div class="r2">
+						<div class="sj">$!{item.getPublishTime()}</div>
+						<div class="caozuo">
+							<a href="javascript:;" lang="$!{item.letterId}" class="delMailolny">删除</a>
+						</div>
+					</div>
+				</div>
+    		</div>
+    	</div>
+    	#end
+    	
+    </div>
+   
+	<div id="page-area" class="page-area">			
+		 <div id="dig_lcpage"></div>				
+	</div>
+  </div>
+
+   </div>
+
+
+#parse("/widget/common/footer.vm") 
+</div>

@@ -1,0 +1,73 @@
+<script type="text/javascript" src="/js/feedback.js"></script>
+<link rel="stylesheet" type="text/css" href="/css/feedback.css">
+
+<script type="text/javascript">
+$(document).ready(function(){
+	NS_feedback.init();
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	//当用户登录后才去判断
+	if($("#userProNick").length > 0) {
+		$("#userProNick").html(chouti.subNickLength($("#userProNick").html(), 5));
+	}
+})
+</script>
+
+
+<div class="main-content-band">
+
+<div class="main-content">
+		<div class="sv_t">意见与反馈</div>
+		<div class="feedback-bor">				
+			<div class="feedback-con">
+				<ul class="feedback-list">
+					<li><strong>反馈内容</strong></li>
+					<li class="feedback-textarea">						
+						<textarea id="feedback_content" class="corner" tabindex="1"></textarea>
+						<label style="display: block;" for="feedback_content" id="lab-feedback">请输入您想要告诉我们的</label>
+						<span style="margin-top:2px" class="red-star">*</span>
+					<div class="feedback-tip yellow-warn" id="con_tip">
+						请输入反馈内容
+					</div>
+					</li>
+
+					<li><strong>联系邮箱</strong></li>
+					<li class="feedback-input">
+						
+						<input type="text" id="mail" class="corner" value="$!{email}" tabindex="2">
+						
+						<span style="margin-top:10px" class="red-star">*</span>
+					<div class="feedback-tip yellow-warn" id="mail_tip">
+						邮箱格式不正确，请重新输入
+					</div>
+					</li>
+					<li><strong>验证码</strong></li>
+					<li class="feedback-code">
+						<div class="left">
+							<img src="/gozapIdentifyCode?t=0.4267837258442624" id="authImg">
+							<a href="javascript:;" class="chg-code" id="changeCode">换一张</a>
+						</div>
+						<div class="left">
+							<input type="text" id="verify_code" class="corner" maxlength="4" tabindex="3">
+							<span style="margin-top:2px;float:right;margin-left:9px" class="red-star">*</span>
+						</div>
+						<div class="feedback-tip yellow-warn" id="code_tip">
+							验证码不正确，请重新输入
+						</div>
+					</li>
+					<li class="submit-btn">
+						<a id="commit_btn" href="javascript:;" class="pub-icons pub-btn pub-btn-valid">提交</a>
+						<div class="loading-ico" id="info_loading_ico" style="color:#333;">
+  							提交中，请稍候...
+  						</div>
+					</li>
+				</ul>
+		    </div>
+	</div>
+</div>
+	
+#parse("/widget/common/footer.vm") 
+</div>

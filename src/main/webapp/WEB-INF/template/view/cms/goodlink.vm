@@ -1,0 +1,70 @@
+<link rel="stylesheet" type="text/css" href="/css/setnewpassword.css" />
+
+<script type="text/javascript">
+$(document).ready(function(){
+	chouti.Init();
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	//当用户登录后才去判断
+	if($("#userProNick").length > 0) {
+		$("#userProNick").html(chouti.subNickLength($("#userProNick").html(), 5));
+	}
+})
+</script>
+
+<div class="main-content-band">    
+	<div class="main-content">
+    		<div class="sv_t" style="color:#444444">友情链接</div>
+    		<div class="main-logo-container">
+    		         	<div class="main-logo-pic">
+    						<a href="http://union.click.jd.com/jdc?e=&p=AiIBZRprFDJWWA1FBCVbV0IUEEULRFRBSkAOClBMW0srOnEBWlIKAV92C2RSB2UyEHBNeS1TKxkOIgZlGF4VAhQFVB5cJTJzdWU%3D&t=W1dCFBBFC0RUQUpADgpQTFtL" target="_blank">京东</a>
+    					</div>
+    		         	<div class="main-logo-pic">
+    						<a href="http://www.amazon.cn?t=mmj-23&tag=mmj-23" target="_blank">亚马逊</a>
+    					</div>
+    		         	<div class="main-logo-pic">
+    						<a href="http://union.suning.com/aas/open/vistorAd.action?userId=2010468&webSiteId=0&adInfoId=00&adBookId=0&vistURL=http://www.suning.com/" target="_blank">苏宁</a>
+    					</div>
+    		         	<div class="main-logo-pic">
+    						<a href="http://www.yixun.com/" target="_blank">易迅</a>
+    					</div>
+    		         	<div class="main-logo-pic">
+    						<a href="http://www.yhd.com?tracker_u= 107792357" target="_blank">一号店</a>
+    					</div>
+    		         	<div class="main-logo-pic">
+    						<a href="http://c.duomai.com/track.php?site_id=142869&aid=236&euid=&t=http%3A%2F%2Fwww.gome.com.cn%2F" target="_blank">国美</a>
+    					</div>
+    		         	<div class="main-logo-pic">
+    						<a href="http://c.duomai.com/track.php?site_id=142869&aid=64&euid=&t=http%3A%2F%2Fwww.dangdang.com%2F" target="_blank">当当</a>
+    					</div>
+    					<div class="main-logo-pic">
+    						<a href="http://c.duomai.com/track.php?site_id=142869&aid=543&euid=&t=http%3A%2F%2Fwww.sfbest.com%2F" target="_blank">顺丰优选</a>
+    					</div>
+    					<div class="main-logo-pic">
+    						<a href="http://www.iherb.com/" target="_blank">Iherb</a>
+    					</div>
+    					<div class="main-logo-pic">
+    						<a href="http://c.duomai.com/track.php?site_id=142869&aid=85&euid=&t=http%3A%2F%2Fwww.newegg.cn" target="_blank">新蛋</a>
+    					</div>
+    					<div class="main-logo-pic">
+    						<a href="http://www.vip.com/" target="_blank">唯品会</a>
+    					</div>
+    					<div class="main-logo-pic">
+    						<a href="http://www.womai.com/" target="_blank">我买网</a>
+    					</div>
+    					<div class="clear"></div>
+    		</div>
+    		<div class="sv_t_b">
+    		<div style="font-size:16px;color: #444;border-bottom: 1px solid #CCDCEF;font-weight: bold;padding-bottom:10px">欢迎交换链接：</div>
+    		<div style="margin-top:25px;margin-left:25px;">1、在您的站点增加下列友链</div>
+    		<div style="margin-left:46px;margin-top:8px;">买买君热榜  http://www.maimaijun.com</div>
+    		<div style="margin-top:26px;margin-left:25px;">2、发送网站名称、URL、Alexa排名、联系方式（QQ或邮箱）到875485818@qq.com</div>
+    		<div style="margin-left:46px;margin-top:8px;">欢迎加入买买君热榜站长QQ群：82139391</div>
+    		</div>
+    </div>
+		
+#parse("/widget/common/footer.vm") 
+</div>

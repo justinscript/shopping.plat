@@ -1,0 +1,117 @@
+<script type="text/javascript" src="/js/chouti_nav.js"></script>
+<script type="text/javascript" src="/js/person_comment.js"></script>
+
+#if($!{member.name} && $!{member.name}!='null' && $!{member.name}!='')
+  	#set($name='"'+$!{member.name}+'"')
+#else
+  	#set($name='""')
+#end
+
+<script type="text/javascript">
+$(document).ready(function(){
+	var pageIndex = "0";//当前页
+	var jid = $name;	//当前用户的id
+	var nextPage = "";//下一页按钮有效否,类型boolean
+	 //初始化模块
+	 NS_person_comment.init({
+		pageIndex: pageIndex,
+		nextPage: nextPage,
+		jid: jid
+	 }); 
+	 //引入私信接口
+	 NS_links_nav.init({
+		subject: "person",	//模块名称(英文)
+		type: "comment"
+	 });
+});
+</script>
+
+
+<div class="main-content-band">
+
+
+<div class="main-content">
+	
+		<div class="content-L">
+			#if($!{webUser.getName()}==$!{member.name})
+            	<div class="my-name">我的买买君</div>
+            #else
+            	<div class="my-name">$!{member.nick}的买买君</div>
+            #end
+            <!-- 导航 -->
+            <div class="set-tags">	
+            	#if($!{webUser.hasLogin()} && $!{webUser.getName()}==$!{member.name})		
+            	<a href="/user/link/saved" class="tb">私藏</a>
+            	#end
+            	<a href="/user/$!{member.getName()}/publish" class="tb">发布</a>
+            	<a href="/user/$!{member.getName()}/liked" class="tb">推荐</a>
+            	<a href="/user/$!{member.getName()}/comments" class="tb w-active">评论</a>
+            	<div class="set-line"></div>    		
+            </div>
+
+			
+			<div class="show-items">共<span>$!{commentsCount}</span>条</div>
+			<!-- 内容显示区域 -->
+			<div class="content-list" id="content-list" style="margin-top:-8px">
+				
+				#foreach($!comments in $list)	
+					<div class="item">
+	        		 	<div class="comment-nr">$!{comments.content}</div>
+	        		 	<div class="comment-line">
+	        		 		<div class="comment-time">$!{comments.getPublishTime()}</div>
+	        		 		<div class="comment-state">
+								<!-- 表示该新闻被删除 -->
+								#if($!{comments.topicStatus}=="1")
+								<span>查看回复</span>
+								#else
+								<a href="/link/$!{comments.topicId}/comments/$!{comments.id}" class="see-a">查看回复</a>
+								#end
+								#if($!{comments.isVote}=="1")
+								<span href="javascript:;" class="ding">已顶</span>
+								#else
+								<a class="ding" href="javascript:;">顶</a>
+								#end
+								<span class="ding-num">[<em>$!{comments.ups}</em>]</span>
+								#if($!{comments.isVote}=="1")
+								<span href="javascript:;" class="cai">踩</span>
+								#else
+								<a class="cai" href="javascript:;">踩</a>
+								#end
+								<span class="cai-num">[<em>$!{comments.downs}</em>]</span>
+	        		 			<em style="display:none">$!{comments.topicId}</em>
+	        		 			<i style="display:none">$!{comments.id}</i>
+	        		 		</div>
+	        		 	</div>
+	        		 	<div class="comment-title">
+	        		 	    <!-- 表示该新闻被删除 -->
+	        		 	    #if($!{comments.topicStatus}=="1")
+	        		 	    	<span style="color:#B4B4B4;font-style:italic">该新闻已被删除</span>
+	        		 	    #else
+						    	<a href="/link/$!{comments.topicId}">$!{comments.title}</a>
+	        		 	    #end
+	        		 		<span class="content-source">-$!{comments.contentSource}</span>       		 		
+	        		 		<a class="n2" href="/r/news/hot"><span class="content-kind">$!{comments.getSubjectStr()}</span></a>
+	        		 	</div>
+	        		</div>
+        		#end
+			</div>
+			
+			<div class="no-bottom"></div>
+			$widget.setTemplate("pagination/myPager").addParam('pagination',$!{list.getQuery()})
+		</div>
+		
+		
+		<div class="content-R">
+			<!-- 如果用户已经登录,显示个人信息 -->
+			#parse("/widget/common/profile.vm")
+			
+			#parse("/widget/common/topBan.vm")
+
+			$widget.setTemplate("common/letter").addParam('othernick',$!{member.nick}).addParam('otherjid',$!{member.name})
+		</div>
+		
+</div>
+	
+ 
+#parse("/widget/common/footer.vm") 
+</div>

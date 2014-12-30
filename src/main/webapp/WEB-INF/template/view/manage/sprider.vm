@@ -1,0 +1,7 @@
+<link  rel="stylesheet" href="/js/uikit/css/uikit.min.css">
+<link id="data-uikit-theme" rel="stylesheet" href="/js/uikit/css/uikit.docs.min.css">
+
+<script type="text/javascript" src="/js/uikit/js/uikit.min.js"></script>
+<script type="text/javascript" src="/js/uikit/js/addons/datepicker.js"></script>
+
+Hello World!

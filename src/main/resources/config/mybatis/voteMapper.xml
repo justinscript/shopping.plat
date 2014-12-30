@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mmj.app.biz.mapper.VoteMapper" >
+  	<resultMap id="BaseDOResultMap" type="com.mmj.app.biz.domain.BaseDO" >
+  		<id 		column="ID" 			property="id" 				jdbcType="DECIMAL" />
+    	<result 	column="GMT_CREATE" 	property="gmtCreate" 		jdbcType="TIMESTAMP" />
+    	<result 	column="GMT_MODIFIED" 	property="gmtModified" 		jdbcType="TIMESTAMP" />
+    	<result 	column="STATUS" 		property="status" 			jdbcType="DECIMAL" />
+  	</resultMap>
+
+  	<resultMap id="BaseResultMap" type="com.mmj.app.biz.domain.VoteDO" extends="BaseDOResultMap">
+  		<result 	column="USER_ID" 			property="userId" 				jdbcType="DECIMAL" />
+    	<result 	column="TOPIC_ID" 			property="topicId" 				jdbcType="DECIMAL" />
+    	<result 	column="COMMENTS_ID" 		property="commentsId" 			jdbcType="DECIMAL" />
+    	<result 	column="NAME" 				property="name" 				jdbcType="VARCHAR" />
+    	<result 	column="VOTE" 				property="vote" 				jdbcType="DECIMAL" />
+  	</resultMap>
+  	
+  	<sql id="table_columns_without_id">
+  		GMT_CREATE,GMT_MODIFIED,STATUS,
+  		USER_ID,TOPIC_ID,COMMENTS_ID,NAME,VOTE
+   	</sql>
+  
+  	<sql id="columns" >
+  		ID,<include refid="table_columns_without_id"/>
+  	</sql>
+  	
+  	<sql id="table_name" >
+  		vote
+  	</sql>
+  	
+  	<sql id="orderby_clause">
+        order by GMT_MODIFIED DESC
+    </sql>
+    
+  	<sql id="query_where_clause">
+  		<trim prefix="where" prefixOverrides="and|or"> 
+  			<if test="t.id !=null ">  
+	            ID = #{t.id, jdbcType=INTEGER}
+	        </if> 
+	        <if test="t.status != null ">  
+	            and STATUS = #{t.status, jdbcType=INTEGER}
+	        </if> 
+          	<if test="t.status == null and status != null ">  
+	            and STATUS = #{status, jdbcType=INTEGER}
+	        </if> 
+	        <if test="startGmtCreate != null and startGmtCreate != '' ">  
+	            and <![CDATA[ GMT_CREATE >= date_format(#{startGmtCreate, jdbcType=VARCHAR},'%Y-%m-%d %H:%i:%s')]]>
+	        </if>
+	        <if test="endGmtCreate != null and endGmtCreate != '' ">  
+	            and <![CDATA[ GMT_CREATE <= date_format(#{endGmtCreate, jdbcType=VARCHAR},'%Y-%m-%d %H:%i:%s')]]> 
+	        </if>
+	        <if test="startGmtModified != null and startGmtModified != '' ">  
+	            and <![CDATA[ GMT_MODIFIED >= date_format(#{startGmtModified, jdbcType=VARCHAR},'%Y-%m-%d %H:%i:%s')]]>
+	        </if>
+	        <if test="endGmtModified != null and endGmtModified != '' ">  
+	            and <![CDATA[ GMT_MODIFIED <= date_format(#{endGmtModified, jdbcType=VARCHAR},'%Y-%m-%d %H:%i:%s')]]>
+	        </if>
+	        
+	        <if test="t.userId !=null ">  
+	            and USER_ID = #{t.userId, jdbcType=INTEGER}
+	        </if> 
+	        <if test="t.name !=null and t.name != ''">  
+	            and NAME = #{t.name, jdbcType=VARCHAR}
+	        </if> 
+	        <if test="t.topicId != null ">  
+	            and TOPIC_ID = #{t.topicId, jdbcType=INTEGER}
+	        </if> 
+	        <if test="t.commentsId != null ">  
+	            and COMMENTS_ID = #{t.commentsId, jdbcType=INTEGER}
+	        </if> 
+          	<if test="t.vote != null ">  
+	            and VOTE = #{t.vote, jdbcType=INTEGER}
+	        </if>
+	    </trim> 
+  	</sql>
+  		
+  	<sql id="update_where_clause">
+		<trim prefix="where" prefixOverrides="and|or"> 
+	        <if test="id !=null ">  
+	            ID = #{id, jdbcType=INTEGER}
+	        </if> 
+	        <if test="status !=null ">  
+	            and STATUS = #{status, jdbcType=INTEGER}
+	        </if> 
+	        
+	        <if test="t.userId !=null ">  
+	            and USER_ID = #{t.userId, jdbcType=INTEGER}
+	        </if> 
+	        <if test="t.name !=null and t.name != ''">  
+	            and NAME = #{t.name, jdbcType=VARCHAR}
+	        </if> 
+	        <if test="t.topicId != null ">  
+	            and TOPIC_ID = #{t.topicId, jdbcType=INTEGER}
+	        </if> 
+	        <if test="t.commentsId != null ">  
+	            and COMMENTS_ID = #{t.commentsId, jdbcType=INTEGER}
+	        </if> 
+          	<if test="t.vote != null ">  
+	            and VOTE = #{t.vote, jdbcType=INTEGER}
+	        </if>
+	    </trim>
+   	</sql>
+  		
+  	<sql id="update_set_clause">
+  		<trim prefix="set GMT_MODIFIED= now()," suffixOverrides=",">  
+	        <if test="status !=null ">  
+	            STATUS = #{status, jdbcType=INTEGER},
+	        </if>  
+	        
+	        <if test="userId !=null ">  
+	            USER_ID = #{userId, jdbcType=INTEGER},
+	        </if>
+	        <if test="topicId !=null ">  
+	            TOPIC_ID = #{topicId, jdbcType=INTEGER},
+	        </if>
+	        <if test="commentsId !=null ">  
+	            COMMENTS_ID = #{commentsId, jdbcType=INTEGER},
+	        </if>
+	        <if test="name !=null and name != '' ">
+				NAME = #{name, jdbcType=VARCHAR}
+			</if>
+	        <if test="vote !=null ">  
+	            VOTE = #{vote, jdbcType=INTEGER},
+	        </if>
+   		</trim>
+  	</sql>
+  		
+   	<select id="list" resultMap="BaseResultMap" parameterType="java.util.Map">
+   		select  <include refid="columns" /> 
+   		from <include refid="table_name" /> 
+   		<include refid="orderby_clause"/>
+	  	<if test="limitSize != null" >
+	        <include refid="PAGINATION.MYSQL_PAGINATION" />
+	    </if>
+  	</select>
+  	
+  	<select id="listQuery" resultMap="BaseResultMap" parameterType="com.mmj.app.biz.query.VoteQuery">
+   		select  <include refid="columns" /> 
+   		from <include refid="table_name" /> 
+   		<include refid="query_where_clause"/>
+   		<include refid="orderby_clause"/>
+  	</select>
+  
+  	<select id="listPagination" resultMap="BaseResultMap" parameterType="com.mmj.app.biz.query.VoteQuery">
+		select <include refid="columns"/>
+		from <include refid="table_name" /> 
+		<include refid="query_where_clause"/>
+		<include refid="orderby_clause"/>
+		<include refid="PAGINATION.MYSQL_PAGINATION" />
+  	</select>
+  	
+  	<select id="find" resultMap="BaseResultMap" parameterType="com.mmj.app.biz.query.VoteQuery" >
+  		select <include refid="columns"/>
+        from <include refid="table_name" />
+        <include refid="query_where_clause"/>
+        <include refid="orderby_clause"/>
+  	</select>
+  
+   	<insert id="insert" parameterType="com.mmj.app.biz.domain.VoteDO" useGeneratedKeys="true" keyProperty="id" keyColumn="ID" >
+	   	insert into <include refid="table_name" /> (<include refid="table_columns_without_id"/>)
+        values ( now(), now(), 0,
+        		#{userId,jdbcType=INTEGER},
+                #{topicId,jdbcType=INTEGER},
+                #{commentsId,jdbcType=INTEGER},
+                #{name,jdbcType=VARCHAR},
+                #{vote,jdbcType=INTEGER}
+        )
+        <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+            SELECT last_insert_id() as id
+        </selectKey> 
+   	</insert>
+   	
+   	<update id="update" parameterType="com.mmj.app.biz.domain.VoteDO">
+   		update <include refid="table_name" /> 
+       	<include refid="update_set_clause"/>
+       	<include refid="update_where_clause"/>
+  	</update>
+  	
+  	<select id="count" resultType="java.lang.Integer" parameterType="com.mmj.app.biz.query.VoteQuery">
+  		select count(1)
+        from <include refid="table_name" />  
+       	<include refid="query_where_clause"/>
+   	</select>
+   	
+  	<delete id="deleteById" parameterType="java.lang.Integer">
+  		delete from <include refid="table_name" /> where ID = #{id,jdbcType=INTEGER}
+  	</delete>
+  	
+  	<select id="getById" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  		select <include refid="columns" /> 
+  		from <include refid="table_name" /> 
+  		where ID = #{id,jdbcType=INTEGER}
+  	</select>
+  
+   	<update id="updateById" parameterType="com.mmj.app.biz.domain.VoteDO">
+   		update <include refid="table_name" /> 
+   		<include refid="update_set_clause"/>
+	    where ID = #{id,jdbcType=INTEGER}
+  	</update>
+</mapper>

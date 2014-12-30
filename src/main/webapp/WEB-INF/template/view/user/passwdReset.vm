@@ -1,0 +1,139 @@
+<link rel="stylesheet" type="text/css" href="/css/resetpassword.css" />
+<link rel="stylesheet" type="text/css" href="/css/newSetting.css" />
+
+<script type="text/javascript" src="/js/register.js"></script>
+<script type="text/javascript" src="/js/resetpassword.js"></script>
+<script type="text/javascript" src="/js/registercommon.js"></script>
+
+<style>
+	table .td2{
+		width:170px;
+	}
+</style>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	NS_resetpassword.init();//初始化模块
+});
+</script>
+
+<div class="main-content-band">
+
+<div class="main-content">
+		<div class="reset-area">
+		<div class="register-title">重置密码</div>
+  		<div class="circle-bg">
+        	<p class="t-left"></p>
+            <p class="t-right"></p>
+            
+            <div class="circle-pic first-current"></div>
+            <span class="circle-title desc-select title-current">向联系邮箱发送重置密码邮件</span>
+            <span class="circle-arrow">→</span>
+            <div class="circle-pic second-circle"></div>
+            <span class="circle-title desc-delete">登录联系邮箱根据说明重置密码</span>
+            
+  		</div>
+        
+  <div id="register-form">
+  <form action="/profile/password/lost" method="post" id="formResetPassword">
+    	<table border="0" cellpadding="0" cellspacing="0">
+        <tbody><tr>
+        	<td class="td1" style="padding-bottom:0">请输入用户名</td>
+            <td class="td2" style="padding:0"></td>
+        </tr>
+    	  <tr>
+    	    <td class="td2" style="padding:8px 0 0;">          	
+            		
+            	<input type="text" name="jid" id="user_destJid" class="text text-normal new-text text-error" maxlength="20" value="">           	
+            	
+            	<div class="Domains" style="margin-right:25px;">@maimaijun.com</div>
+            </td>
+    	    <td class="td3" style="padding:8px 0 0;">
+            	<div class="tips-bigbox" id="tips_userNameNormal" style="display: none;">
+                    <div class="tips-smallbox-blue tips-info">  
+                        	5-20位字母、数字、下划线或其组合                 	
+                    </div>
+                    <div class="blue-corner arrow"></div>
+                    <div class="blue-vertical-back right-blue"></div>
+                    <div class="blue-cross-back bottom-blue"></div>
+                    <div class="blue-corner top-left"></div><div class="blue-corner top-right"></div>
+                    <div class="blue-corner bom-left"></div><div class="blue-corner bom-right"></div>
+                </div>
+                 
+            	<div class="tips-bigbox" id="tips_userNameError" style="display: block;">
+                    <div class="tips-smallbox-red tips-info">请输入用户名</div>
+                    <div class="red-corner arrow"></div>
+                    <div class="red-vertical-back right-blue"></div>
+                    <div class="red-cross-back bottom-blue"></div>
+                    <div class="red-corner top-left"></div><div class="red-corner top-right"></div>
+                    <div class="red-corner bom-left"></div><div class="red-corner bom-right"></div>
+                </div>
+            	<div class="sucess-ico" id="username_sucess_ico" style="display: none;"></div>
+                
+            </td>
+  	    </tr>    	 
+    	 <tr>
+        	<td class="td1" style="padding-bottom:0">请输入验证码</td>
+            <td class="td2" style="padding:0"></td>
+        </tr>
+    	  <tr>
+    	    <td class="td2" style="padding:8px 0 0;">           	
+            		
+            	<input type="text" name="code" id="verify_code" class="text text-normal new-text" style="width:60px" maxlength="4">
+            		
+            	<div id="verify_code_server">
+                	<img src="/gozapIdentifyCode?t=0.15111211209996644" id="authImg">
+                </div>
+            
+            </td>
+    	    <td class="td3" style="padding:8px 0 0;">
+    	    	<div class="tips-bigbox" id="tips_verifyCodeNormal">
+                    <div class="tips-smallbox-blue tips-info">  
+                        请输入图片中的数字 
+                    </div>
+                    <div class="blue-corner arrow"></div>
+                    <div class="blue-vertical-back right-blue"></div>
+                    <div class="blue-cross-back bottom-blue"></div>
+                    <div class="blue-corner top-left"></div><div class="blue-corner top-right"></div>
+                    <div class="blue-corner bom-left"></div><div class="blue-corner bom-right"></div>
+                </div>
+                <div class="tips-bigbox" id="tips_verifyCodeError">
+                    <div class="tips-smallbox-red tips-info">  
+                        	验证码不正确，请重新输入                 	
+                    </div>
+                    <div class="red-corner arrow"></div>
+                    <div class="red-vertical-back right-blue"></div>
+                    <div class="red-cross-back bottom-blue"></div>
+                    <div class="red-corner top-left"></div><div class="red-corner top-right"></div>
+                    <div class="red-corner bom-left"></div><div class="red-corner bom-right"></div>
+                </div>
+                <div class="sucess-ico" id="verfycode_sucess_ico"></div>
+			</td>
+  	    </tr>
+    	  <tr>
+    	 	<td class="td2" style="padding-top:30px">
+    	 	
+    	 	<a class="common-btn" href="javascript:;" id="sendMailBtn" style="width:113px;">发送邮件</a> 	 	
+    	 	   	 	
+     			<div class="loading-ico" id="info_loading_ico">
+      				发送中，请稍候...
+      			</div>
+    	 	</td>
+    	 	<td class="td3"></td>
+    	 </tr>
+  	  </tbody></table> 	  
+      
+     <div class="findUserName-box red" id="noMail" style="display:none;">
+     
+     </div>
+      <div class="findUserName-box">
+      	如果忘记用户名，请<a href="/profile/user/find" class="rega">点击这里找回用户名</a>
+      </div>
+       
+      </form>
+    </div>
+   </div>
+   </div>
+   
+#parse("/widget/common/footer.vm") 
+</div>

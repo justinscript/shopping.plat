@@ -1,0 +1,84 @@
+<link rel="stylesheet" type="text/css" href="/css/resetpassword.css" />
+<link rel="stylesheet" type="text/css" href="/css/newSetting.css" />
+
+<script type="text/javascript" src="/js/register.js"></script>
+<script type="text/javascript" src="/js/searchusername.js"></script>
+<script type="text/javascript" src="/js/registercommon.js"></script>
+
+<style>
+	table .td2{
+		width:170px;
+	}
+</style>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	NS_searchusername.init();//初始化模块
+});
+</script>
+
+<div class="main-content-band">
+
+<div class="main-content">
+	<div class="reset-area">
+		<div class="register-title">找回用户名</div>
+  <div class="circle-bg">
+        	<p class="t-left"></p>
+            <p class="t-right"></p>
+            
+            <div class="circle-pic first-current"></div>
+            <span class="circle-title desc-select title-current">向联系邮箱发送包含用户名的邮件</span>
+            <span class="circle-arrow">→</span>
+            <div class="circle-pic second-circle"></div>
+            <span class="circle-title desc-delete">登录联系邮箱查看用户名</span>
+            
+  </div>
+        
+  <div id="register-form">
+    	<table border="0" cellpadding="0" cellspacing="0">
+        <tbody><tr>
+        	<td class="td1" style="padding-bottom:0">请输入联系邮箱</td>
+            <td class="td2" style="padding:0"></td>
+        </tr>
+    	  <tr>
+    	    <td class="td2" style="padding:8px 0 0;">   	    	
+            	<input type="text" id="secret_mail" class="text text-normal new-text text-error">            		
+            </td>
+    	    <td class="td3" style="padding:8px 0 0;">
+            	<div class="tips-bigbox" id="tips_userSecretMailNormal" style="display: none;">
+                    <div class="tips-smallbox-blue tips-info">
+                        	输入联系邮箱用于找回用户名                  	
+                    </div>
+                    <div class="blue-corner arrow"></div>
+                    <div class="blue-vertical-back right-blue"></div>
+                    <div class="blue-cross-back bottom-blue"></div>
+                    <div class="blue-corner top-left"></div><div class="blue-corner top-right"></div>
+                    <div class="blue-corner bom-left"></div><div class="blue-corner bom-right"></div>
+                </div>
+                <div class="tips-bigbox" id="tips_userSecretMailError" style="display: block;">
+                    <div class="tips-smallbox-red tips-info">请输入联系邮箱</div>
+                    <div class="red-corner arrow"></div>
+                    <div class="red-vertical-back right-blue"></div>
+                    <div class="red-cross-back bottom-blue"></div>
+                    <div class="red-corner top-left"></div><div class="red-corner top-right"></div>
+                    <div class="red-corner bom-left"></div><div class="red-corner bom-right"></div>
+                </div>
+                <div class="sucess-ico" id="usersecretmail_sucess_ico" style="display: none;"></div>
+            </td>
+  	    </tr>    	 
+    	 <tr>
+        	<td class="td4"><input id="chkRsetPassword" type="checkbox" value="1" checked="checked"><label for="chkRsetPassword">
+            同时重置密码</label></td>
+            <td></td>
+        </tr>   	  
+  	  </tbody></table>      
+      <a class="common-btn" href="javascript:;" id="sendMailBtn" style="width:113px;margin-top:30px;">发送邮件</a>
+      <div class="findUserName-box">
+      	如果忘记联系邮箱，请在<a href="/feedback" class="rega" target="_blank">这里向客服反馈</a>
+      </div>
+    </div>
+    </div>
+   </div>
+   
+#parse("/widget/common/footer.vm") 
+</div>

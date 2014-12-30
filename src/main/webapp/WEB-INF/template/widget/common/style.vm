@@ -1,0 +1,37 @@
+
+<link rel="stylesheet" type="text/css" href="/css/register.css" />
+<link rel="stylesheet" type="text/css" href="/css/common.css" />
+<link rel="stylesheet" type="text/css" href="/css/style.css" />
+<link rel="stylesheet" type="text/css" href="/css/dialog.css" />
+<link rel="stylesheet" type="text/css" href="/css/page.css" />
+<link rel="stylesheet" type="text/css" href="/css/comment.css" />
+<link rel="stylesheet" type="text/css" href="/css/jquery.treeviewtop.css" />
+
+<script type="text/javascript" src="/js/jquery/frame.js"></script>
+<script type="text/javascript" src="/js/mmj/lang.js"></script>
+<script type="text/javascript" src="/js/mmj/gozap.js"></script>
+<script type="text/javascript" src="/js/mmj/ajax.js"></script>
+<script type="text/javascript" src="/js/mmj/reg_exp.js"></script>
+<script type="text/javascript" src="/js/mmj/dom.js"></script>
+<script type="text/javascript" src="/js/mmj/swf.js"></script>
+<script type="text/javascript" src="/js/jquery/jquery.ext.js"></script>
+<script type="text/javascript" src="/js/i18n/zh_CN/common.js"></script>
+<script type="text/javascript" src="/js/labi/core.main.js"></script>
+<script type="text/javascript" src="/js/labi/ajax.js"></script>
+<script type="text/javascript" src="/js/plugins/ava_upload.js"></script>
+<script type="text/javascript" src="/js/plugins/drag.js"></script>
+<script type="text/javascript" src="/js/plugins/dialog.js"></script>
+<script type="text/javascript" src="/js/plugins/time_radio.js"></script>
+<script type="text/javascript" src="/js/jquery/jquery.cookie.js"></script>
+<script type="text/javascript" src="/js/chouti_obj.js"></script>
+<script type="text/javascript" src="/js/i18n/zh_CN/register.js"></script>
+<script type="text/javascript" src="/js/i18n/zh_CN/resetpassword.js"></script>
+<script type="text/javascript" src="/js/register_check_rule.js"></script>
+<script type="text/javascript" src="/js/login.js"></script>
+<script type="text/javascript" src="/js/registercommon.js"></script>
+<script type="text/javascript" src="/js/i18n/zh_CN/labi_view.js"></script>
+<script type="text/javascript" src="/js/i18n/zh_CN/notice.js"></script>
+<script type="text/javascript" src="/js/stat.js"></script>
+<script type="text/javascript" src="/js/gozap-comet.js"></script>
+<script type="text/javascript" src="/js/rrshare.js"></script>
+<script type="text/javascript" src="/js/md5.js"></script>

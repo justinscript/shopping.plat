@@ -1,0 +1,95 @@
+<link  rel="stylesheet" href="/js/uikit/css/uikit.min.css">
+<link id="data-uikit-theme" rel="stylesheet" href="/js/uikit/css/uikit.docs.min.css">
+<link rel="stylesheet" href="/js/uikit/css/docs.css">
+	
+<script type="text/javascript" src="/js/uikit/js/uikit.min.js"></script>
+<script type="text/javascript" src="/js/uikit/js/addons/datepicker.js"></script>
+	
+<div>
+    <ul class="uk-breadcrumb">
+        <li><a href="/manage/home">Home</a></li>
+        <li class="uk-active"><span>举报</span></li>
+    </ul>
+</div>
+<br/>
+
+<div>
+    <table class="uk-table uk-table-hover uk-table-striped uk-table-condensed" cellspacing="0">
+        <caption>举报信息</caption>
+        <thead>
+            <tr>
+    			<th>举报信息ID</th>
+                <th>举报人昵称</th>
+				<th>举报人名</th>
+    			<th>举报人用户ID</th>
+    			<th>被举报的文章Id</th>
+				<th>被举报的评论ID</th>
+    			<th>举报类型</th>
+				<th>举报内容详情</th>
+    			<th>处理状态</th>
+    			<th>记录状态</th>
+    			<th>创建时间</th>
+    			<th>操作</th>
+            </tr>
+        </thead>
+    	
+        <tbody>
+    		#foreach($!report in $list) 
+            <tr>
+				<input type="hidden" class="my-id" value="$!{report.id}" />
+    			<td>$!{report.id}</td>
+    			#set($userUrl="/user/"+$!{report.name}+"/publish")
+                <td><a class="uk-text-success" href="$userUrl" target="_blank"><p>$!{report.nick}</p></a></td>
+    			<td><a class="uk-text-success" href="$userUrl" target="_blank"><p>$!{report.userId}</p></a></td>
+    			<td><a class="uk-text-success" href="/link/$!{report.topicId}" target="_blank"><p>$!{report.topicId}</p></a></td>
+    			<td><a class="uk-text-success" href="/link/$!{report.topicId}/comments/$!{report.commentsId}" target="_blank"><p>$!{report.commentsId}</p></a></td>
+    			<td>
+					<p class="my-desc">$!{report.getReportTypeDesc}</p>
+					<div class="uk-form-icon">
+        	            <select name="handle" class="my-handle">
+        	                <option>切换处理</option>
+        	                #if($!{feedback.handleState}!="1") <option value="1">已处理</option> #end
+        	                #if($!{feedback.handleState}!="0") <option value="0">未处理</option> #end
+        	                #if($!{feedback.handleState}!="2") <option value="2">停止</option> #end
+        	            </select>
+                    </div>
+				</td>
+				<td width="10%">$!{report.content}</td>
+    			<td>$!{report.getHandleStateDesc}</td>
+    			<td><p>$!{enumViewTools.statusEnumDesc($!report.status)}</p></td>
+    			<td>$!{dateViewTools.format($!comments.gmtCreate,"yyyy-MM-dd HH:mm")}</td>
+    			<td class="uk-text-center uk-text-middle">
+    				<p>
+						<a class="uk-button uk-button-mini uk-button-primary" href="/manage/comments/$!{report.commentsId}">去处理</a>
+    				</p>
+    			</td>
+            </tr>
+    		#end
+        </tbody>
+    </table>
+</div>	
+
+$widget.setTemplate("pagination/uikitPager").addParam('pagination',$!{list.getQuery()})
+
+<script>
+$(document).ready(function (){  
+    $('.my-handle').click(function(){  
+    	btn=$(this);
+    	id=$(this).closest('tr').find('.my-id').val();
+    	handleId=btn.val
+    	if(handleId==null || handleId==""){
+    		return false;
+    	}
+    	jQuery.post("/manage/updateHandle","id=" + id + "&handleId=" + handleId + "&source=report",function(data){
+    		var d = data.result;
+    		if (d.code=="9999"){
+    			btn.closest('td').find('.my-desc').text(d.data);
+    			jQuery.tips.success(btn, d.message, 1000);
+    		}
+    		if (d.code=="1"){
+    			jQuery.tips.err(btn, d.message, 1000);
+    		}
+    	});
+    });
+}); 
+</script>

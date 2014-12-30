@@ -1,0 +1,26 @@
+/**
+ * Tabs
+ * @author fool2fish<fool2fish@gmail.com>
+ */
+
+.tabs{margin-bottom:10px;}
+.tabs .tabs-hd{height:27px;overflow:hidden;margin-bottom:-1px;border:1px solid #bad6ff;border-bottom:none;background:#e5efff url(/images/kissy/bg-repeatx.png) repeat-x 0 -10px;}
+.tabs .tabs-hd .trigger{position:relative;float:left;height:26px;margin-left:-1px;padding-left:12px;cursor:pointer;border-left:1px solid #bad6ff;border-right:1px solid #bad6ff;}
+.tabs .tabs-hd h3{float:left;padding-right:12px;line-height:26px;}
+.tabs .tabs-hd a{display:block;}
+.tabs .tabs-hd i{float:left;width:16px;height:16px;margin:5px 4px 0 0;}
+.tabs .tabs-hd .current{border-bottom:1px solid #fff;background:#fff;}
+.tabs .tabs-panel{border:1px solid #bad6ff;background:#fff;}
+
+.tabs .tabs-tp,
+.tabs .tabs-bt{display:block;position:relative;height:4px;overflow:hidden;margin:0 0 -4px 0;z-index:10;}
+.tabs .tabs-bt{margin:-4px 0 0 0;}
+.tabs .tabs-tp b,
+.tabs .tabs-bt b{display:block;float:right;width:4px;height:4px;overflow:hidden;}
+.tabs .tabs-tp,
+.tabs .tabs-tp b,
+.tabs .tabs-bt,
+.tabs .tabs-bt b{background:url(/images/kissy/bg-repeatx.png) no-repeat -3px 0;}
+.tabs .tabs-tp b{background-position:0 0;}
+.tabs .tabs-bt{background-position:-3px -3px;}
+.tabs .tabs-bt b{background-position:0 -3px;}

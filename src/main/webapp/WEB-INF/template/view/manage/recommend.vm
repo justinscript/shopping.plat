@@ -1,0 +1,85 @@
+<link  rel="stylesheet" href="/js/uikit/css/uikit.min.css">
+<link id="data-uikit-theme" rel="stylesheet" href="/js/uikit/css/uikit.docs.min.css">
+<link rel="stylesheet" href="/js/uikit/css/docs.css">
+
+<script type="text/javascript" src="/js/uikit/js/uikit.min.js"></script>
+<script type="text/javascript" src="/js/uikit/js/addons/datepicker.js"></script>
+
+<div>
+    <ul class="uk-breadcrumb">
+        <li><a href="/manage/home">Home</a></li>
+		<li class="uk-active"><span>推荐</span></li>
+    </ul>
+</div>
+<br/>
+
+<div>
+
+    <table class="uk-table uk-table-hover uk-table-striped uk-table-condensed" cellspacing="0">
+        <caption>推荐列表</caption>
+        <thead>
+            <tr>
+    			<th>ID</th>
+                <th>用户ID</th>
+    			<th>用户昵称</th>
+    			<th width="15%">标题</th>
+    			<th width="18%">内容</th>
+    			<th>来源</th>
+    			<th>发布来源</th>
+				<th>点击量</th>
+    			<th>推荐数</th>
+    			<th>评论数</th>
+    			<th>标签</th>
+    			<th>禁言状态</th>
+    			<th>审核状态</th>
+    			<th>记录状态</th>
+    			<th>创建时间</th>
+    			<th>操作</th>
+            </tr>
+        </thead>
+    	
+        <tbody>
+    		#foreach($!item in $list) 
+            <tr>
+            	<input type="hidden" class="my-id" value="$!{topic.topicId}" />
+    			<td>$!{item.id}</td>
+                <td>$!{item.topicUserId}</td>
+                #set($userUrl="/user/"+$!{item.name}+"/publish")
+    			<td><a class="uk-text-success" href="$userUrl" target="_blank"><p>$!{item.nick}</p></a></td>
+    			<td>
+					<div class="uk-grid uk-grid-preserve">
+                        <div class="uk-width-7-10"><span class="uk-text-top "><a class="uk-text-warning" href="$!{item.originalUrl}" target="_blank">$!{item.title}</a></span></div>
+                        <div class="uk-width-3-10"><img src="#if($!{item.imgUrl}) $!{item.imgUrl} #else /images/meiyoupeitu.png #end" width="64px" height="64px"></div>
+                    </div>
+				</td>
+    			<td>
+					<p class="uk-text-muted">$!{item.content}</p>
+				</td>
+    			<td>$!{item.contentSource}</td>
+				<td>#if($!{item.publishSource}) $!{item.publishSource} #else 无 #end</td>
+    			<td><p class="uk-text-danger">$!{item.hit}</p></td>
+    			<td><p class="uk-text-danger">$!{item.recommend}</p></td>
+    			<td><p class="uk-text-danger">$!{item.comments}</p></td>
+    			<td>
+					<p>$!{item.getSubjectDesc()}</p>
+				</td>
+    			<td>
+					<p>$!{item.getIsBanDesc()}</p>
+				</td>
+				<td>
+					<p>$!{item.getTopicStateDesc()}</p>
+				</td>
+    			<td>
+					<p>$!{enumViewTools.statusEnumDesc($!item.topicStatus)}</p>
+				</td>
+    			<td>$!{dateViewTools.format($!item.topicGmtCreate,"yyyy-MM-dd HH:mm")}</td>
+    			<td class="uk-text-center uk-text-middle">
+    				<p>
+						<button class="uk-button uk-button-mini uk-button-success" type="button">取消推荐</button>
+    				</p>
+    			</td>
+            </tr>
+    		#end
+        </tbody>
+    </table>
+</div>	

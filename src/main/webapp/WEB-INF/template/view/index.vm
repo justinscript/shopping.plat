@@ -1,0 +1,78 @@
+<script type="text/javascript" src="/js/hotts.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+    	var pageIndex = "1";//当前页
+    	var nextPage = "";
+    	var destJid = "";
+    	//初始化模块
+    	NS_links_hotts.init({
+    			pageIndex: pageIndex,
+    			nextPage: nextPage,
+    			destJid: destJid
+		});
+    })
+</script>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		//当用户登录后才去判断
+		if($("#userProNick").length > 0) {
+			$("#userProNick").html(chouti.subNickLength($("#userProNick").html(), 5));
+		}
+	})
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	//榜单页面评论初始化	
+	NS_links_comment_top.init();
+	//新榜入热榜信息提示
+	gpComet = new GozapComet({
+		serviceUrl:"/comet",
+		iframeUrl:"/update.jsp",
+		appId:"chouti-new"
+	});
+
+	gpComet.broadcast(function(message){
+		var itemObj = eval("(" + message.data + ")");
+		var newsCount = parseInt(itemObj.freshNewsCount,10);								
+    	if(newsCount <= 0){
+    		return;
+    	} 
+		var tempCount = parseInt($("#newIntoHotCount").val(),10);
+		tempCount = tempCount + newsCount;
+		$("#newIntoHotCount").val(tempCount);
+		$("#yellow-msg-box-intohot em").text(tempCount+"");
+		$("#yellow-msg-box-intohot").show().unbind();					
+		//新榜入热榜黄色提示框事件
+		NS_links_hotts.yellowIntohotBoxHover();
+	});
+})
+</script>
+
+<div class="main-content-band">
+  <div class="main-content"> 
+       <div class="content-L"> 
+            <!-- 最新最热按钮 --> 
+            #parse("/widget/common/navTop.vm")
+            <!-- 内容显示区域 --> 
+            <div class="yellow-comment-msg-box" id="yellow-msg-box-intohot">
+        		<em></em>
+        		<span>条入买买君，点击查看</span>
+            </div> 
+            <div class="loading-ico" style="margin-left:250px;" id="load_hotitems">加载中，请稍候...</div> 
+    	
+            <div class="content-list" id="content-list"> 
+				#set($nums=[1 .. 25])
+				#foreach($!column in $nums) 
+					#parse("/widget/common/item.vm")
+				#end
+            </div> 
+			<div class="no-bottom"></div> 
+			#parse("/widget/pagination/myPager.vm")
+       </div> 
+	   #parse("/widget/common/right.vm")
+  </div>
+  #parse("/widget/common/footer.vm")
+</div>

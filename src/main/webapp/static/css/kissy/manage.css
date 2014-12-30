@@ -1,0 +1,56 @@
+body {font-size: 12px;font-family: "微软雅黑", Arial, Helvetica, sans-serif;line-height: 1.5;color: #555555;}
+.bops{margin:10px;margin-top:0}
+#header{height:70px;border-bottom:#4D7CD2 solid 2px;margin-bottom:10px}
+#header h1{padding:10px 10px 0 0}
+#header .logo{background:url('/images/mmj_121_23.png') no-repeat 0;width:170px;height:50px;display:block}
+#header .welcome{float:right;margin-top:10px}
+.text-hide{text-indent:-20000px}
+.bops #content h2{margin-bottom:10px;border-bottom:#666 solid 1px;font-size:16px;padding:3px 0}
+.bops .btn-s{font-size:12px;height:auto;min-width:50px}
+.bops .tool-bar{margin-top:10px}
+.form .table tr th{vertical-align:top}
+#footer{margin-top:10px;padding-top:10px;border-top:#eee 1px solid;text-align:center;bottom: 0;width: 100%;position: fixed;}/* position: fixed;*/
+/* 用于 图片上传组件 */
+.bops .file-list{border:#666 solid 1px;padding:5px;overflow:hidden;float:left;margin:0;margin-top:5px}
+.bops .file-list .item{float:left;list-style:none}
+.bops .file-list .item{padding:3px;border:#ccc solid 1px;margin:3px}
+.bops  h3{
+    font-size: 14px;
+    margin-bottom: 10px;
+    padding: 3px 0;
+}
+/* 产品管理 */
+.bops .product-manage .form .field{padding-bottom:5px}
+.bops .product-manage .label{color:#333}
+.bops .product-manage .label,.product-manage .val{padding-right:3px}
+.bops .product-manage .img-box{border:#ddd solid 1px;padding:3px;float:right;}
+.bops .product-manage .img-box img{display:block}
+
+/* 搭配发布 */
+.complex-list{border:#ccc solid 1px;overflow:hidden;margin-top:5px}
+.complex-list li{float:left;padding:5px}
+.complex-list li .col{float:left;margin-right:5px}
+.complex-list li .img-box{width:80px;height:80px;border:#ccc solid 1px}
+.complex-list li .text-box{}
+
+.field-msg{color:#900;display:none}
+
+.order-plist,.order-plist td,.order-plist th{background-color:#fff !important;text-align:center;border:1px solid #eee !important;}
+.order-plist th{padding:4px 0 !important;}
+.order-plist .product{float:left;margin-right:12px;background-color:#f2f2f2;padding:4px;border:0;}
+.order-plist .product .p-img{float:left;margin-right:4px;overflow:hidden;}
+.order-plist .product .p-txt{float:left;width:auto;}
+.item {
+	position: relative;
+	display: block
+}
+.item .type {
+	background: url("/images/kissy/mix.gif") no-repeat scroll 0 0 transparent;
+	display: block;
+	height: 18px;
+	left: 0;
+	position: absolute;
+	text-indent: -5000em;
+	top: 0;
+	width: 18px;
+}

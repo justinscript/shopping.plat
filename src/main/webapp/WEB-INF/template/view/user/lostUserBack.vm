@@ -1,0 +1,38 @@
+<script type="text/javascript" src="/js/register.js"></script>
+<script type="text/javascript" src="/js/resetpasswordsuccess.js"></script>
+
+<link rel="stylesheet" type="text/css" href="/css/resetpassword.css">
+	
+<script type="text/javascript">
+$(document).ready(function(){
+		NS_resetpasswordsuccess.init({"result":{"code":"9999", "message":"", "data":{"cacheValue":"A710681E6D8FD4E6A888A2BA8E3DD4DC","cachekey":"22e2e42f4d2f4d3692bf2321261616a1","mail":"zhangxiongcai@163.com","mailPath":"http://mail.163.com"}}});
+		//初始化模块,邮件发送成功后，参数表示返回的保密邮箱及邮箱登陆地址
+});
+</script>
+
+<div class="main-content-band">
+	
+<div class="main-content">
+	<div class="reset-area">
+		<div class="register-title">找回用户名</div>
+  		<div class="circle-bg">
+        	<p class="t-left"></p>
+            <p class="t-right"></p>
+            <div class="circle-pic first-circle"></div>
+            <span class="circle-title desc-select">向联系邮箱发送包含用户名的邮件</span>
+            <span class="circle-arrow">→</span>
+            <div class="circle-pic second-current"></div>
+            <span class="circle-title desc-delete title-current">登录联系邮箱查看用户名</span>
+  		</div>
+        
+    	<div id="register-form">
+     		<div id="userpass_sucess_ico" class="sucess-ico sendMail-ico"></div>
+            <div class="mail-resetPassword">请到<span id="mailName"><a href="http://mail.163.com" target="_blank" class="rega">zh***i@163.com</a></span>邮箱查阅来自买买君的邮件，查看用户名或根据邮件说明重置密码。</div>
+            <div class="clear"></div>
+            <a class="common-btn" href="http://mail.163.com" id="loginMailBtn" style="width:113px;margin-top:30px;" target="_blank">登录邮箱</a>
+        </div>
+    </div>
+</div>
+	
+#parse("/widget/common/footer.vm") 
+</div>

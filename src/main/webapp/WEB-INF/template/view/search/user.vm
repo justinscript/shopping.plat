@@ -1,0 +1,80 @@
+<script type="text/javascript" src="/js/chouti_nav.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	 //初始化模块
+	 NS_links_nav.init({
+			subject: "all",	//模块名称(英文)
+			type: "search"
+	 });
+	 //榜单页面评论初始化	
+	 NS_links_comment_top.init();
+});
+</script>
+<script type="text/javascript">
+$(document).ready(function(){
+	//当用户登录后才去判断
+	if($("#userProNick").length > 0) {
+		$("#userProNick").html(chouti.subNickLength($("#userProNick").html(), 5));
+	}
+})
+</script>
+
+
+<div class="main-content-band">
+
+<div class="main-content" id="main_content">
+		<div class="content-L">
+			<div class="search-nav-box" style="position:relative;">
+				<a class="search-nav-a" href="/search/show?time=all&amp;sort=default&amp;words=$!words">内容</a><a class="search-nav-a active" href="javascript:;">用户</a>
+				<span style="position:absolute;right:106px;top:10px;color:#FF6600;display:none;" id="teshuZi">不能含有特殊字符</span>
+			</div>
+			<div class="search-area">
+				<form id="searchFrm" name="searchFrm" method="post" action="/search/user/show">
+					<table width="610" border="0" cellspacing="0" cellpadding="0">
+						<tbody><tr>
+							<td style="padding-top:0;"><input type="text" id="txtSearch" name="words" class="search-txt" value="$!words"></td>
+							<td style="padding-left:12px;padding-top:0;"><a id="searchBtn" name="searchBtn" class="search-btn search-btn-big" href="javascript:;">搜索</a>
+						</td></tr>
+					</tbody></table>
+					<input type="hidden" name="page" id="page" value="$!page">
+					<input type="hidden" name="sort" id="sort" value="time">
+					<input type="hidden" name="time" id="time" value="">				
+				</form>
+			</div>
+			<!-- 内容显示区域 -->
+			
+			<div class="content-list" id="content-list">	
+				#if(!$!words)
+				<div class="no-search-contanier">亲爱的抽友，想找点啥？</div>
+				#else
+					#if($list.size()=="0")
+					<div class="no-search-contanier">好像没有关于[$!words]的东西，要不换个关键词试试？</div>
+					#else
+						#foreach($!member in $list) 
+						<div class="item">
+							<div class="search-itme-a">
+								<a href="/user/$!{member.name}/publish" target="_blank">
+									#if($!{member.pic} && $!{member.pic}!='null' && $!{member.pic}!='')
+										<img src="$!{member.pic}" width="48" height="48" class="p-img">
+									#else
+										<img src="/images/image48.png" width="48" height="48" class="p-img">
+									#end
+								</a>
+								<div class="p-box">
+									<div class="name"><a href="/user/$!{member.name}/publish" target="_blank">$!{member.nick}</a></div>
+									<div class="events">发布：<span>$!{member.publishCount}</span>推荐：<span>$!{member.likedCount}</span>评论：<span>$!{member.commentsCount}</span></div>
+								</div>
+							</div>
+						</div>
+						#end				
+					#end
+				#end		
+			</div>
+			<div class="no-bottom"></div>
+			$widget.setTemplate("pagination/myPager").addParam('pagination',$!pagination)
+		</div>
+   </div>
+   
+#parse("/widget/common/footer.vm") 
+</div>

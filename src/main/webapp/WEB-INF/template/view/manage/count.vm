@@ -1,0 +1,39 @@
+<link  rel="stylesheet" href="/js/uikit/css/uikit.min.css">
+<link id="data-uikit-theme" rel="stylesheet" href="/js/uikit/css/uikit.docs.min.css">
+<link rel="stylesheet" href="/js/uikit/css/docs.css">
+	
+<script type="text/javascript" src="/js/uikit/js/uikit.min.js"></script>
+<script type="text/javascript" src="/js/uikit/js/addons/datepicker.js"></script>
+
+<div>
+    <ul class="uk-breadcrumb">
+        <li><a href="/manage/home">Home</a></li>
+		<li class="uk-active"><span>统计</span></li>
+    </ul>
+</div>
+<br/>
+
+<div>
+
+    <table class="uk-table uk-table-hover" cellspacing="0">
+        <caption>$!{desc}统计信息</caption>
+        <thead>
+            <tr>
+    			<th>$!{desc}记录总个数</th>
+                <th>已删除$!{desc}总数</th>
+    			<th>未删除$!{desc}总数</th>
+    			<th>昨天新增加$!{desc}总数</th>
+    			<th>一周内新增加$!{desc}总数</th>
+            </tr>
+        </thead>
+        <tbody>
+			<tr>
+				<td>$!{allCount}</td>
+				<td>$!{delCount}</td>
+				<td>$!{unDelCount}</td>
+				<td>$!{yesterdayCount}</td>
+				<td>$!{weekCount}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>	

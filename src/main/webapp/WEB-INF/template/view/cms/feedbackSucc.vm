@@ -1,0 +1,33 @@
+<script type="text/javascript" src="/js/register.js"></script>
+<link rel="stylesheet" type="text/css" href="/css/feedback.css">
+<link rel="stylesheet" type="text/css" href="/css/setnewpassword.css" />
+
+<script type="text/javascript">
+$(document).ready(function(){
+	chouti.hidPublishWindow();//隐藏“分享新发现”按钮
+	chouti.Init();
+});
+</script>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		//当用户登录后才去判断
+		if($("#userProNick").length > 0) {
+			$("#userProNick").html(chouti.subNickLength($("#userProNick").html(), 5));
+		}
+	})
+</script>
+
+<div class="main-content-band">
+<div class="main-content">
+	<div class="sv_t">意见与反馈</div>
+	<div class="judge-title">
+		<span style="display: inline-block; background-position: 0px -600px;" class="sucess-ico"></span>
+		<span class="judge-rw">反馈提交成功！</span>
+	</div>
+	<div class="judge-con">
+		 您想说的心里话咱们收到啦～我们认真想想就尽快答复您～<br>您可以<a href="/help/feedback">点击这里继续跟咱们说！</a>或<a href="/">点击这里返回到首页</a>
+	</div>
+</div>
+#parse("/widget/common/footer.vm") 
+</div>

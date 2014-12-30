@@ -1,0 +1,120 @@
+<link  rel="stylesheet" href="/js/uikit/css/uikit.min.css">
+<link id="data-uikit-theme" rel="stylesheet" href="/js/uikit/css/uikit.docs.min.css">
+<link rel="stylesheet" href="/js/uikit/css/docs.css">
+	
+<script type="text/javascript" src="/js/uikit/js/uikit.min.js"></script>
+<script type="text/javascript" src="/js/uikit/js/addons/datepicker.js"></script>
+	
+<div>
+    <ul class="uk-breadcrumb">
+        <li><a href="/manage/home">Home</a></li>
+		#if($!{publish})
+			<li><a href="/manage/comments">评论</a></li>
+			<li class="uk-active"><span>$!{publish}</span></li>
+		#else
+			<li class="uk-active"><span>评论</span></li>
+		#end
+    </ul>
+</div>
+<br/>
+
+<div>
+	<form class="uk-form uk-form-stacked searchForm" name="searchForm" action="/manage/comments"  method="post">
+        <fieldset>
+            <input type="text" placeholder="评论关键词搜索" class="uk-form-width-large" name="keyword" value="$!keyword">
+            <div class="uk-form-icon">
+	            <select name="ban">
+	                <option value="">禁言状态</option>
+	                <option value="0" #if($!{state} && $!{state}=="0") selected #end>正常</option>
+	                <option value="1" #if($!{state} && $!{state}=="1") selected #end>已禁言</option>
+	                <option value="2" #if($!{state} && $!{state}=="2") selected #end>停止</option>
+	            </select>
+            </div>
+            <div class="uk-form-icon">
+	            <select name="status">
+	                <option value="">记录状态</option>
+	                <option value="0" #if($!{status} && $!{status}=="0") selected #end>正常</option>
+	                <option value="1" #if($!{status} && $!{status}=="1") selected #end>已删除</option>
+	            </select>
+            </div>
+            <div class="uk-form-icon">
+			    <i class="uk-icon-calendar"></i>
+			    <input type="text" placeholder="记录起始时间" data-uk-datepicker="{format:'YYYY.MM.DD'}" name="start" value="$!start">
+			</div>
+			<div class="uk-form-icon">
+			    <i class="uk-icon-calendar"></i>
+			    <input type="text" placeholder="记录结束时间" data-uk-datepicker="{format:'YYYY.MM.DD'}" name="end" value="$!end">
+			</div>
+            <button class="uk-button uk-button-success" value="search">搜索</button>
+        </fieldset>
+    </form>
+
+    <table class="uk-table uk-table-hover uk-table-striped uk-table-condensed" cellspacing="0">
+        <caption>评论信息</caption>
+        <thead>
+            <tr>
+    			<th>ID</th>
+                <th>用户昵称</th>
+    			<th>用户ID</th>
+    			<th>文章Id</th>
+				<th>父评论ID</th>
+    			<th>评论内容</th>
+    			<th>顶</th>
+    			<th>踩</th>
+    			<th>评论类型</th>
+				<th>嵌套深度</th>
+				<th>投票状态</th>
+    			<th>禁言状态</th>
+    			<th>记录状态</th>
+    			<th>创建时间</th>
+    			<th>操作</th>
+            </tr>
+        </thead>
+    	
+        <tbody>
+    		#foreach($!comments in $list) 
+            <tr>
+				<input type="hidden" class="my-id" value="$!{comments.id}" />
+    			<td>$!{comments.id}</td>
+    			#set($userUrl="/user/"+$!{comments.name}+"/publish")
+                <td><a class="uk-text-success" href="$userUrl" target="_blank"><p>$!{comments.nick}</p></a></td>
+    			<td><a class="uk-text-success" href="$userUrl" target="_blank"><p>$!{comments.userId}</p></a></td>
+    			<td><a class="uk-text-success" href="/link/$!{comments.topicId}" target="_blank"><p>$!{comments.topicId}</p></a></td>
+    			<td><a class="uk-text-success" href="/link/$!{comments.topicId}/comments/$!{comments.parentId}" target="_blank"><p>$!{comments.parentId}</p></a></td>
+    			<td width="18%">$!{comments.content}</td>
+    			<td>$!{comments.ups}</td>
+    			<td>$!{comments.downs}</td>
+    			<td>$!{comments.commentType}</td>
+				<td>$!{comments.depth}</td>
+				<td>
+					$!{comments.getIsVoteDesc()}
+				</td>
+    			<td>
+					<p class="my-desc">$!{comments.getIsBanDesc()}</p>
+					#if($!{comments.isBan}=="0")
+						<p><button class="uk-button uk-button-mini uk-button-danger" type="button" value="ban" desc="禁评">禁评</button></p>
+					#elseif($!{comments.isBan}=="1")
+						<p><button class="uk-button uk-button-mini uk-button-success" type="button" value="noban" desc="正常">恢复</button></p>
+					#end
+				</td>
+    			<td>
+					<p class="my-desc">$!{enumViewTools.statusEnumDesc($!comments.status)}</p>
+					#if($!{comments.status}=="0")
+						<p><button class="uk-button uk-button-mini uk-button-danger" type="button" value="delete" desc="已删除">删除</button></p>
+					#elseif($!{comments.status}=="1")
+						<p><button class="uk-button uk-button-mini uk-button-success" type="button" value="nodelete" desc="正常">恢复</button></p>
+					#end
+				</td>
+    			<td>$!{dateViewTools.format($!comments.gmtCreate,"yyyy-MM-dd HH:mm")}</td>
+    			<td class="uk-text-center uk-text-middle">
+    				<p>
+						<a class="uk-button uk-button-mini uk-button-primary" href="/link/$!{comments.topicId}/comments/$!{comments.parentId}">去评论</a>
+    				</p>
+    			</td>
+            </tr>
+    		#end
+        </tbody>
+    </table>
+</div>	
+
+$widget.setTemplate("pagination/uikitPager").addParam('pagination',$!{list.getQuery()})

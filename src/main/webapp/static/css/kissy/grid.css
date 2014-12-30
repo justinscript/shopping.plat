@@ -1,0 +1,39 @@
+/**
+ * Grid
+ * @creator fool2fish<fool2fish@gmail.com>
+ */
+
+/*一般设定*/
+.grid{width:100%;overflow:hidden;}
+.grid-zebra .row-even td{background-color:#fafafa;}
+.grid .table{width:100%;border:1px solid #ccc;}
+.grid caption{text-align:left;}
+.grid th,
+.grid td{padding:5px 10px;text-align:left;}
+.grid th{height:18px;line-height:14px;vertical-align:bottom;font-weight:bold;border:1px solid #ccc;background:#f2f2f2 url(/images/kissy/bg-repeatx.png) repeat-x 0 -130px;}
+.grid td{vertical-align:top;border-top:1px solid #ccc;background:#fff;}
+
+/*排序相关*/
+.grid .cell-sortable{cursor:pointer;_text-decoration:underline;}
+.grid .cell-sortable .icon{display:inline-block;width:13px;height:13px;margin-left:5px;background:url(/images/kissy/icon.png) no-repeat -100px -40px;}
+.grid .cell-sortable:hover{background:#cce1ff url(/images/kissy/bg-repeatx.png) repeat-x 0 -11px;}
+.grid .cell-asc .icon{background-position:-100px -20px;}
+.grid .cell-desc .icon{background-position:-80px -20px;}
+
+/*特殊列*/
+.grid .cell-extra{width:25px;padding:5px 0;text-align:center;text-indent:0;border-right:1px solid #ccc;background:#f2f2f2 url(/images/kissy/bg-repeaty.png) repeat-y -130px 0;}
+
+/*icon*/
+.grid .icon-expand{display:inline-block;width:13px;height:13px;margin:0 6px;cursor:pointer;background:url(/images/kissy/icon.png) no-repeat -40px 0;}
+
+/*行相关*/
+.grid .row-extra td{border-top:1px dashed #ccc;}
+.grid .row-extra{display:none;}
+
+.grid .row-expanded{display:table-row;*display:block;}
+.grid .row-expanded .icon-expand{background-position:-60px 0;}
+
+.grid .row-hover td{background:#e8fcd6;}
+
+.grid .row-selected td{background:#e1edff!important;}
+.grid .row-selected td.cell-extra{background:#cce1ff url(/images/kissy/bg-repeaty.png) repeat-y -11px 0!important}

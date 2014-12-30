@@ -1,0 +1,53 @@
+/**
+ * Pagination
+ * @author fool2fish<fool2fish@gmail.com>
+ */
+
+.pagination {height:22px;margin-bottom:10px;}
+.pagination-wrapper{float:right;}
+
+.pagination  a{cursor:pointer;}
+
+.pagination .info,
+.pagination .start,
+.pagination .prev,
+.pagination .next,
+.pagination .end,
+.pagination .page,
+.pagination .skip-to,
+.pagination .data-limit{float:left;height:20px;margin-left:3px;line-height:20px;}
+
+.pagination .skip-to{margin-left:6px;}
+.pagination .skip-to input{width:32px;height:18px;margin:0 2px;line-height:20px;text-align:center;vertical-align:middle;border:1px solid #ccc;}
+.pagination .skip-to button{margin-left:2px;width:36px;height:21px;line-height:14px;vertical-align:middle;cursor:pointer;border:1px solid #bad6ff;background:url(/images/kissy/bg-repeatx.png) repeat-x 0 -10px;}
+
+.pagination .data-limit{margin-left:10px;}
+.pagination .data-limit select{margin-left:2px;vertical-align:middle;}
+
+.pagination  a{color:#04c;}
+.pagination  a:hover,
+.pagination  a:active{color:#f60;text-decoration:none;border:1px solid #f60;}
+
+.pagination span{color:#444;}
+
+.pagination .info{padding-top:1px;}
+
+.pagination .start,
+.pagination .prev,
+.pagination .next,
+.pagination .end,
+.pagination .page{padding:0 7px;border:1px solid #ccc;background:#fff url(/images/kissy/pagination.png) no-repeat 1000px 1000px;}
+.pagination span.page{color:#f60;border:1px solid #f60;background-color:#ffede1;}
+
+.pagination .start,
+.pagination .prev{width:6px;overflow:hidden;line-height:1000px;}
+.pagination .next,
+.pagination .end{padding-right:14px;}
+.pagination span.start{background-position:0 -144px;}
+.pagination a.start{background-position:0 -114px;}
+.pagination span.prev{background-position:0 -24px;}
+.pagination a.prev{background-position:0 6px;}
+.pagination span.next{background-position:100% -84px;}
+.pagination a.next{background-position:100% -54px;}
+.pagination span.end{background-position:100% -204px;}
+.pagination a.end{background-position:100% -174px;}

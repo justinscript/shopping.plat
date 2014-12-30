@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>买买君 | 每日精品新品特惠品海淘推荐，每日推出你买东西我买单。</title>
+		<link rel="stylesheet" href="/css/kissy/reset.css" />
+        <link rel="stylesheet" href="/css/kissy/layout.css" />
+        <link rel="stylesheet" href="/css/kissy/tree.css" />
+        <link rel="stylesheet" href="/css/kissy/grid.css" />
+        <link rel="stylesheet" href="/css/kissy/form.css" />
+        <link rel="stylesheet" href="/css/kissy/pagination.css" />
+        <link rel="stylesheet" href="/css/kissy/msg.css" />
+        <link rel="stylesheet" href="/css/kissy/tabs.css" />
+        <link rel="stylesheet" href="/css/kissy/manage.css" />
+        <script type="text/javascript" src="/js/jquery/jquery.js"></script>
+        <script type="text/javascript" src="/js/jquery/simple_calendar.js"></script>
+		
+		<style >
+			.col-sub ul {
+                padding-left: 0px;
+            }
+			.col-sub ol{
+                padding-left: 0px;
+            }
+			.col-sub ul{
+				margin: 0 0 0px;
+            }
+        </style>
+		<style id="style-1-cropbar-clipper">
+            .en-markup-crop-options {
+                top: 18px !important;
+                left: 50% !important;
+                margin-left: -100px !important;
+                width: 200px !important;
+                border: 2px rgba(255,255,255,.38) solid !important;
+                border-radius: 4px !important;
+            }
+            .en-markup-crop-options div div:first-of-type {
+                margin-left: 0px !important;
+            }
+        </style>
+	</head>
+	<body>
+		<input type="hidden" id="source" value="$!{source}" />
+		<div class="bops">
+		    <div id="header">	
+            	<div class="layout grid-s5m0" #if($systemInfo.isRun()) style="background-color:#B0C4DE" #end>
+            		<div class="col-main">
+            			<div class="main-wrap">
+            				<p class="welcome">
+            					Hi,<a class="uk-text-success" href="/user/$!{webUser.getName()}/publish" target="_blank"><span class="uk-text-top">$!{webUser.getNick()}</span></a>,欢迎您! <a href="/manage/logout" title="注销">注销</a><br>
+                				<!-- <b>IP:</b>$!{systemInfo.getIpaddress()} &nbsp;
+                				<b>DB:</b>$!{systemInfo.getDBIP()}:$!{systemInfo.getUser()}<br>
+            					<b>$!{systemInfo.mode}</b>模式<br>-->
+            				</p>
+            			</div>
+            		</div>
+            		<div class="col-sub">
+            			<h1><span class="logo text-hide">买买君Manage系统</span></h1>
+            		</div>
+            	</div>
+            </div>
+			
+			<div id="content" class="layout grid-s5m0" >
+				<div class="col-main">
+					<div class="main-wrap">
+					    $body
+					</div>
+				</div>
+				<div class="col-sub">
+				    <div class="system-menu tree tree-menu"> 
+                       <ul class="branch root"> 
+                            <li class="node #if(!$!{menuList.contains("userMenu")}) node-collapsed #end" id="userMenu"> 
+                                  <div class="anchor"> 
+    									<div class="wrapper"><i class="icon icon-expand"></i><div class="col">用户管理</div></div> 
+                                  </div> 
+                                  <ul class="branch"> 
+                                      <li class="node"> 
+        									<div class="anchor"><div class="wrapper"><div class="col"><a href="/manage/user" title="用户查询"><i class="uk-icon-user"></i> 用户查询</a></div></div></div> 
+        							  </li> 
+                                      <li class="node"> 
+        									<div class="anchor"><div class="wrapper"><div class="col"><a href="/manage/user_count" title="统计汇总"><i class="uk-icon-cog"></i> 统计汇总</a></div></div></div> 
+        							  </li> 
+                                  </ul> 
+    						</li> 
+							
+							<li class="node  #if(!$!{menuList.contains("commentsMenu")}) node-collapsed #end" id="commentsMenu"> 
+                                  <div class="anchor"> 
+    									<div class="wrapper"><i class="icon icon-expand"></i><div class="col">评论管理</div></div> 
+                                  </div> 
+                                  <ul class="branch"> 
+                                      <li class="node"> 
+        									<div class="anchor"><div class="wrapper"><div class="col"><a href="/manage/comments" title="评论查询"><i class="uk-icon-comments"></i> 评论查询</a></div></div></div> 
+        							  </li> 
+                                      <li class="node"> 
+        									<div class="anchor"><div class="wrapper"><div class="col"><a href="/manage/comments_count" title="统计汇总"><i class="uk-icon-cog"></i> 统计汇总</a></div></div></div> 
+        							  </li> 
+                                  </ul> 
+    						</li> 
+							
+							<li class="node  #if(!$!{menuList.contains("publishMenu")}) node-collapsed #end" id="publishMenu"> 
+                                  <div class="anchor"> 
+    									<div class="wrapper"><i class="icon icon-expand"></i><div class="col">发布管理</div></div> 
+                                  </div> 
+                                  <ul class="branch"> 
+                                      <li class="node"> 
+        									<div class="anchor"><div class="wrapper"><div class="col"><a href="/manage/publish" title="发布查询"><i class="uk-icon-language"></i> 发布查询</a></div></div></div> 
+        							  </li> 
+        							  <li class="node"> 
+        									<div class="anchor"><div class="wrapper"><div class="col"><a href="/manage/addPublish" title="新建发布"><i class="uk-icon-plus"></i> 新建发布</a></div></div></div> 
+        							  </li>
+        							  <li class="node"> 
+        									<div class="anchor"><div class="wrapper"><div class="col"><a href="/manage/delPublish" title="删除发布"><i class="uk-icon-minus"></i> 删除发布</a></div></div></div> 
+        							  </li>
+                                      <li class="node"> 
+        									<div class="anchor"><div class="wrapper"><div class="col"><a href="/manage/publish_count" title="统计汇总"><i class="uk-icon-cog"></i> 统计汇总</a></div></div></div> 
+        							  </li> 
+                                  </ul> 
+    						</li>
+    						
+    						<li class="node  #if(!$!{menuList.contains("jifengMenu")}) node-collapsed #end" id="jifengMenu"> 
+                                  <div class="anchor"> 
+    									<div class="wrapper"><i class="icon icon-expand"></i><div class="col">积分管理</div></div> 
+                                  </div> 
+                                  <ul class="branch"> 
+                                      <li class="node"> 
+        									<div class="anchor"><div class="wrapper"><div class="col"><a href="/manage/jifeng" title="积分查询"><i class="uk-icon-rocket"></i> 积分查询</a></div></div></div> 
+        							  </li> 
+                                  </ul> 
+    						</li>
+							
+							<li class="node  #if(!$!{menuList.contains("spiderMenu")}) node-collapsed #end" id="spiderMenu"> 
+                                  <div class="anchor"> 
+    									<div class="wrapper"><i class="icon icon-expand"></i><div class="col">爬虫数据库</div></div> 
+                                  </div> 
+                                  <ul class="branch"> 
+                                      <li class="node"> 
+        									<div class="anchor"><div class="wrapper"><div class="col"><a href="/manage/sprider" title="抓取查询"><i class="uk-icon-wrench"></i> 抓取查询</a></div></div></div> 
+        							  </li> 
+                                  </ul> 
+    						</li>
+							
+							<li class="node  #if(!$!{menuList.contains("feedbackMenu")}) node-collapsed #end" id="feedbackMenu"> 
+                                  <div class="anchor"> 
+    									<div class="wrapper"><i class="icon icon-expand"></i><div class="col">意见反馈</div></div> 
+                                  </div> 
+                                  <ul class="branch"> 
+                                      <li class="node"> 
+        									<div class="anchor"><div class="wrapper"><div class="col"><a href="/manage/feedback" title="意见查询"><i class="uk-icon-send"></i> 意见查询</a></div></div></div> 
+        							  </li> 
+                                  </ul> 
+    						</li>
+    						
+    						<li class="node  #if(!$!{menuList.contains("recommendMenu")}) node-collapsed #end" id="recommendMenu"> 
+                                  <div class="anchor"> 
+    									<div class="wrapper"><i class="icon icon-expand"></i><div class="col">推荐设置</div></div> 
+                                  </div> 
+                                  <ul class="branch"> 
+                                      <li class="node"> 
+        									<div class="anchor"><div class="wrapper"><div class="col"><a href="/manage/recommend" title="推荐设置"><i class="uk-icon-thumbs-up"></i> 推荐新闻</a></div></div></div> 
+        							  </li> 
+                                  </ul> 
+    						</li>
+							
+							<li class="node  #if(!$!{menuList.contains("reportMenu")}) node-collapsed #end" id="reportMenu"> 
+                                  <div class="anchor"> 
+    									<div class="wrapper"><i class="icon icon-expand"></i><div class="col">举报管理</div></div> 
+                                  </div> 
+                                  <ul class="branch"> 
+                                      <li class="node"> 
+        									<div class="anchor"><div class="wrapper"><div class="col"><a href="/manage/report" title="举报列表"><i class="uk-icon-thumbs-down"></i> 举报列表</a></div></div></div> 
+        							  </li> 
+                                  </ul> 
+    						</li>
+                      </ul> 
+                  </div>
+				</div>
+			</div>
+			<br/>
+			<br/>
+			<br/>
+			<br/>
+			<br/>
+			<br/>
+			<div id="footer">
+            	Deamon Admin,技术支持：技术部，电话：18912386146，email: xiongcaizhang@yahoo.com
+            </div>
+		</div>
+		
+<script type="text/javascript" src="/js/uikit/poshytip.js"></script>
+<link rel="stylesheet" href="/css/kissy/dpl.css" />
+		
+<script>
+(function(){
+	//菜单配置	
+	var menuConfig = {};
+	if(jQuery.cookie('menuConfig')){
+		var cookie = jQuery.cookie('menuConfig');
+		var keys = cookie.split('-_-');
+		for(var i=0,l=keys.length;i<l;i++){
+			menuConfig[keys[i]] = true;
+		}
+	}
+	$('.tree-menu .node .anchor').click(function(){
+		var isCollapsed = $(this).parent().hasClass('node-collapsed');		
+		if(!isCollapsed){
+			$(this).parent().addClass('node-collapsed');
+			menuConfig[$(this).parent().attr('id')] = false;
+		}else{
+			$(this).parent().removeClass('node-collapsed');
+			menuConfig[$(this).parent().attr('id')] = true;
+		}
+		jQuery.cookie('menuConfig',(function(){
+			var keys = [];
+			for(var key in menuConfig){
+				if(menuConfig[key]){
+					keys.push(key);
+				}
+			}			
+			return keys.join('-_-');
+		})(),{domain:'www.maimaijun.com',path:'/'});			
+	});
+})();
+
+$(document).ready(function (){  
+    $('button').click(function(){  
+		btn=$(this);
+		handle=btn.val();
+		source=$("#source").val();
+		
+		if(handle==null||handle==""){ 
+			return false;  
+		}
+		if(handle=="search"){
+			$(".searchForm").submit();  
+		}
+		if(handle=="addPublish"){
+			$(".addForm").submit();  
+		}
+		if(handle=="realDelete"){
+			id=$(this).closest('tr').find('.my-id').val();
+			jQuery.post("/manage/realDelPublish","id=" + id,function(data){
+				var d = data.result;
+				if (d.code=="9999"){
+					jQuery.tips.success(btn, d.message, 1000);
+					window.location.Reload();
+				}
+				if (d.code=="1"){
+					jQuery.tips.err(btn, d.message, 1000);
+				}
+			});
+		}
+		
+		if(source==null||source==""){ 
+			return false;  
+		}
+		
+		id=$(this).closest('tr').find('.my-id').val();
+		desc=btn.attr('desc');
+		
+		if(id==null||id==""){ 
+			return false;  
+		}
+		//if (!confirm("确定要删除的缓存?")){
+		//	return;
+		//}
+		if(handle=='reply'){
+			jQuery.tips.err(btn, "失败", 1000);
+		}
+		
+		jQuery.post("/manage/update","id=" + id + "&handle=" + handle + "&source=" + source,function(data){
+			var d = data.result;
+			if (d.code=="9999"){
+				if(handle=="recommend"){
+					btn.attr('class','uk-button uk-button-mini uk-button-danger');
+					btn.attr('value','norecommend');
+					btn.attr('desc','不推荐');
+					btn.text('取消推荐');
+					jQuery.tips.success(btn, d.message, 1000);
+				}else if(handle=="recommend"){
+					btn.attr('class','uk-button uk-button-mini uk-button-success');
+					btn.attr('value','recommend');
+					btn.attr('desc','已推荐');
+					btn.text('加入推荐');
+					jQuery.tips.success(btn, d.message, 1000);
+				}else{
+					btn.closest('td').find('.my-desc').text(desc);
+    				jQuery.tips.success(btn, d.message, 1000);
+    				btn.attr("style","display:none;");
+				}
+			}
+			if (d.code=="1"){
+				jQuery.tips.err(btn, d.message, 1000);
+			}
+		});
+    });  
+	
+	$('.my-subjectId').click(function(){  
+		btn=$(this);
+		id=$(this).closest('tr').find('.my-id').val();
+		subjectId=btn.val();
+		if(subjectId==null || subjectId==""){
+			return false;
+		}
+		jQuery.post("/manage/updateSubject","id=" + id + "&subjectId=" + subjectId,function(data){
+			var d = data.result;
+			if (d.code=="9999"){
+				btn.closest('td').find('.my-desc').text(d.data);
+				jQuery.tips.success(btn, d.message, 1000);
+			}
+			if (d.code=="1"){
+				jQuery.tips.err(btn, d.message, 1000);
+			}
+		});
+	});
+});  
+</script>
+	</body>
+</html>

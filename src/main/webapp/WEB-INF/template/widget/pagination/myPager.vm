@@ -1,0 +1,53 @@
+#if($!{pagination.getAllRecordNum()} && $!{pagination.getAllRecordNum()} >= 10)
+<div id="page-area" class="page-area">
+	<div id="dig_lcpage">
+		<ul>
+			#set($page = ${pagination.firstPage})
+			#if(!$page.current)
+				<li><a href="$page.url" class="ct_page_edge" >首页</a></li>
+			#else
+				<li><a href="javascript:void(0);" class="ct_page_edge" >首页</a></li>
+			#end
+			
+			#set($page = ${pagination.prevPage})
+			#if(!$page.current)
+				<li><a href="$page.url" class="ct_page_edge" >上一页</a></li>
+			#else
+				<li><a href="javascript:void(0);" class="ct_page_edge" >上一页</a></li>
+			#end
+			
+			#set($subCount = $pagination.pages.size())
+			#foreach($indexPage in $!{pagination.pages})
+				#if($indexPage.current)
+					<li>
+						<span class="ct_pageeli">$indexPage.page</span>
+					</li>
+				#else
+					<li >
+						<a href="$indexPage.url" class="ct_pagepa" >$indexPage.page</a>
+					</li>
+				#end
+			#end
+			
+			#set($page = ${pagination.nextPage})
+			#if(!$page.current)
+				<li>
+					<a  href="$page.url" class="ct_page_edge">下一页</a>
+				</li>
+				
+			#else
+				<li>
+					<a href="javascript:void(0);" class="ct_page_edge" >下一页</a>
+				</li>
+			#end
+			
+			#set($page = ${pagination.lastPage})
+			#if(!$page.current)
+				<li ><a href="$page.url" class="ct_page_edge" >末页</a></li>
+			#else
+				<li ><a href="javascript:void(0);" class="ct_page_edge" >末页</a></li>
+			#end
+		</ul>
+	</div>
+</div>
+#end

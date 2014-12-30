@@ -1,0 +1,24 @@
+ <!-- 私信弹出框 -->
+<div class="dialog corner" id="sixin-dialog">
+	<div class="dialog-titlebar">
+		<div class="dialog-title">
+			<span id="shareTitle">发私信</span>
+		</div>
+		<div class="dialog-titlebar-close"><a href="javascript:;" title="关闭" class="icons dialog-btn-close" id="sixin-close"></a></div>
+	</div>
+	<div class="dialog-content corner-bottom" style="padding-top:5px;">
+	<div class="txt-box">
+    	<div test="false" id="laheiBox" class="lahei-box">  
+    		<a othernick="$!{othernick}" otherjid="$!{otherjid}" id="laHeiBtn" href="javascript:;"><span class="heimdan"></span>拉入黑名单</a>
+    	</div>
+    	<div class="toPerson">发私信给<span style="padding-left:5px;">$!{othernick}</span></div>
+    	<div class="txt-input-area-div-top corner">											
+			<textarea id="sixinContent" maxlength="150" class="sixin-txt"></textarea>											
+		</div>
+		<div class="sendMbox" style="padding:16px 0 40px 0;">			
+			<a otherjid="$!{otherjid}" id="person_mail_btn" href="javascript:;" class="common-btn">发送</a>    	 	   	 	
+     		<div style="float:right;" id="privateMailLoading" class="loading-ico">发送中，请稍候...</div>
+		</div>
+	</div>
+	</div>
+</div>

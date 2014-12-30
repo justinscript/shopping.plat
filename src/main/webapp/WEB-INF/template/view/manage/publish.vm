@@ -1,0 +1,153 @@
+<link  rel="stylesheet" href="/js/uikit/css/uikit.min.css">
+<link id="data-uikit-theme" rel="stylesheet" href="/js/uikit/css/uikit.docs.min.css">
+<link rel="stylesheet" href="/js/uikit/css/docs.css">
+	
+<script type="text/javascript" src="/js/uikit/js/uikit.min.js"></script>
+<script type="text/javascript" src="/js/uikit/js/addons/datepicker.js"></script>
+
+<div>
+    <ul class="uk-breadcrumb">
+        <li><a href="/manage/home">Home</a></li>
+		#if($!{publish})
+			<li><a href="/manage/publish">发布</a></li>
+			<li class="uk-active"><span>$!{publish}</span></li>
+		#else
+			<li class="uk-active"><span>发布</span></li>
+		#end
+    </ul>
+</div>
+<br/>
+
+<div>
+	<form class="uk-form uk-form-stacked searchForm" name="searchForm" action="/manage/publish"  method="post">
+        <fieldset>
+            <input type="text" placeholder="标题关键词搜索" class="uk-form-width-large" name="title" value="$!title" >
+            <div class="uk-form-icon">
+	            <select name="subject">
+					<option value="">标签类型</option>
+					#set($subjectEnums=$!{enumViewTools.getSubjectMenu()})
+					#foreach($subjectEnum in $subjectEnums)
+						<option value="$!{subjectEnum.getValue()}" #if($!{subject} && $!{subject}==$!{subjectEnum.getValue()}) selected #end>$!{subjectEnum.getDesc()}</option>
+					#end
+	            </select>
+            </div>
+            <div class="uk-form-icon">
+	            <select  name="state">
+	                <option value="">审核状态</option>
+	                <option value="0" #if($!{state} && $!{state}=="0") selected #end>未审核</option>
+	                <option value="1" #if($!{state} && $!{state}=="1") selected #end>正常</option>
+	                <option value="2" #if($!{state} && $!{state}=="2") selected #end>停止</option>
+	            </select>
+            </div>
+            <div class="uk-form-icon">
+			    <i class="uk-icon-calendar"></i>
+			    <input type="text" placeholder="记录起始时间" data-uk-datepicker="{format:'YYYY.MM.DD'}" name="start" value="$!start">
+			</div>
+			<div class="uk-form-icon">
+			    <i class="uk-icon-calendar"></i>
+			    <input type="text" placeholder="记录结束时间" data-uk-datepicker="{format:'YYYY.MM.DD'}" name="end" value="$!end">
+			</div>
+            <button class="uk-button uk-button-success" value="search">搜索</button>
+        </fieldset>
+    </form>
+
+    <table class="uk-table uk-table-hover uk-table-striped uk-table-condensed" cellspacing="0">
+        <caption>发布信息</caption>
+        <thead>
+            <tr>
+    			<th>ID</th>
+                <th>用户ID</th>
+    			<th>用户昵称</th>
+    			<th width="15%">标题</th>
+    			<th width="18%">内容</th>
+    			<th>来源</th>
+    			<th>发布来源</th>
+				<th>点击量</th>
+    			<th>推荐数</th>
+    			<th>评论数</th>
+    			<th>标签</th>
+    			<th>禁言状态</th>
+    			<th>审核状态</th>
+    			<th>记录状态</th>
+    			<th>创建时间</th>
+    			<th>操作</th>
+            </tr>
+        </thead>
+    	
+        <tbody>
+    		#foreach($!topic in $list) 
+            <tr>
+				<input type="hidden" class="my-id" value="$!{topic.id}" />
+    			<td>$!{topic.id}</td>
+                <td>$!{topic.userId}</td>
+                #set($userUrl="/user/"+$!{topic.name}+"/publish")
+    			<td><a class="uk-text-success" href="$userUrl" target="_blank"><p>$!{topic.nick}</p></a></td>
+    			<td>
+					<div class="uk-grid uk-grid-preserve">
+                        <div class="uk-width-7-10"><span class="uk-text-top "><a class="uk-text-warning" href="$!{topic.originalUrl}" target="_blank">$!{topic.title}</a></span></div>
+                        <div class="uk-width-3-10"><img src="#if($!{topic.imgUrl}) $!{topic.imgUrl} #else /images/meiyoupeitu.png #end" width="64px" height="64px"></div>
+                    </div>
+				</td>
+    			<td>
+					<p class="uk-text-muted">$!{topic.content}</p>
+				</td>
+    			<td>$!{topic.contentSource}</td>
+				<td>#if($!{topic.publishSource}) $!{topic.publishSource} #else 无 #end</td>
+    			<td><p class="uk-text-danger">$!{topic.hit}</p></td>
+    			<td><p class="uk-text-danger">$!{topic.recommend}</p></td>
+    			<td><p class="uk-text-danger">$!{topic.comments}</p></td>
+    			<td>
+					<p class="my-desc">$!{topic.getSubjectDesc()}</p>
+					<div class="uk-form-icon">
+        	            <select name="subjectId" class="my-subjectId">
+							<option value="">切换标签</option>
+							#set($subjectEnums=$!{enumViewTools.getSubjectMenu()})
+        					#foreach($subjectEnum in $subjectEnums)
+        						#if($!{topic.subjectId}!=$!{subjectEnum.getValue()}) <option value="$!{subjectEnum.getValue()}">$!{subjectEnum.getDesc()}</option> #end
+        					#end
+        	            </select>
+                    </div>
+				</td>
+    			<td>
+					<p class="my-desc">$!{topic.getIsBanDesc()}</p>
+					#if($!{topic.isBan}=="0")
+						<p><button class="uk-button uk-button-mini uk-button-danger" type="button" value="ban" desc="禁评">禁评</button></p>
+					#elseif($!{topic.isBan}=="1")
+						<p><button class="uk-button uk-button-mini uk-button-success" type="button" value="noban" desc="正常">恢复</button></p>
+					#end
+				</td>
+				<td>
+					<p class="my-desc">$!{topic.getTopicStateDesc()}</p>
+					#if($!{topic.topicState}=="0")
+						<p><button class="uk-button uk-button-mini uk-button-success" type="button" value="state" desc="正常">审核通过</button></p>
+					#elseif($!{topic.topicState}=="1")
+						<p><button class="uk-button uk-button-mini uk-button-danger" type="button" value="nostate" desc="停止">审核不过</button></p>
+					#end
+				</td>
+    			<td>
+					<p class="my-desc">$!{enumViewTools.statusEnumDesc($!topic.status)}</p>
+					#if($!{topic.status}=="0")
+						<p><button class="uk-button uk-button-mini uk-button-danger" type="button" value="delete" desc="已删除">删除</button></p>
+					#elseif($!{topic.status}=="1")
+						<p><button class="uk-button uk-button-mini uk-button-success" type="button" value="nodelete" desc="正常">恢复</button></p>
+					#end
+				</td>
+    			<td>$!{dateViewTools.format($!topic.gmtCreate,"yyyy-MM-dd HH:mm")}</td>
+    			<td class="uk-text-center uk-text-middle">
+    				<p>
+    					<a class="uk-button uk-button-mini uk-button-success" href="/manage/publishEdit/$!{topic.id}/1">编辑</a>
+						<a class="uk-button uk-button-mini uk-button-primary" href="/manage/comments/publish/$!{topic.id}/1">它的评论</a>
+						#if($!{mySavedList} && $!mySavedList.contains($!topic.id))
+							<button class="uk-button uk-button-mini uk-button-danger"  type="button" value="norecommend" desc="不推荐">取消推荐</button>
+						#else
+							<button class="uk-button uk-button-mini uk-button-success" type="button" value="recommend" desc="已推荐">加入推荐</button>
+						#end
+    				</p>
+    			</td>
+            </tr>
+    		#end
+        </tbody>
+    </table>
+</div>	
+
+$widget.setTemplate("pagination/uikitPager").addParam('pagination',$!{list.getQuery()})

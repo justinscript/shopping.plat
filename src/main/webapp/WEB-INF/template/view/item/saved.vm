@@ -1,0 +1,66 @@
+<script type="text/javascript" src="/js/chouti_nav.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	//初始化模块
+	 NS_links_nav.init({
+			subject: "person",	//模块名称(英文)
+			type: "collect"
+	 });
+	 //榜单页面评论初始化	
+	 NS_links_comment_top.init();
+});
+</script>
+
+
+<div class="main-content-band">
+
+<div class="main-content">
+		<div class="content-L">
+		#if($!{webUser.getName()}==$!{member.name})
+        	<div class="my-name">我的买买君</div>
+        #else
+        	<div class="my-name">$!{member.nick}的买买君</div>
+        #end
+		<!-- 导航 -->
+		<div class="set-tags">		
+        	<a href="/user/link/saved" class="tb w-active">私藏</a>
+        	<a href="/user/$!{member.getName()}/publish" class="tb">发布</a>
+        	<a href="/user/$!{member.getName()}/liked" class="tb">推荐</a>
+        	<a href="/user/$!{member.getName()}/comments" class="tb">评论</a>
+        	<div class="set-line"></div>    		
+        </div>
+			
+			<div class="show-items">共<span id="person_collect_count">$!{savedCount}</span>条</div>
+			<!-- 内容显示区域 -->
+			<div class="content-list" id="content-list" style="margin-top:-8px">
+			
+			#if($!{savedCount}!="0")
+	    		#foreach($!myItem in $list)	
+					$widget.setTemplate("common/myItem").addParam('mySubject',$!{subject}).addParam('myItem',$!{myItem}).addParam('publishShow',"私藏").addParam('myLikedList',$!{myLikedList}).addParam('mySavedList',$!{mySavedList})
+				#end
+			#else	  
+			    <div class="coll-null-box">
+					<div class="null-t"><span class="null-icon dian"></span>私藏仅为个人可见，<a href="/download/model">手机客户端</a>与网站同步更新喏~</div>
+					<div class="null-t" style="padding-top:10px;"><span class="null-icon dian"></span>快来点亮新闻下方的<span class="null-icon favo"></span>试试吧~!</div>
+					<div class="null-icon man"></div>
+				</div>
+        	#end    
+        	   
+			</div>
+			<div class="no-bottom"></div>
+			$widget.setTemplate("pagination/myPager").addParam('pagination',$!{list.getQuery()})
+		</div>
+		
+		<div class="content-R">
+			<!-- 如果用户已经登录,显示个人信息 -->
+			#parse("/widget/common/profile.vm")
+			
+			#parse("/widget/common/topBan.vm")
+
+            $widget.setTemplate("common/letter").addParam('othernick',$!{member.nick}).addParam('otherjid',$!{member.name})
+		</div>
+</div>
+   
+#parse("/widget/common/footer.vm") 
+</div>

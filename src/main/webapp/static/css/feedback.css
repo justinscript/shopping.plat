@@ -1,0 +1,237 @@
+.con-arrow-bottomleft, .con-arrow-bottomright {
+    bottom: 0;
+}
+.con-right-arrow-bottomleft, .con-right-arrow-bottomright {
+}
+.feedback-bor {
+   
+    padding-bottom: 68px;
+    padding-top: 25px;
+}
+.feedback-word-title {
+    text-indent: 24px;
+}
+.feedback-instru {
+    color: #333333;
+    font-size: 14px;
+    margin: 15px 25px 20px;
+}
+.feedback-con {
+	/*
+    margin: 0 25px;
+	*/
+}
+.feedback-list li {
+    color: #787878;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+.input-arrow-bottomleft {
+}
+.input-arrow-bottomright {
+}
+.feedback-list .feedback-input {
+    height: 32px;
+    margin-bottom: 19px;
+    position: relative;
+	clear:both;
+}
+.feedback-list .feedback-input input {
+    font-size: 14px;
+    height: 17px;
+    line-height: 17px;
+    margin: 8px 0;
+    padding-left: 5px;
+    width: 293px;
+}
+#confirm_code {
+    float: left;
+    margin: 1px 0 0 14px;
+}
+#confirm_code img {
+    cursor: pointer;
+}
+.feedback-list .feedback-textarea {
+    height: 104px;
+    margin-bottom: 19px;
+    position: relative;
+	clear:both;
+}
+.feedback-list .feedback-textarea textarea {
+    font-size: 14px;
+    height: 99px;
+    line-height: 20px;
+    overflow: hidden;
+    padding-left: 5px;
+    padding-top: 5px;
+    width: 580px;
+}
+.input-bor-textarea {
+    background: url("/image/Input-box_1_104.png") repeat-x scroll 0 0 #FFFFFF;
+    height: 104px;
+}
+.input-bor-textarea .input-arrow-bottomleft {
+}
+.input-bor-textarea .input-arrow-bottomright {
+}
+.feedback-list .feedback-select {
+    height: 20px;
+    margin-bottom: 19px;
+    position: relative;
+}
+.feedback-list .feedback-select select {
+    float: left;
+    width: 188px;
+}
+
+.submit-btn {
+    margin-top: 30px;
+}
+/*
+.submit-btn a {
+	
+    background: url("/image/bottom_197_126.png") repeat scroll 0 0 transparent;
+    display: block;
+    height: 63px;
+    width: 197px;
+}
+
+.submit-btn a:hover {
+    background: url("/image/bottom_197_126.png") repeat scroll 0 -63px transparent;
+}
+*/
+.red-star {
+    color: #FF0000;
+    float: left;
+    margin-left: 9px;
+}
+.feedback-tip {
+    position: absolute;
+	display:none;
+}
+.feedback-tip div {
+    float: left;
+}
+.feedback-arrow-left {
+    background: url("/image/lift_10_38.png") repeat scroll 0 0 transparent;
+    height: 38px;
+    width: 10px;
+}
+.feedback-tip-con {
+    background: none repeat scroll 0 0 #FBF2E0;
+    border-bottom: 2px solid #F5C980;
+    border-top: 2px solid #F5C980;
+    color: #787878;
+    font-size: 16px;
+    font-weight: bold;
+    height: 34px;
+    line-height: 34px;
+    padding-left: 2px;
+    padding-right: 2px;
+}
+.feedback-arrow-right {
+    background: url("/image/right_10_38.png") repeat scroll 0 0 transparent;
+    height: 38px;
+    width: 10px;
+}
+.feedback-input .feedback-tip {
+    left: 230px;
+    top: 14px;
+}
+.feedback-textarea .feedback-tip {
+    right: 245px;
+    top: 110px;
+	display:none;
+}
+.feedback-select .feedback-tip {
+    left: 215px;
+    top: -8px;
+}
+.judge {
+    background: none repeat scroll 0 0 #FFFFFF;
+    display: none;
+    height: 462px;
+    text-align: center;
+}
+.judge-title {
+    padding-top: 70px;
+	text-align:center;
+}
+.judge-icon {
+    background-image: url("/image/icon_18_36.png");
+    display: inline-block;
+    height: 18px;
+    vertical-align: -3px;
+    width: 18px;
+}
+.judge-right {
+    background-position: 0 -18px;
+}
+.judge-wrong {
+    background-position: 0 0;
+}
+.judge-rw {
+    font-size: 14px;
+    font-weight: bold;
+    margin-left: 10px;
+}
+.judge-con {
+    font-size: 14px;
+    line-height: 28px;
+    margin-top: 5px;
+	text-align:center;
+}
+.judge-con a {
+    color: #0981BE;
+}
+.judge-con a:hover {
+    text-decoration: underline;
+}
+#feedback_content{
+	border:1px solid #ccc;
+	float:left;
+}
+#mail{
+	border:1px solid #ccc;
+	float:left;
+	width:200px;
+	height:29px;
+	line-height:29px;
+}
+#con_tip{
+	/*
+	right:50px;
+	*/
+	top:4px;
+}
+.left{
+	float:left;
+}
+.right{
+	float:left;
+}
+#verify_code{
+	border:1px solid #ccc;
+	width:75px;
+	height:29px;
+	line-height:29px;
+	margin-left:10px;
+	padding-left:5px;
+}
+.chg-code{
+	text-decoration:underline;
+	font-size:14px;
+	display:block;
+	text-align:center;
+	color:#336699;
+}
+.feedback-list .feedback-code{
+    height: 40px;
+    margin-bottom: 19px;
+    position: relative;
+	clear:both;
+}
+#code_tip{
+	top:6px;
+	left:182px;
+}

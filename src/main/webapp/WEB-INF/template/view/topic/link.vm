@@ -1,0 +1,201 @@
+<link rel="stylesheet" type="text/css" href="/css/jquery.treeview.css" />
+
+<script type="text/javascript" src="/js/comment.js"></script>
+<script type="text/javascript" src="/js/jquery/jquery.treeview.js"></script>
+
+#if($!{commentsId} && $!{commentsId}!='null' && $!{commentsId}!='')
+  	#set($cId='"'+$!{commentsId}+'"')
+#else
+  	#set($cId='"0"')
+#end
+<script type="text/javascript">
+    $(document).ready(function(){
+        //commentsId 表示某一条评论的ID
+        NS_links_comment.init($!{cId});
+    })
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	//当用户登录后才去判断
+	if($("#userProNick").length > 0) {
+		$("#userProNick").html(chouti.subNickLength($("#userProNick").html(), 5));
+	}
+})
+</script>
+<div class="main-content-band">
+
+<div class="main-content">
+        <div class="content-L" style="margin-top:7px;">
+			
+            <!-- 内容显示区域 -->
+            <div class="content-list" id="content-list">
+                <div class="item nobottom" style="padding-top:0px">
+                    <div class="news-pic" style="padding-top:6px;">
+                        <a><img lang="$!{topic.id}" original="$!{topic.imgUrl}" src="$!{topic.imgUrl}"></a>
+                    </div>
+					#set($contentId="newsContent"+$!{topic.id})
+                    <div class="news-content" id="$contentId">
+                        <div class="part1">
+								#if($!{topic.tabType}=="0")
+								<a href="$!{topic.originalUrl}" class="show-content" target="_blank" onmousedown="linksClickStat($!{topic.id});">
+								<span class="kind-name">【$!{enumViewTools.subjectEnumDesc($!topic.subjectId)}】</span>$!{topic.title}</a>
+								<span class="content-source">-$!{topic.contentSource}</span>
+								#else
+                                <span class="show-content-grey" style="font-weight:normal;color:#333">
+                                <i style="display:none" class="none-title">$!{topic.title}</i>$!{topic.title}</span>
+								#end
+								<!-- 段子和谣言类别不显示类别名称 -->
+                                <a href="/r/ask/hot/1" class="n2"><span class="content-kind">$!{enumViewTools.subjectEnumDesc($!topic.subjectId)}</span></a>
+								<!-- 来源手机客户端 -->
+                                <span class="s-source">来自<a href="/download/model/andorid" target="_blank" class="s-phone">Android</a></span>
+								<!-- 显示话题标签 -->
+								<input type="hidden" id="hidsubjectid" value="$!{topic.subjectId}">
+								<input type="hidden" id="hidjid" value="$!{webUser.getName()}">
+                        </div>
+						<!-- 显示摘要 -->
+						#if($!{topic.content})
+                        <p style="display:none;">$!{topic.content}</p>
+						<p class="area-summary"><span class="summary">$!{topic.content}</span></p>
+						#else
+						<p style="display:none;">$!{topic.title}</p>
+						#end
+                        <div class="part2" style="padding-bottom:8px;" share-pic="$!{topic.imgUrl}" share-title="$!{topic.title}" share-summary="$!{topic.content}" share-linkid="$!{topic.id}" share-subject="$!{enumViewTools.subjectEnumDesc($!topic.subjectId)}">
+                                <a href="javascript:;" class="digg-a" title="推荐">
+									<span class="hand-icon icon-digg"></span>
+									<b>$!{topic.recommend}</b>
+									<i style="display:none">$!{topic.id}</i>
+								</a>
+								<span href="/link/$!{topic.id}" class="discus-a" lang="6530283">
+									<span class="hand-icon icon-discus"></span>
+									<b>76</b>
+								</span>
+                                <a href="javascript:;" class="collect-a" id="collect-a-6530283" lang="6530283" title="加入私藏" destjid="$!{webUser.getName()}" jid="$!{topic.name}">
+									<span class="hand-icon icon-collect"></span>
+									<b>私藏</b>
+								</a>
+								#set($userUrl="/user/"+$!{topic.name}+"/publish")
+                                <a href="$userUrl" class="user-a">
+									<span>
+							#if($!{topic.nickImgurl} && $!{topic.nickImgurl}!='null' && $!{topic.nickImgurl}!='')
+        						<img src="$!{topic.nickImgurl}" width="19px" height="19px">
+        					#else
+        						<img src="/images/image30.png" width="19px" height="19px" >
+							#end
+									</span>
+									<b>$!{topic.nick}</b>
+								</a>
+								<span class="left time-into">
+									<span style="color:#99AECB" class="span">
+										<a href="/user/$!{topic.name}" style="color:#99AECB"></a>
+									</span><b>$!{topic.getPublishTime()}</b>
+									<span class="operate">发布</span>
+								</span>
+								<span class="share-site-to" style="visibility: hidden;">
+									<i>分享到</i>
+									<span class="share-icon">
+										<a class="icon-sina" id="icon-sina" title="分享到新浪微博" href="javascript:;" hidefocus="true"></a>
+										<a class="icon-douban" id="icon-douban" title="分享到豆瓣" href="javascript:;" hidefocus="true"></a>
+										<a class="icon-qqzone" id="icon-qqzone" title="分享到QQ空间" href="javascript:;" hidefocus="true"></a>
+										<a class="icon-tenxun" id="icon-tenxun" title="分享到腾讯微博" href="javascript:;" hidefocus="true"></a>
+										<a class="icon-renren" id="icon-renren" title="分享到人人网" href="javascript:;" hidefocus="true"></a>
+										<a class="share-none"> </a>
+									</span>
+								</span>
+						</div>
+                    </div>
+                </div>
+            </div>
+			
+            <!-- 只有登录状态下才能看到评论输入框 -->
+            <div class="yaoyan-sel-area">
+                <input type="radio" name="isAssent" id="myBelive" value="1" />
+                <label style="display:none;">$!{topic.content}</label>                                  
+			    <label for="myBelive" style="color:#339900">相信</label>
+                <input type="radio" name="isAssent" id="myNoBelive" value="0" />
+                <label for="myNoBelive" style="color:#CC3300">质疑</label>
+            </div>
+            
+            <!-- 评论输入框width:565px; -->
+            <div id="publish-content-comment" class="publish-content-duanzi" style="display: block;width:630px;">
+                <div class="txt-input-area corner no-corner-bottom" style="position:relative;">
+                    <textarea class="txt-comment" id="txt-comment" name="txt-comment" style="width: 614px; background-color: rgb(255, 255, 255);"></textarea>
+                    <label style="display: block;" for="txt-comment" id="lab-comment">发布新评论...</label>
+                </div>
+                <div id="comment-buttonpane1" class="dialog-buttonpane corner-bottom noright">
+                    <div class="button-container">
+                        <a id="pub-btn4" href="javascript:;" class="pub-icons pub-btn pub-btn-unvalid">评论</a>
+                        <a id="pub-loading4" href="javascript:;" class="loading">发布中...</a>
+                    </div>
+                    <div class="write-length">
+                        还可以输入<span id="showLength4">150</span>字
+                    </div>
+                    <div class="write-error" style="display: none;">
+                        标题已超出<span id="moreLength4">10</span>个字
+                    </div>
+                    <div id="write-error-box4" class="write-error-box">
+                        <div class="write-error-desc" style="display: none;">
+                            您发布过于频繁，请2分钟后重新发布
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            #if(!$!{webUser.hasLogin()})
+            <div class="nologin-sel-area">
+                登录后才可以发表评论哦！可以选择 <a href="javascript:;" class="login-btn-a" id="login-link-a-a">登录</a>
+                <span>|</span>
+                <a href="javascript:;" class="login-btn-a" id="reg-link-a-a">注册</a>
+            </div>
+            #end
+
+            <div style="height:40px;overflow:hidden;"></div>
+            
+            <!-- 最热最新导航 -->
+            
+            <div class="set-tags" id="tabs-nav-comment">						
+    			<a href="javascript:;" class="tb sort-a w-active" id="comment-hot-tab">最热</a>
+    			<a href="javascript:;" class="tb sort-a" id="comment-new-tab">最新</a>    			    			
+    			<div class="set-line"></div>
+    			<div class="comment-sum">共<span id="commentSum">76</span>条评论</div>
+                <div id="newCommentId" style="display:none"></div>		
+    		</div>
+                   
+            <div class="no-comment-area" id="no-comment-area" style="display: none;">
+                <div class="no1">还没有评论哦！</div>
+                <div class="no2">赶紧当第一个评论者吧！</div>
+            </div>
+			
+            <div class="loading-ico" id="loading-msg-box-comment" style="margin-left: 250px; display: none;">加载中，请稍候... </div>
+			
+            <div class="overflow:hidden;clear:both;font:0;height:0px;"></div>
+			
+            <!-- 评论树状内容 comment-list-->
+			<ul id="comment-list" class="filetree treeview" style="background: none;"></ul>
+			<!--#parse("/widget/common/commentList.vm")-->
+			
+            <!-- 你可能感兴趣的 -->
+            <div class="interest-news-area" id="interest-news-area" style="display: block;">
+                <div class="news-t">您可能感兴趣的：</div>
+                <a href="javascript:;" id="chgNewsBtn" class="chg-news-btn">换一换</a>
+                <div class="news-lists" id="news-lists" action-type="6530283">
+                    
+                </div>
+            </div>
+
+        </div>
+    	
+        <div class="content-R">
+            <!-- 如果是从第三方站点发布后进入的评论页面，则显示进入首页的广告 -->
+			<a href="javascript:;" lang="" class="publish-btn" id="publishBtn" style="float:none;margin-bottom:10px;">
+				<span class="ico n1"></span>
+				<span class="n2">发布</span>
+			</a>
+			
+            $widget.setTemplate("common/topBan").addParam('subjectId',$!{subject})
+        </div>
+				
+</div>
+			
+#parse("/widget/common/footer.vm")				
+</div>

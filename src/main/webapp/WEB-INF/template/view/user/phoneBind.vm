@@ -1,0 +1,179 @@
+<link rel="stylesheet" type="text/css" href="/css/setnewpassword.css" />
+<link rel="stylesheet" type="text/css" href="/css/newSetting.css" />
+
+<script type="text/javascript" src="/js/register.js"></script>
+<script type="text/javascript" src="/js/person_bind_phone.js"></script>
+<script type="text/javascript" src="/js/registercommon.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	NS_person_bind_phone.init();
+});
+</script>
+<script type="text/javascript">
+$(document).ready(function(){
+	//当用户登录后才去判断
+	if($("#userProNick").length > 0) {
+		$("#userProNick").html(chouti.subNickLength($("#userProNick").html(), 5));
+	}
+})
+</script>
+
+<div id="H-avaupload-dialog" class="upload-dialog corner">
+	<div class="dialog-titlebar">
+		<div class="dialog-title ">
+			<span>头像上传</span>
+		</div>
+		<div class="dialog-titlebar-close"><a id="upload-dialog-btn-close" class="icons dialog-btn-close" title="关闭" href="javascript:;"></a></div>
+	</div>
+	   <div class="avaupload-dialog-content corner">
+	 		<object id="GozapToolComponentTest" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=10,0,0,0" width="541" height="452">
+  				<param name="movie" value="/images/upload.swf">
+  				<param name="quality" value="high">
+  				<param name="allowScriptAccess" value="always">
+  				<param name="FlashVars" value="swfId=hasScan&amp;showStyle=0&amp;uploadDataFieldName=upload&amp;uploadSvrURL=/ajaxUpload.htm?a=1">
+  
+  				<embed src="/images/upload.swf" id="GozapToolComponentTest" allowscriptaccess="always" swliveconnect="true" quality="high" pluginspage="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash" type="application/x-shockwave-flash" flashvars="swfId=hasScan&amp;showStyle=0&amp;uploadDataFieldName=upload&amp;uploadSvrURL=/ajaxUpload.htm?a=1" width="541" height="452">
+  				
+			</object>
+	 	 </div>
+</div>
+	
+<script>
+//上传头像，flash回调函数
+//头像上传成功
+function Head_Pic_Rece_URL(str,swfId){
+	chouti.Head_Pic_Rece_URL_info(str,swfId);
+}
+//关闭上传弹出框
+function Head_Pic_Cancel(swfId){
+	chouti.Head_Pic_Cancel_info();
+}
+</script>
+
+
+<div class="main-content-band">
+	
+    <div class="main-content" id="bind-content">
+
+      		<div class="reset-area" style="width:710px;">
+          		<div class="set-tags top30">
+          			<a href="/profile" class="tb">帐号设置</a>
+               		<a href="/message/edit" class="tb">通知设置</a>
+               		<a href="/profile/bind" class="tb w-active">绑定手机</a>
+               		<div class="set-line"></div>
+          		</div>
+          		<div class="set-nav">未经授权，买买君热榜不会向任何第三方泄露您的手机号码，请放心操作。</div>
+
+				#if($!{member.mobile} && $!{member.mobile} != 'null' && $!{member.mobile} != '')
+				<!-- 用户绑定手机界面 -->
+              	<div id="bindPhone_area">
+              		<div class="show-phoneCode">当前绑定号码为：+86$!{member.mobile}</div> ##+8618912386146
+              		<div class="bindBtn-area">
+              			<a class="common-btn" href="javascript:;" id="unbindBtn" style="width:113px;">解除绑定</a>
+              			&nbsp;&nbsp;
+              			<a class="common-btn" href="javascript:;" id="repeatbindBtn" style="width:113px;">重新绑定</a>
+              		</div>
+              	</div>
+              	#else
+                <!-- 用户没有绑定手机界面 -->
+                <div id="no_bindPhone_area" class="no_bindPhone_area">
+                    <div class="info-table">
+                        <table cellspacing="0" cellpadding="0" border="0" style="width:710px;">
+                          <tbody>
+                              <tr>
+                                <td class="t1">手机号</td>
+                                <td class="td2"><input type="text" tabindex="1" class="text text-normal new-text text-error" id="phoneCode" maxlength="17"></td>
+                                <td class="td3">                
+                                    <div id="tips_userPhoneError" class="tips-bigbox" style="display: block;">
+                                        <div class="tips-smallbox-red tips-info">请输入手机号</div>
+                                        <div class="red-corner arrow"></div>
+                                        <div class="red-vertical-back right-blue"></div>
+                                        <div class="red-cross-back bottom-blue"></div>
+                                        <div class="red-corner top-left"></div><div class="red-corner top-right"></div>
+                                        <div class="red-corner bom-left"></div><div class="red-corner bom-right"></div>
+                                    </div>
+                                    <div id="userphone_sucess_ico" class="sucess-ico" style="display: none;"></div>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td class="t1">
+                                   <img id="authPhoneImg" src="/gozapIdentifyCode?t=0.583490149956273">
+                                   <a href="javascript:;" class="chg-code" id="changeCode">换一张</a>
+                                </td>
+                                <td class="td2">
+                                   <div id="verify_box" style="position:relative;">                     
+                                      <input type="text" tabindex="2" id="verify_code" class="text text-normal new-text" maxlength="4">
+                                      <label style="display: block;" for="verify_code" id="lab_verfify_code">输入图片中的字符</label>   
+                                   </div>                   
+                                </td>
+                                <td class="td3">              
+                                  <div class="tips-bigbox" id="tips_verifyCodeError">
+                                      <div class="tips-smallbox-red tips-info">验证码不正确，请重新输入</div>
+                                      <div class="red-corner arrow"></div>
+                                      <div class="red-vertical-back right-blue"></div>
+                                      <div class="red-cross-back bottom-blue"></div>
+                                      <div class="red-corner top-left"></div><div class="red-corner top-right"></div>
+                                      <div class="red-corner bom-left"></div><div class="red-corner bom-right"></div>
+                                  </div>
+                                  <div class="sucess-ico" id="verfycode_sucess_ico"></div>
+                                 </td>
+                               </tr>
+
+                                <tr>
+                                  <td class="t1" colspan="2">
+                                    <a class="common-btn" href="javascript:;" id="sendCodeBtn" style="width:181px;">发送验证码到手机</a>
+                                  </td>
+                                  <td class="td3">
+                                        <div class="tips-bigbox" id="tips_verifyCodeTimeError">
+                                          <div class="tips-smallbox-red tips-info">发送验证码失败</div>
+                                          <div class="red-corner arrow"></div>
+                                          <div class="red-vertical-back right-blue"></div>
+                                          <div class="red-cross-back bottom-blue"></div>
+                                          <div class="red-corner top-left"></div><div class="red-corner top-right"></div>
+                                          <div class="red-corner bom-left"></div><div class="red-corner bom-right"></div>
+                                        </div>
+                                        <div class="loading-ico" style="margin-top:0px;margin-left:10px" id="send_info_loading_ico">发送中，请稍候...</div>
+                                        <div class="time-out" id="time_out">发送成功！<b id="time_inter">60秒</b>后可再次发送！</div>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td class="t1 td-bottom">验证码</td>
+                                  <td class="td2 td-bottom">
+                                      <div id="sms_box" style="position:relative;">                                        
+                                        <input type="text" tabindex="3" maxlength="4" id="sms_code" class="text text-normal new-text" disabled="" style="background-color: rgb(204, 204, 204);">
+                                        <label style="display: block;" for="sms_code" id="lab_sms_code">输入短信里的验证码</label>
+                                        
+                                      </div>                                                  
+                                  </td>
+                                  <td class="td3 td-bottom">                                        
+                                        <div id="tips_smsCodeError" class="tips-bigbox">
+                                            <div class="tips-smallbox-red tips-info">请输入验证码  </div>
+                                            <div class="red-corner arrow"></div>
+                                            <div class="red-vertical-back right-blue"></div>
+                                            <div class="red-cross-back bottom-blue"></div>
+                                            <div class="red-corner top-left"></div><div class="red-corner top-right"></div>
+                                            <div class="red-corner bom-left"></div><div class="red-corner bom-right"></div>
+                                        </div>
+                                        <div id="userOldpass_sucess_ico" class="sucess-ico" style="display: none;"></div>
+                                    </td>
+                                </tr>                          
+                                <tr>
+                                  <td class="t1" colspan="2">
+                                    <a class="common-btn" href="javascript:;" id="bindPhoneBtn" style="margin-top: 0px; cursor: default; background-position: 0px -376px;">绑定</a>
+                                  </td>
+                                  <td class="td3">
+                                    <div class="loading-ico" id="bind_info_loading_ico" style="margin-top:0px;margin-left:10px">绑定中...</div>
+                                    <div id="bind_sucess_info" class="time-out" style="color:#FF6600">绑定手机失败</div>
+                                  </td>
+                               </tr>
+                          </tbody>
+                        </table>      
+                    </div>             
+                </div>
+				#end
+      		</div>
+    </div>  
+        
+#parse("/widget/common/footer.vm") 
+</div>

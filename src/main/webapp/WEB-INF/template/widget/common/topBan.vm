@@ -1,0 +1,44 @@
+<div class="top-band" id="top-band"> 
+ #if($!{subjectId} && $!{subjectId}!='null' && $!{subjectId}!='')	
+ <em class="top-band-type">24小时<em>$!{enumViewTools.subjectEnumDesc($!subjectId)}</em><span> TOP 10</span></em> 
+ #else
+ <em class="top-band-type">24小时<em>全部</em><span> TOP 10</span></em> 
+ #end
+ 
+ <div class="top-band-title"> 
+  <a id="top-title-news" href="javascript:;" class="top-band-title-select">最热条目</a>
+  <a id="top-title-comments" class="top-band-title-default" href="javascript:;">最热评论</a> 
+  <em id="top-bandArrow" style="left: 70px;"></em> 
+ </div> 
+ <div id="top-content-news"> 
+  
+  #set($newsList=$!{topBandViewTools.getTopTopic($!subject)})
+  #foreach($news in $newsList) 
+      <div class="top-item"> 
+       <div class="top-points"> 
+        <a href="/link/$!{news.id}" class="points-a">$!{news.recommend}</a> 
+       </div> 
+       <a class="top-content" href="/link/$!{news.id}" target="_blank">$!{news.title}</a> 
+      </div> 
+  #end
+  
+ </div> 
+ <div id="top-content-comments" style="display: none;"> 
+ 
+  #set($commentsList=$!{topBandViewTools.getTopComments($!subject)})
+  #foreach($comments in $commentsList) 
+      <div class="top-item"> 
+       <a class="top-comm-nick" href="/user/$!{comments.nick}/publish" target="_blank">$!{comments.nick}</a> 
+       <em class="top-comm-time">$!{comments.getCreateTime()}</em> 
+       <div style="float:right;"> 
+        <a class="hot-comment-ding top-comm-operate-pre" lang="$!{comments.id}" linkid="$!{comments.topicId}" jid="$!{comments.nick}" href="javascript:;">顶[$!{comments.ups}]</a> 
+        <a class="hot-comment-cai top-comm-operate-pre" lang="$!{comments.id}" linkid="$!{comments.topicId}" jid="$!{comments.nick}" href="javascript:;">踩[$!{comments.downs}]</a> 
+        <a class="top-comm-operate-pre" href="/link/$!{comments.topicId}/comments/$!{comments.id}" target="_blank">回复</a> 
+       </div> 
+       <div class="top-comm-content">$!{comments.content}</div> 
+       <a class="top-comm-linktitle" href="/link/$!{comments.topicId}" target="_blank">$!{comments.title}</a> 
+      </div> 
+  #end
+
+ </div> 
+</div> 

@@ -1,0 +1,51 @@
+##管理员发送通知页面
+<link  rel="stylesheet" href="/js/uikit/css/uikit.min.css">
+<link id="data-uikit-theme" rel="stylesheet" href="/js/uikit/css/uikit.docs.min.css">
+<link rel="stylesheet" href="/js/uikit/css/docs.css">
+
+<script type="text/javascript" src="/js/uikit/js/uikit.min.js"></script>
+<script type="text/javascript" src="/js/uikit/js/addons/datepicker.js"></script>
+
+<div>
+    <ul class="uk-breadcrumb">
+        <li><a href="/manage/home">Home</a></li>
+        <li class="uk-active"><span>发通知</span></li>
+    </ul>
+</div>
+<br/>
+
+<div>
+	<form class="uk-form uk-form-horizontal">
+        <div class="uk-form-row">
+            <label class="uk-form-label" for="form-h-it">用户昵称</label>
+            <div class="uk-form-controls">
+                <input type="text" id="form-h-it" placeholder="Text input">
+            </div>
+        </div>
+        <div class="uk-form-row">
+            <label class="uk-form-label" for="form-h-ip">用户邮箱</label>
+            <div class="uk-form-controls">
+                <input type="password" id="form-h-ip" placeholder="Password input">
+            </div>
+        </div>
+        <div class="uk-form-row">
+            <label class="uk-form-label" for="form-h-s">阅读状态</label>
+            <div class="uk-form-controls">
+                <select id="form-h-s">
+                    <option>Option 01</option>
+                    <option>Option 02</option>
+                </select>
+            </div>
+        </div>
+        <div class="uk-form-row">
+            <label class="uk-form-label" for="form-h-t">通知内容</label>
+            <div class="uk-form-controls">
+                <textarea id="form-h-t" cols="30" rows="5" placeholder="Textarea text"></textarea>
+            </div>
+        </div>
+        
+        <div class="uk-form-row">
+        	<button class="uk-button uk-button-mini uk-button-success" type="button">提交</button>
+        </div>
+    </form>
+</div>

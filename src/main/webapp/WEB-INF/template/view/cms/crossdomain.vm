@@ -1,0 +1,7 @@
+<?xml version="1.0" ?>
+<cross-domain-policy>
+<allow-access-from domain="*.maimaijun.com"/>
+<allow-access-from domain="*.gozap.com"/>
+<allow-access-from domain="*.labi.com"/>
+<allow-access-from domain="*.shouye.com"/>
+</cross-domain-policy>

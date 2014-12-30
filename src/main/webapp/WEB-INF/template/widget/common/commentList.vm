@@ -1,0 +1,34 @@
+<ul id="comment-list" class="filetree treeview" style="background: none;">
+	<li class="items">
+		<span class="folder" id="folder-6898524" style="background: none rgb(255, 255, 255);">
+			<div class="comment-L">
+				<a href="#" class="icons zhan-ico"></a>
+				<span class="comment-hen-point hen-line">
+					<a href="/user/patentao/publish">
+						<img src="/images/image37.png" />
+					</a>
+				</span>
+			</div>
+			<div class="comment-R">
+				<div class="pp">
+					<a class="name" href="/user/patentao/publish">patentao</a>
+					<span class="into-time">1分钟前发布</span>
+					<span class="into-time s-phone">来自<a class="name" href="/download/model/andorid" target="_blank">Android</a></span>
+				</div>
+				<div class="p2">标题党，不黑不舒服斯基</div>
+				<div class="comment-line">
+					<div class="comment-state">
+						<a class="ding" href="javascript:;">顶</a>
+						<span class="ding-num">[1]</span>
+						<a class="cai" href="javascript:;">踩</a>
+						<span class="cai-num">[0]</span>
+						<a class="see-a jubao" href="javascript:;" lang="6898524">举报</a>
+						<a class="see-a huifu-a" href="javascript:;" id="huifuBtn6898524">回复</a>
+						<input type="hidden" id="hid6898524" value="6898524" />
+					</div>
+				</div>
+				<div class="child-txt-area"></div>
+			</div>
+		</span>
+	</li>
+</ul>

@@ -1,0 +1,101 @@
+<div class="item">
+    <div class="timeIntoPool">1416738237583000,1417071371185000</div>
+    <div class="news-pic">
+    	<img lang="6521142" original="/tmp/alibaba=C60x60.jpg" src="/tmp/alibaba=C60x60.jpg" alt="买买君热榜" style="display: inline;">
+    </div>
+	<div class="null-item"></div>
+	
+	<div class="news-content" id="newsContent6521142">
+		
+		
+		<div class="part1">								
+			<a href="http://ww3.sinaimg.cn/large/6310d41cjw1emiuepp306j20xs0mowm5.jpg" class="show-content" target="_blank" onmousedown="linksClickStat(6521142);">
+				【$!{mySubject}】看看各种编程语言是如何相互瞧不起的。
+			</a>
+			<span class="content-source">-ww3.sinaimg.cn</span>
+			<!-- 段子和谣言类别不显示类别名称 -->
+			<a href="/r/pic/hot/1" class="n2"><span class="content-kind">图片</span></a>
+			<!-- 来源手机客户端 -->
+			<!-- 显示话题标签 -->
+		</div>
+		
+		
+		<!-- 显示摘要 -->
+		<div class="part2" share-pic="/images/image37.png" share-title="看看各种编程语言是如何相互瞧不起的。" share-summary="" share-linkid="6521142" share-subject="图片" style="padding-top: 15px;">
+			<a href="javascript:;" class="digg-a" title="推荐">
+				<span class="hand-icon icon-digg"></span>
+				<b>58</b>
+				<i style="display:none">6521142</i>
+			</a>
+			<a href="javascript:;" class="discus-a" id="discus-a-6521142" lang="6521142">
+				<span class="hand-icon icon-discus"></span>
+				<b>50</b>
+			</a>
+			<a href="javascript:;" class="collect-a" id="collect-a-6521142" lang="6521142" title="加入私藏" destjid="zxc337" jid="koritei">
+				<span class="hand-icon icon-collect"></span>
+				<b>私藏</b>
+			</a>
+			<a href="/user/koritei/publish" class="user-a">
+				<span><img src="/images/image30.png"></span>
+				<b>Tei_tyann</b>
+			</a>
+			<span class="left time-into">
+				<a class="time-a" href="/link/6521142" target="_blank">
+					<b>3天22小时前</b>
+				</a>
+				<i>入热榜</i>
+			</span>
+			<!-- 分享各微博的按钮 -->
+			<span class="share-site-to" style="visibility: hidden;">
+				<i>分享到</i>
+				<span class="share-icon">
+					<a class="icon-sina" id="icon-sina" title="分享到新浪微博" href="javascript:;" hidefocus="true"></a>
+					<a class="icon-douban" id="icon-douban" title="分享到豆瓣" href="javascript:;" hidefocus="true"></a>
+					<a class="icon-qqzone" id="icon-qqzone" title="分享到QQ空间" href="javascript:;" hidefocus="true"></a>
+					<a class="icon-tenxun" id="icon-tenxun" title="分享到腾讯微博" href="javascript:;" hidefocus="true"></a>
+					<a class="icon-renren" id="icon-renren" title="分享到人人网" href="javascript:;" hidefocus="true"></a>
+					<a class="share-none"></a>
+				</span>
+			</span>
+        </div>
+		
+		
+		<!-- 评论区域 -->
+		<div class="comment-box-area" id="comment-box-area-6521142">
+    		<div class="pinglun arrow" id="comt-arrow-6521142"></div>
+    		<a class="pinglun close-comt" title="关闭" href="javascript:;" lang="6521142"></a>
+    		<div class="corner comment-box" id="comment-box-6521142">
+    			<div class="loading-ico loading-ico-top" id="loading-comment-top-6521142" style="margin-left:230px;">加载中，请稍候...</div>
+    			<div class="comment-box-top" id="comment-box-top-6521142">
+    				<div class="tip-1">最热评论(<span id="newestCount-6521142">3</span>)</div>
+    				<div class="tip-2"><a href="/link/6521142" target="_blank"><em class="pinglun em1"></em><span>去评论页面</span></a></div>														
+    			</div>
+    			<!-- 评论树形 -->
+    			<ul class="filetree comment-list-top-2" id="comment-list-top-6521142"></ul>
+    			<!-- 谣言类别显示相信还是置疑选项 -->
+    			<!-- 判断该新闻评论是否关闭 -->
+    			<!-- 评论输入框和回复框 -->
+    			<div class="huifu-top-box" id="huifu-top-box-6521142">
+    				<div class="box-l txt-input-area-div-top corner no-corner-bottom">
+                        <div id="lab-comment-top-6521142" class="lab-comment-top">回复<span id="nick--6521142"></span>:</div>
+    					<!-- 针对谣言文本输入框无效 -->
+						<textarea lang="6521142" maxlength="150" name="txt-huifu-top" id="txt-huifu-top-6521142" class="txt-huifu txt-huifu-top"></textarea>
+    				</div>
+    				<div class="box-r">
+    					<a id="pub-btn-top-6521142" lang="6521142" href="javascript:;" class="pub-icons add-pub-btn add-pub-btn-unvalid">评论</a>
+    					<a id="pub-loading-top-6521142" href="javascript:;" class="loading-ico loading-ico-top pub-loading-top">发布中...</a>
+    				</div>
+    			</div>
+    			<div class="tip-3" id="hidden-comt-6521142">										
+    				<a href="javascript:;" class="hiddenCom-Btn" lang="6521142"><em class="pinglun em2"></em><span>收起</span></a>
+    			</div>
+    			<div class="write-error-box-top">					
+    				<div class="write-error-desc" id="write-error-desc-6521142"></div>
+    			</div>
+    		</div>
+    		<input type="hidden" id="hidsubjectid-6521142" value="4" />
+		</div>
+							
+	</div>
+	
+</div>

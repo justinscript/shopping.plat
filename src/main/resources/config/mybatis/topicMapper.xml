@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mmj.app.biz.mapper.TopicMapper" >
+	<resultMap id="BaseDOResultMap" type="com.mmj.app.biz.domain.BaseDO" >
+  		<id 		column="ID" 			property="id" 				jdbcType="DECIMAL" />
+    	<result 	column="GMT_CREATE" 	property="gmtCreate" 		jdbcType="TIMESTAMP" />
+    	<result 	column="GMT_MODIFIED" 	property="gmtModified" 		jdbcType="TIMESTAMP" />
+    	<result 	column="STATUS" 		property="status" 			jdbcType="DECIMAL" />
+  	</resultMap>
+
+  	<resultMap id="BaseResultMap" type="com.mmj.app.biz.domain.TopicDO" extends="BaseDOResultMap">
+  		<result 	column="USER_ID" 			property="userId" 			jdbcType="DECIMAL" />
+  		<result 	column="SUBJECT_ID" 		property="subjectId" 		jdbcType="DECIMAL" />
+ 		<result 	column="TITLE" 				property="title" 			jdbcType="VARCHAR" />
+  		<result 	column="CONTENT" 			property="content" 			jdbcType="VARCHAR" />
+  		<result 	column="LINK_URL" 			property="linkUrl" 			jdbcType="VARCHAR" />
+  		<result 	column="ORIGINAL_URL" 		property="originalUrl" 		jdbcType="VARCHAR" />
+  		<result 	column="CONTENT_SOURCE" 	property="contentSource" 	jdbcType="VARCHAR" />
+  		<result 	column="CONTENT_KIND" 	    property="contentKind" 		jdbcType="DECIMAL" />
+  		<result 	column="PUBLISH_SOURCE" 	property="publishSource" 	jdbcType="VARCHAR" />
+  		<result 	column="IMG_URL" 			property="imgUrl" 			jdbcType="VARCHAR" />
+  		<result 	column="SUMMARY" 			property="summary" 			jdbcType="VARCHAR" />
+  		<result 	column="RECOMMEND" 			property="recommend" 		jdbcType="DECIMAL" />
+  		<result 	column="COMMENTS" 			property="comments" 		jdbcType="DECIMAL" />
+  		<result 	column="YELLOW" 			property="yellow" 			jdbcType="DECIMAL" />
+  		<result 	column="TAB_TYPE" 			property="tabType" 			jdbcType="DECIMAL" />
+  		<result 	column="TOPIC_STATE" 		property="topicState" 		jdbcType="DECIMAL" />
+  		<result 	column="HIT" 				property="hit" 				jdbcType="DECIMAL" />
+  		<result 	column="IS_VOTE" 			property="isVote" 			jdbcType="DECIMAL" />
+  		<result 	column="IS_BAN" 			property="isBan" 			jdbcType="DECIMAL" />
+  		
+  		<result 	column="NAME" 			    property="name" 			jdbcType="VARCHAR" />
+  	</resultMap>
+  	
+  	<sql id="table_columns_without_id">
+  		GMT_CREATE,GMT_MODIFIED,STATUS,
+  		USER_ID,SUBJECT_ID,TITLE,CONTENT,LINK_URL,ORIGINAL_URL,CONTENT_SOURCE,CONTENT_KIND,
+  		PUBLISH_SOURCE,IMG_URL,SUMMARY,RECOMMEND,COMMENTS,YELLOW,TAB_TYPE,TOPIC_STATE,HIT,IS_VOTE,IS_BAN,NAME
+   	</sql>
+  
+  	<sql id="columns" >
+  		ID,<include refid="table_columns_without_id"/>
+  	</sql>
+  	
+  	<sql id="table_name" >
+  		topic
+  	</sql>
+  	
+  	<sql id="orderby_clause">
+        order by GMT_MODIFIED DESC
+    </sql>
+    
+  	<sql id="query_where_clause">
+  		<trim prefix="where" prefixOverrides="and|or"> 
+  			<if test="t.id !=null ">  
+	            ID = #{t.id, jdbcType=INTEGER}
+	        </if> 
+	        <if test="t.status != null ">  
+	            and STATUS = #{t.status, jdbcType=INTEGER}
+	        </if> 
+          	<if test="t.status == null and status != null ">  
+	            and STATUS = #{status, jdbcType=INTEGER}
+	        </if>
+	        <if test="startGmtCreate != null and startGmtCreate != '' ">  
+	            and <![CDATA[ GMT_CREATE >= date_format(#{startGmtCreate, jdbcType=VARCHAR},'%Y-%m-%d %H:%i:%s')]]>
+	        </if>
+	        <if test="endGmtCreate != null and endGmtCreate != '' ">  
+	            and <![CDATA[ GMT_CREATE <= date_format(#{endGmtCreate, jdbcType=VARCHAR},'%Y-%m-%d %H:%i:%s')]]> 
+	        </if>
+	        <if test="startGmtModified != null and startGmtModified != '' ">  
+	            and <![CDATA[ GMT_MODIFIED >= date_format(#{startGmtModified, jdbcType=VARCHAR},'%Y-%m-%d %H:%i:%s')]]>
+	        </if>
+	        <if test="endGmtModified != null and endGmtModified != '' ">  
+	            and <![CDATA[ GMT_MODIFIED <= date_format(#{endGmtModified, jdbcType=VARCHAR},'%Y-%m-%d %H:%i:%s')]]>
+	        </if>
+	       
+	        <if test="t.userId != null ">  
+	            and USER_ID = #{t.userId, jdbcType=INTEGER}
+	        </if> 
+	        <if test="t.name != null and t.name != '' ">  
+	            and NAME = #{t.name, jdbcType=VARCHAR}
+	        </if>
+          	<if test="t.subjectId != null ">  
+	            and SUBJECT_ID = #{t.subjectId, jdbcType=INTEGER}
+	        </if>
+	        <if test="t.contentSource != null and t.contentSource != '' ">  
+	            and CONTENT_SOURCE = #{t.contentSource, jdbcType=VARCHAR}
+	        </if> 
+          	<if test="t.contentKind != null ">  
+	            and CONTENT_KIND = #{t.contentKind, jdbcType=INTEGER}
+	        </if>
+	        <if test="t.publishSource != null and t.publishSource != '' ">  
+	            and PUBLISH_SOURCE = #{t.publishSource, jdbcType=VARCHAR}
+	        </if> 
+          	<if test="t.tabType != null ">  
+	            and TAB_TYPE = #{t.tabType, jdbcType=INTEGER}
+	        </if>
+	        <if test="t.topicState != null ">  
+	            and TOPIC_STATE = #{t.topicState, jdbcType=INTEGER}
+	        </if> 
+          	<if test="t.isVote != null ">  
+	            and IS_VOTE = #{t.isVote, jdbcType=INTEGER}
+	        </if>
+	        <if test="t.isBan != null ">  
+	            and IS_BAN = #{t.isBan, jdbcType=INTEGER}
+	        </if>
+	        <if test="t.title !=null and t.title != '' ">
+				and TITLE like CONCAT('%',#{t.title, jdbcType=VARCHAR},'%')
+			</if>
+	        <if test="t.content !=null and t.content != '' ">
+				and CONTENT like CONCAT('%',#{t.content, jdbcType=VARCHAR},'%')
+			</if>
+	    </trim> 
+  	</sql>
+  		
+  	<sql id="update_where_clause">
+		<trim prefix="where" prefixOverrides="and|or"> 
+	        <if test="id !=null ">  
+	            ID = #{id, jdbcType=INTEGER}
+	        </if> 
+	        <if test="status !=null ">  
+	            and STATUS = #{status, jdbcType=INTEGER}
+	        </if>
+	        
+	        <if test="t.userId != null ">  
+	            and USER_ID = #{t.userId, jdbcType=INTEGER}
+	        </if> 
+	        <if test="t.name != null and t.name != '' ">  
+	            and NAME = #{t.name, jdbcType=VARCHAR}
+	        </if>
+          	<if test="t.subjectId != null ">  
+	            and SUBJECT_ID = #{t.subjectId, jdbcType=INTEGER}
+	        </if>
+	        <if test="t.contentSource != null and t.contentSource != '' ">  
+	            and CONTENT_SOURCE = #{t.contentSource, jdbcType=VARCHAR}
+	        </if> 
+          	<if test="t.contentKind != null ">  
+	            and CONTENT_KIND = #{t.contentKind, jdbcType=INTEGER}
+	        </if>
+	        <if test="t.publishSource != null and t.publishSource != '' ">  
+	            and PUBLISH_SOURCE = #{t.publishSource, jdbcType=VARCHAR}
+	        </if> 
+          	<if test="t.tabType != null ">  
+	            and TAB_TYPE = #{t.tabType, jdbcType=INTEGER}
+	        </if>
+	        <if test="t.topicState != null ">  
+	            and TOPIC_STATE = #{t.topicState, jdbcType=INTEGER}
+	        </if> 
+          	<if test="t.isVote != null ">  
+	            and IS_VOTE = #{t.isVote, jdbcType=INTEGER}
+	        </if>
+	        <if test="t.isBan != null ">  
+	            and IS_BAN = #{t.isBan, jdbcType=INTEGER}
+	        </if>
+	        <if test="t.title !=null and t.title != '' ">
+				and TITLE like CONCAT('%',#{t.title, jdbcType=VARCHAR},'%')
+			</if>
+	        <if test="t.content !=null and t.content != '' ">
+				and CONTENT like CONCAT('%',#{t.content, jdbcType=VARCHAR},'%')
+			</if>
+	    </trim>
+   	</sql>
+  		
+  	<sql id="update_set_clause">
+  		<trim prefix="set GMT_MODIFIED= now()," suffixOverrides=",">  
+	        <if test="status !=null ">  
+	            STATUS = #{status, jdbcType=INTEGER},
+	        </if> 
+	        
+	        <if test="userId !=null ">  
+	            USER_ID = #{userId, jdbcType=INTEGER},
+	        </if>
+	        <if test="subjectId !=null ">  
+	            SUBJECT_ID = #{subjectId, jdbcType=INTEGER},
+	        </if>
+	        <if test="title !=null and title != '' ">  
+	            TITLE = #{title, jdbcType=VARCHAR},
+	        </if>
+	        <if test="content != null and content != '' ">  
+	            CONTENT = #{content, jdbcType=VARCHAR},
+	        </if> 
+	        <if test="linkUrl !=null and linkUrl != '' ">  
+	            LINK_URL = #{linkUrl, jdbcType=VARCHAR},
+	        </if>
+	        <if test="originalUrl !=null and originalUrl != '' ">  
+	            ORIGINAL_URL = #{originalUrl, jdbcType=VARCHAR},
+	        </if>
+	        <if test="contentSource !=null and contentSource != '' ">  
+	            CONTENT_SOURCE = #{contentSource, jdbcType=VARCHAR},
+	        </if>
+	        <if test="contentKind !=null ">  
+	            CONTENT_KIND = #{contentKind, jdbcType=INTEGER},
+	        </if>
+	        <if test="publishSource !=null and publishSource != '' ">  
+	            PUBLISH_SOURCE = #{publishSource, jdbcType=VARCHAR},
+	        </if>
+	        <if test="imgUrl !=null and imgUrl != '' ">  
+	            IMG_URL = #{imgUrl, jdbcType=VARCHAR},
+	        </if>
+	        <if test="summary !=null and summary != '' ">  
+	            SUMMARY = #{summary, jdbcType=VARCHAR},
+	        </if>
+	        <if test="recommend != null ">  
+	            RECOMMEND = #{recommend, jdbcType=INTEGER},
+	        </if> 
+	        <if test="comments != null ">  
+	            COMMENTS = #{comments, jdbcType=INTEGER},
+	        </if>
+	        <if test="yellow != null ">  
+	            YELLOW = #{yellow, jdbcType=INTEGER},
+	        </if>
+	        <if test="tabType !=null ">  
+	            TAB_TYPE = #{tabType, jdbcType=INTEGER},
+	        </if>
+	        <if test="topicState !=null ">  
+	            TOPIC_STATE = #{topicState, jdbcType=INTEGER},
+	        </if>
+	        <if test="hit !=null ">  
+	            HIT = #{hit, jdbcType=INTEGER},
+	        </if>
+	        <if test="isVote !=null ">  
+	            IS_VOTE = #{isVote, jdbcType=INTEGER},
+	        </if>
+	        <if test="isBan !=null ">  
+	            IS_BAN = #{isBan, jdbcType=INTEGER},
+	        </if>
+	        <if test="name != null and name != '' ">  
+	            NAME = #{name, jdbcType=VARCHAR}
+	        </if>
+   		</trim>
+  	</sql>
+  		
+   	<select id="list" resultMap="BaseResultMap" parameterType="java.util.Map">
+   		select  <include refid="columns" /> 
+   		from <include refid="table_name" /> 
+   		<include refid="orderby_clause"/>
+	  	<if test="limitSize != null" >
+	        <include refid="PAGINATION.MYSQL_PAGINATION" />
+	    </if>
+  	</select>
+  	
+  	<select id="listQuery" resultMap="BaseResultMap" parameterType="com.mmj.app.biz.query.TopicQuery">
+   		select  <include refid="columns" /> 
+   		from <include refid="table_name" /> 
+   		<include refid="query_where_clause"/>
+   		<include refid="orderby_clause"/>
+  	</select>
+  
+  	<select id="listPagination" resultMap="BaseResultMap" parameterType="com.mmj.app.biz.query.TopicQuery">
+		select <include refid="columns"/>
+		from <include refid="table_name" /> 
+		<include refid="query_where_clause"/>
+		<if test="sortType !=null and sortType == 'GMT_MODIFIED' ">
+			order by GMT_MODIFIED DESC
+		</if>
+        <if test="sortType !=null and sortType == 'GMT_CREATE' ">
+			order by GMT_CREATE DESC
+		</if>
+		<if test="sortType !=null and sortType == 'RECOMMEND' ">
+			order by RECOMMEND DESC
+		</if>
+		<include refid="PAGINATION.MYSQL_PAGINATION" />
+  	</select>
+  	
+  	<select id="find" resultMap="BaseResultMap" parameterType="com.mmj.app.biz.query.TopicQuery" >
+  		select <include refid="columns"/>
+        from <include refid="table_name" />
+        <include refid="query_where_clause"/>
+        <include refid="orderby_clause"/>
+  	</select>
+  	
+   	<insert id="insert" parameterType="com.mmj.app.biz.domain.TopicDO" useGeneratedKeys="true" keyProperty="id" keyColumn="ID">
+	   	insert into <include refid="table_name" /> (<include refid="table_columns_without_id"/>)
+        values ( now(), now(), 0,
+                #{userId,jdbcType=INTEGER},
+                #{subjectId,jdbcType=INTEGER},
+                #{title,jdbcType=VARCHAR},
+                #{content,jdbcType=VARCHAR},
+                #{linkUrl,jdbcType=VARCHAR},
+                #{originalUrl,jdbcType=VARCHAR},
+                #{contentSource,jdbcType=VARCHAR},
+                #{contentKind,jdbcType=INTEGER},
+                #{publishSource,jdbcType=VARCHAR},
+                #{imgUrl,jdbcType=VARCHAR},
+                #{summary,jdbcType=VARCHAR},
+                1,<!--#{recommend,jdbcType=INTEGER},-->
+                0,<!--#{comments,jdbcType=INTEGER},-->
+                #{yellow,jdbcType=INTEGER},
+                #{tabType,jdbcType=INTEGER},
+                #{topicState,jdbcType=INTEGER},
+                1,<!-- #{hit,jdbcType=INTEGER}, -->
+                0,<!--#{isVote,jdbcType=INTEGER}, -->
+                0,<!--#{isBan,jdbcType=INTEGER}, -->
+                #{name,jdbcType=VARCHAR}
+        )
+        <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+            SELECT LAST_INSERT_ID() as id
+        </selectKey> 
+   	</insert>
+   	
+   	<update id="update" parameterType="com.mmj.app.biz.domain.TopicDO">
+   		update <include refid="table_name" /> 
+       	<include refid="update_set_clause"/>
+       	<include refid="update_where_clause"/>
+  	</update>
+  	
+  	<select id="count" resultType="java.lang.Integer" parameterType="com.mmj.app.biz.query.TopicQuery">
+  		select count(1)
+        from <include refid="table_name" />  
+       	<include refid="query_where_clause"/>
+   	</select>
+   	
+  	<delete id="deleteById" parameterType="java.lang.Integer">
+  		delete from <include refid="table_name" /> where ID = #{id,jdbcType=INTEGER}
+  	</delete>
+  	
+  	<select id="getById" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  		select <include refid="columns" /> 
+  		from <include refid="table_name" /> 
+  		where ID = #{id,jdbcType=INTEGER}
+  	</select>
+  	
+  	<select id="refreshcount" resultType="java.lang.Integer" parameterType="com.mmj.app.biz.query.TopicQuery">
+  		select count(1)
+        from <include refid="table_name" />  
+	    where ID > #{t.id, jdbcType=INTEGER}
+   	</select>
+  	
+  	<select id="getMaxId" resultType="java.lang.Integer" parameterType="com.mmj.app.biz.query.TopicQuery" >
+  		select max(id)
+  		from <include refid="table_name" /> 
+  		<include refid="query_where_clause"/>
+  	</select>
+  	
+  	<select id="getLastPublishTime" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  		select GMT_CREATE
+  		from <include refid="table_name" /> 
+  		where USER_ID = #{uId,jdbcType=INTEGER} 
+  		order by GMT_CREATE desc limit 1;
+  	</select>
+  
+   	<update id="updateById" parameterType="com.mmj.app.biz.domain.TopicDO">
+   		update <include refid="table_name" /> 
+   		<include refid="update_set_clause"/>
+	    where ID = #{id,jdbcType=INTEGER}
+  	</update>
+</mapper>

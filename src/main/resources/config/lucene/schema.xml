@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<schema name="example" version="1.5">
+
+ <fields>
+   <field name="mmseg4j_complex_name" 	type="text_mmseg4j_complex" indexed="true" stored="true"/>
+   <field name="mmseg4j_maxword_name" 	type="text_mmseg4j_maxword" indexed="true" stored="true"/>
+   <field name="mmseg4j_simple_name" 	type="text_mmseg4j_complex" indexed="true" stored="true"/>
+   <field name="jcseg4j_complex_name" 	type="text_jcseg_complex" 	indexed="true" stored="true"/>
+   
+   <!-- 发布信息索引 -->
+   <field name="topicId" 		    	type="long" 				indexed="true"  stored="true" />  
+   <field name="topicGmtCreate" 		type="long" 				indexed="true"  stored="true" />
+   <field name="topicGmtModified" 		type="long" 				indexed="true" 	stored="true" />
+   <field name="topicStatus" 			type="int" 					indexed="true" 	stored="true" />
+   
+   <field name="title" 					type="text_jcseg_complex" 	indexed="true" 	stored="true" />
+   <field name="content" 		    	type="text_jcseg_complex" 	indexed="true" 	stored="true" />
+   <field name="linkUrl" 		    	type="string" 				indexed="true" 	stored="true" />
+   <field name="originalUrl" 			type="string" 				indexed="true" 	stored="true" />
+   <field name="contentSource" 			type="string" 				indexed="true" 	stored="true" />
+   <field name="contentKind" 			type="string" 				indexed="true" 	stored="true" />
+   <field name="publishSource" 			type="string" 				indexed="true" 	stored="true" />
+   <field name="imgUrl" 		    	type="string" 				indexed="true" 	stored="true" />
+   <field name="summary" 		    	type="text_jcseg_complex" 	indexed="true" 	stored="true" />
+   <field name="recommend" 				type="int" 					indexed="true" 	stored="true" />
+   <field name="comments" 				type="int" 					indexed="true" 	stored="true" />
+   <field name="yellow" 				type="int" 					indexed="true" 	stored="true" />
+   <field name="tabType" 				type="int" 					indexed="true" 	stored="true" />
+   <field name="subjectId" 				type="int" 					indexed="true" 	stored="true" />
+   <field name="topicState" 	    	type="int" 					indexed="true" 	stored="true" />
+   <field name="hit" 					type="int" 					indexed="true" 	stored="true" />
+   <field name="userId" 				type="long" 				indexed="true" 	stored="true" />
+   <field name="userName" 		    	type="string" 				indexed="true" 	stored="true" />
+   <field name="userNick" 		    	type="string" 				indexed="true" 	stored="true" />
+   <field name="nickImgurl" 			type="string" 				indexed="true" 	stored="true" />
+
+   <field name="topicSearch" 			type="text_jcseg_complex" 	indexed="true" stored="false" multiValued="true" />
+   <copyField source="title" 			dest="topicSearch" />
+   <copyField source="content" 			dest="topicSearch" />
+   <copyField source="summary" 			dest="topicSearch" />
+   
+   <!-- 用户信息索引 -->
+   <field name="memberId" 		    	type="long" 				indexed="true"  stored="true" />  
+   <field name="memberGmtCreate" 		type="long" 				indexed="true"  stored="true" />
+   <field name="memberGmtModified" 		type="long" 				indexed="true" 	stored="true" />
+   <field name="memberStatus" 			type="int" 					indexed="true" 	stored="true" />
+   
+   <field name="name" 					type="string" 				indexed="true" 	stored="true" />
+   <field name="nick" 		    		type="text_jcseg_complex" 	indexed="true" 	stored="true" />
+   <field name="pic" 		    		type="string" 				indexed="true" 	stored="true" />
+   <field name="publishCount" 			type="int" 					indexed="true" 	stored="true" />
+   <field name="likedCount" 			type="int" 					indexed="true" 	stored="true" />
+   <field name="commentsCount" 			type="int" 					indexed="true" 	stored="true" />
+   <field name="userState" 				type="int" 					indexed="true" 	stored="true" />
+
+   <!-- 默认索引配置 -->
+   <field name="text" 					type="text_general" 		indexed="true" 	stored="false" 	multiValued="true"/>  
+   <field name="_root_" 				type="string" 				indexed="true" 	stored="false" />
+   <field name="cat" 					type="string" 				indexed="true" 	stored="true" 	multiValued="true"/>
+   <field name="weight" 				type="float" 				indexed="true" 	stored="true" />
+   <field name="price"  				type="float" 				indexed="true" 	stored="true" />
+   <field name="popularity" 			type="int" 					indexed="true" 	stored="true" />
+   <field name="inStock" 				type="boolean" 				indexed="true" 	stored="true" />
+   <field name="store" 					type="location" 			indexed="true" 	stored="true" />
+   <field name="content_type" 			type="string" 				indexed="true" 	stored="true" 	multiValued="true"/>
+   <field name="last_modified" 			type="date" 				indexed="true" 	stored="true" />
+   <field name="links" 					type="string" 				indexed="true" 	stored="true" 	multiValued="true"/>
+   <field name="manu_exact" 			type="string" 				indexed="true" 	stored="false" />
+   <field name="payloads" 				type="payloads" 			indexed="true" 	stored="true" />
+   <field name="_version_" 				type="long" 				indexed="true" 	stored="true" />  
+ </fields>
+	
+  <types>
+
+    <fieldType name="text_mmseg4j_complex" class="solr.TextField" positionIncrementGap="100" >  
+      <analyzer>  
+        <tokenizer class="com.zb.mmseg.solr.MMSegTokenizerFactory" mode="complex" />  
+      </analyzer>  
+    </fieldType>  
+    <fieldType name="text_mmseg4j_maxword" class="solr.TextField" positionIncrementGap="100" >  
+      <analyzer>  
+        <tokenizer class="com.zb.mmseg.solr.MMSegTokenizerFactory" mode="max-word" />  
+      </analyzer>  
+    </fieldType>  
+     <!--<fieldType name="text_mmseg4j_simple" class="solr.TextField" positionIncrementGap="100" >  
+      <analyzer>  
+        <tokenizer class="com.zb.mmseg.solr.MMSegTokenizerFactory" mode="simple" dicPath=""/> 
+        <tokenizer class="com.zb.mmseg.solr.MMSegTokenizerFactory" mode="simple" dicPath=""/>   
+      </analyzer>  
+    </fieldType> -->
+    <fieldtype name="text_jcseg_complex" class="solr.TextField" positionIncrementGap="100">
+        <analyzer>
+            <tokenizer class="com.zb.jcseg.solr.JcsegTokenizerFactory" mode="complex" />
+            <filter class="solr.LowerCaseFilterFactory"/>
+        </analyzer>
+    </fieldtype>
+    
+    <fieldType name="text_general" class="solr.TextField" positionIncrementGap="100">
+      <analyzer type="index">
+        <tokenizer class="solr.StandardTokenizerFactory"/>
+        <filter class="solr.LowerCaseFilterFactory"/>
+      </analyzer>
+      <analyzer type="query">
+        <tokenizer class="solr.StandardTokenizerFactory"/>
+        <filter class="solr.LowerCaseFilterFactory"/>
+      </analyzer>
+    </fieldType>
+    
+    <fieldType name="suggest_text" class="solr.TextField" positionIncrementGap="100" autoGeneratePhraseQueries="true">
+	    <analyzer type="index">
+	            <tokenizer class="solr.KeywordTokenizerFactory" />
+	            <filter class="solr.LowerCaseFilterFactory" />
+	    </analyzer>
+	    <analyzer type="query">
+	            <tokenizer class="solr.KeywordTokenizerFactory" />
+	            <filter class="solr.LowerCaseFilterFactory" />
+	    </analyzer>
+	</fieldType>
+
+    <fieldType name="string" class="solr.StrField" sortMissingLast="true" />
+    <fieldType name="boolean" class="solr.BoolField" sortMissingLast="true"/>
+    <fieldType name="int" class="solr.TrieIntField" precisionStep="0" positionIncrementGap="0"/>
+    <fieldType name="float" class="solr.TrieFloatField" precisionStep="0" positionIncrementGap="0"/>
+    <fieldType name="long" class="solr.TrieLongField" precisionStep="0" positionIncrementGap="0"/>
+    <fieldType name="double" class="solr.TrieDoubleField" precisionStep="0" positionIncrementGap="0"/>
+   
+    <fieldType name="tint" class="solr.TrieIntField" precisionStep="8" positionIncrementGap="0"/>
+    <fieldType name="tfloat" class="solr.TrieFloatField" precisionStep="8" positionIncrementGap="0"/>
+    <fieldType name="tlong" class="solr.TrieLongField" precisionStep="8" positionIncrementGap="0"/>
+    <fieldType name="tdouble" class="solr.TrieDoubleField" precisionStep="8" positionIncrementGap="0"/>
+    
+    <fieldType name="date" class="solr.TrieDateField" precisionStep="0" positionIncrementGap="0"/>
+    <fieldType name="tdate" class="solr.TrieDateField" precisionStep="6" positionIncrementGap="0"/>
+    <fieldtype name="binary" class="solr.BinaryField"/>
+    <fieldType name="pint" class="solr.IntField"/>
+    <fieldType name="plong" class="solr.LongField"/>
+    <fieldType name="pfloat" class="solr.FloatField"/>
+    <fieldType name="pdouble" class="solr.DoubleField"/>
+    <fieldType name="pdate" class="solr.DateField" sortMissingLast="true"/>
+    <fieldType name="random" class="solr.RandomSortField" indexed="true" />
+
+    <fieldType name="text_ws" class="solr.TextField" positionIncrementGap="100">
+      <analyzer>
+        <tokenizer class="solr.WhitespaceTokenizerFactory"/>
+      </analyzer>
+    </fieldType>
+
+    <fieldType name="alphaOnlySort" class="solr.TextField" sortMissingLast="true" omitNorms="true">
+      <analyzer>
+        <tokenizer class="solr.KeywordTokenizerFactory"/>
+        <filter class="solr.LowerCaseFilterFactory" />
+        <filter class="solr.TrimFilterFactory" />
+        <filter class="solr.PatternReplaceFilterFactory" pattern="([^a-z])" replacement="" replace="all"/>
+      </analyzer>
+    </fieldType>
+    
+    <fieldtype name="phonetic" stored="false" indexed="true" class="solr.TextField" >
+      <analyzer>
+        <tokenizer class="solr.StandardTokenizerFactory"/>
+        <filter class="solr.DoubleMetaphoneFilterFactory" inject="false"/>
+      </analyzer>
+    </fieldtype>
+
+    <fieldtype name="payloads" stored="false" indexed="true" class="solr.TextField" >
+      <analyzer>
+        <tokenizer class="solr.WhitespaceTokenizerFactory"/>
+        <filter class="solr.DelimitedPayloadTokenFilterFactory" encoder="float"/>
+      </analyzer>
+    </fieldtype>
+
+    <fieldType name="lowercase" class="solr.TextField" positionIncrementGap="100">
+      <analyzer>
+        <tokenizer class="solr.KeywordTokenizerFactory"/>
+        <filter class="solr.LowerCaseFilterFactory" />
+      </analyzer>
+    </fieldType>
+
+    <fieldType name="descendent_path" class="solr.TextField">
+      <analyzer type="index">
+		  <tokenizer class="solr.PathHierarchyTokenizerFactory" delimiter="/" />
+		      </analyzer>
+		      <analyzer type="query">
+		  <tokenizer class="solr.KeywordTokenizerFactory" />
+      </analyzer>
+    </fieldType>
+    
+    <fieldType name="ancestor_path" class="solr.TextField">
+      <analyzer type="index">
+		  <tokenizer class="solr.KeywordTokenizerFactory" />
+		      </analyzer>
+		      <analyzer type="query">
+		  <tokenizer class="solr.PathHierarchyTokenizerFactory" delimiter="/" />
+      </analyzer>
+    </fieldType>
+    
+    <fieldtype name="ignored" 		class="solr.StrField" stored="false" indexed="false" multiValued="true"  />
+    <fieldType name="point" 		class="solr.PointType" dimension="2" subFieldSuffix="_d"/>
+    <fieldType name="location" 		class="solr.LatLonType" subFieldSuffix="_coordinate"/>
+    <fieldType name="location_rpt" 	class="solr.SpatialRecursivePrefixTreeFieldType" geo="true" distErrPct="0.025" maxDistErr="0.000009" units="degrees" />
+    
+    <fieldType name="text_cjk" 		class="solr.TextField" positionIncrementGap="100">
+      <analyzer>
+        <tokenizer class="solr.StandardTokenizerFactory"/>
+        <filter class="solr.CJKWidthFilterFactory"/>
+        <filter class="solr.LowerCaseFilterFactory"/>
+        <filter class="solr.CJKBigramFilterFactory"/>
+      </analyzer>
+    </fieldType>
+ </types>
+</schema>

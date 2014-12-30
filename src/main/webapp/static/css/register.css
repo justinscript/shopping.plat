@@ -1,0 +1,794 @@
+/* CSS Document */
+/* ======================================================== */
+/* 头部内容部分 */
+
+#register-form{
+	/*
+	margin-top:20px;
+	*/
+}
+.top12{
+	padding-top:12px;
+}
+#register-container .content{
+	padding:40px 45px 0;
+}
+.register-title{
+	/*
+	background:url("/images/cent_secant_4_1.gif") repeat-x scroll left bottom #FFFFFF;
+	*/
+	padding-bottom:15px;
+	color:#787878;
+	font-size:14px;
+	font-weight:bold;
+}
+
+
+/*文本输入框*/
+.text{
+	height:17px;
+	width:187px;
+	padding:4px 0 4px 5px;
+	font-size:12px;
+	font-weight:bold;
+	color:#333;
+	position:absolute;
+}
+
+/*chrome hack*/
+@media all and (min-width: 0px)
+{
+    .text{
+        line-height: normal;
+    }
+}
+
+
+.text-normal{
+	border:1px solid #CDDDEF;
+	background-color:#fff;
+}
+.text-error{
+	border:1px solid #ff0000;
+	background-color:#fff;
+}
+.text-active{
+	border:1px solid #aeaeae;
+	background-color:#ffffd5;
+}
+.text-box{
+	float:left;
+	position:relative;
+	padding:2px;
+	width:194px;
+	height: 27px;
+	overflow:hidden;
+}
+.text-box-normal{
+	background-color:#fff;
+	position:relative;
+	
+}
+.reg-ie6{
+	_height:100%;
+	_width:194px;
+}
+/*获得焦点时变成蓝色*/
+.text-box-active {
+    background-color: #e6ecf3;
+	
+}
+.text-box-active .coner {
+    background-image: url("/images/inputbox_blue_3_12.png");
+    height: 3px;
+    overflow: hidden;
+    position: absolute;
+    width: 3px;
+}
+.text-box-active .top-1eft {
+    background-position: 0 0;
+    left: 0;
+    top: 0;
+}
+.text-box-active .top-right {
+    background-position: 0 -3px;
+    right: 0;
+    top: 0;
+}
+.text-box-active .botm-left {
+    background-position: 0 -6px;
+    bottom: 0;
+	_bottom: -1px;
+    left: 0;
+}
+.text-box-active .botm-right {
+    background-position: 0 -9px;
+    bottom: 0;
+	_bottom: -1px;
+    right: 0;
+}
+
+
+
+.red{
+	color:#CC3300;
+	font-weight:bold;
+	height:19px;
+}
+.yellow-warn{
+	color:#FF6600;
+	font-weight:bold;
+	height:19px;
+}
+.text-box-error{
+	background-color:#ffa6b8;
+}
+.text-box-error .coner{
+	background-image:url("/images/inputbox_red_3_12.png");
+	width:3px;
+	height:3px;
+	position:absolute;
+	overflow:hidden;
+}
+.text-box-error .top-1eft{
+	background-position:0 0;
+	left:0px;
+	top:0px;
+}
+.text-box-error .top-right{
+	background-position:0 -3px;
+	right:0px;
+	_right:-1px;
+	top:0px;
+}
+.text-box-error .botm-left{
+	background-position:0 -6px;
+	left:0px;
+	bottom:0px;
+	_bottom:-1px;
+}
+.text-box-error .botm-right{
+	background-position:0 -9px;
+	right:0px;
+	bottom:0px;
+	_right:-1px;
+	_bottom:-1px;
+}
+table td{
+	padding-top:20px;
+}
+table .td1{
+	text-align:right;
+	font-size:14px;
+	color:#333;
+	padding-right:13px;
+	/*
+	padding-top:7px;
+	*/
+	vertical-align:top;
+	
+}
+table .td2{
+	width:195px;
+	text-align:left;
+	border-collapse:collapse;
+}
+table .td3{
+	vertical-align:bottom;
+}
+#verify_code_server{
+	float:right;
+	margin-right:25px;
+	display:inline;
+	margin-top:2px;
+	overflow:hidden;
+}
+.Domains{
+	font-size:12px;
+	color:#999;
+	text-align:right;
+	overflow:hidden;
+	clear:both;
+}
+a.password-safe{
+	display:block;
+	font-size:12px;
+	color:#6699cc;
+	background:url("/images/question_16_16.png") 0 4px no-repeat;
+	padding-top:4px;
+	padding-top: 6px\9;
+	padding-left:22px;
+	padding-bottom:18px;
+	overflow:hidden;
+	margin-left:4px;
+}
+.height{
+	height:16px;
+	clear:both;
+}
+.terms-service{
+	margin-top:12px;
+	margin-left:75px;
+	clear:both;
+	position:relative;
+}
+.terms-service .L{
+	float:left;
+}
+.terms-service .R{
+	left:245px;
+	left:245px\9;
+	*left:255px;
+	_left:-2px;
+	top:-9px;
+	top:-9px\9;
+	*top:-5px;
+	position:absolute;
+	
+}
+.terms-service input{
+	margin-right:6px;
+	vertical-align:-2px;
+	*vertical-align:-3px;
+}
+.terms-service a{
+	color:#3366cc;
+}
+.terms-service a:hover{
+	text-decoration:underline;
+}
+/*右侧显示的提示信息控件*/
+/*蓝色提示控件*/
+.tips-bigbox{
+	width:245px;
+	height:33px;
+	position:relative;
+	margin-left:10px;
+	display:none;
+}
+.sucess-ico{
+	width:16px;
+	height:16px;
+	margin-left:10px;
+	margin-top:7px;
+	background:url("/images/tip.png") -33px -290px no-repeat;
+	display:none;
+}
+.tips-info{
+	display:block;
+	padding-left:9px;
+	color:#333;
+	font-size:12px;
+}
+.tips-bigbox .blue-corner{
+	background:url("/images/promptdialogbox_blue_8_29.png") 0 0 no-repeat;
+}
+.tips-bigbox .blue-vertical-back{
+	background-image:url("/images/promptdialogbox_blue_vertical_3_3.png");
+}
+.tips-bigbox .blue-cross-back{
+	background-image:url("/images/promptdialogbox_blue_cross_3_3.png");
+}
+#passwordStrong{
+	margin-top:10px;
+}
+#passwordStrong span.strong-desc{
+	margin-right:12px;
+}
+#passwordStrong b.ruo{
+	color:#ff0000;
+	font-size:12px;
+	font-weight:normal;
+	margin-right:3px;
+}
+#passwordStrong b.strong{
+	color:#6699cc;
+	font-size:12px;
+	font-weight:normal;
+	margin-left:3px;
+}
+#passwordStrong span.strong-pic{
+	display:inline-block;
+	border:1px solid #666;
+	width:90px;
+	height:10px;
+	overflow:hidden;
+	vertical-align:-2px;
+}
+/*密码强度*/
+/*空白*/
+.inside-line{
+	float:left;
+	height:8px;
+	border:1px solid #fff;
+}
+.whitenull{
+	width:88px;
+	background-color:#fff;
+}
+/*红色 弱*/
+.redweak{
+	width:22px;
+	background-color:#ff0000;
+}
+/*黄色 中等*/
+.yellowmid{
+	width:44px;
+	background-color:#ff9900;
+}
+/*蓝色 强*/
+.bluestrong{
+	width:66px;
+	background-color:#0099ff;
+}
+/*绿色 安全*/
+.greensafe{
+	width:88px;
+	background-color:#009933;
+}
+/*红色气泡提示*/
+.tips-bigbox .red-corner{
+	background:url("/images/promptdialogbox_red_8_29.png") 0 0 no-repeat;
+}
+.tips-bigbox .red-vertical-back{
+	background-image:url("/images/promptdialogbox_red_vertical_3_3.png");
+}
+.tips-bigbox .red-cross-back{
+	background-image:url("/images/promptdialogbox_red_cross_3_3.png");
+}
+.tips-bigbox .tips-smallbox-red{
+	border:1px solid #ff8996;
+	height:29px;
+	line-height:29px;
+	margin-left:7px;
+	margin-right:3px;
+}
+/**/
+.tips-bigbox .bottom-blue{
+	background-position:0 0px;
+	background-repeat:repeat-x;
+	width:230px;
+	height:3px;
+	position:absolute;
+	left:3px;
+	bottom:1px;
+	margin-left:8px;
+	overflow: hidden;
+}
+.tips-bigbox .right-blue{
+	background-position:0 0px;
+	background-repeat:repeat-y;
+	width:3px;
+	height:27px;
+	position:absolute;
+	right:1px;
+	top:4px;
+}
+.tips-bigbox .right-blue2{
+	height:57px;
+}
+
+.tips-bigbox .tips-smallbox-blue{
+	border:1px solid #95b0dc;
+	height:29px;
+	line-height:29px;
+	margin-left:7px;
+	margin-right:3px;
+}
+.tips-bigbox .tips-smallbox-blue2{
+	border:1px solid #95b0dc;
+	height:58px;
+	margin-left:7px;
+	margin-right:3px;
+}
+.tips-bigbox .tips-smallbox-blue2 .mar{
+	margin-top:9px;
+}
+.tips-bigbox .password-strong-box{
+	margin-left:0px;
+	padding-left:0px;
+}
+#tips_userPassNormal{
+	height:62px;
+}
+#tips_userNameError, #tips_userPassError, #tips_userPassSameError, #tips_userSecretMailError, #tips_verifyCodeError, #tips_termsOfserviceError{
+	display:none;
+}
+.tips-bigbox .arrow{
+	width:8px;
+	height:13px;
+	position:absolute;
+	z-index:1;
+	background-position:0 -16px;
+	background-repeat:no-repeat;
+	left:0px;
+	top:9px;
+}
+.tips-bigbox .top-left{
+	position:absolute;
+	width:3px;
+	height:3px;
+	background-position:0px 0px;
+	left:7px;
+	top:0px;
+	overflow: hidden;
+}
+.tips-bigbox .top-right{
+	position:absolute;
+	width:4px;
+	height:4px;
+	background-position:0 -3px;
+	right:2px;
+	top:0px;
+	overflow: hidden;
+}
+.tips-bigbox .bom-left{
+	position:absolute;
+	width:4px;
+	height:4px;
+	background-position:0px -7px;
+	bottom:2px;
+	left:7px;
+	overflow: hidden;
+}
+.tips-bigbox .bom-right{
+	position:absolute;
+	width:5px;
+	height:5px;
+	background-position:0px -11px;
+	right:1px;
+	bottom:1px;
+	overflow: hidden;
+}
+/*注册按钮*/
+.register-btn {	
+	color:#FFF;
+	margin-top:20px;
+	*margin-top:6px;
+	margin-left:75px;
+	font-size:14px;
+	font-weight:bold;
+	cursor:pointer;
+	float:left;
+	clear:both;
+	height:35px;
+}
+.register-btn span{
+	height:35px;
+	line-height:35px;
+	background-image:url("/images/button_300_593.png");
+	display:inline-block;
+	float:left;
+}
+.register-btn .btn-1{
+	padding-left:30px;
+	background-position:0 -334px;
+}
+
+.register-btn .btn-2{	
+	background-position:right -334px;
+	padding-left:30px;	
+	height:35px;
+	line-height:35px;
+}
+.register-btn:hover .btn-1{
+	background-position:0 -369px;
+	text-decoration:underline;
+}
+.register-btn:hover .btn-2{
+	background-position:right -369px;
+}
+/*如何使您的密码更安全提示框*/
+.howPasswordSafe-box{
+	width:170px;
+	/*
+	height:103px;
+	*/
+	position:absolute;
+	margin-top:-9px;
+	background-color:#ffffd5;
+	z-index:1000;
+	display:none;
+}
+.howPasswordSafe-box .safe-corner{
+	background:url("/images/promptdialogbox_yellow_15_34.png") 0 0 no-repeat;
+}
+.howPasswordSafe-box .safe-vertical-back{
+	background-image:url("/images/promptdialogbox_yellow_vertical_3_3.png");
+}
+.howPasswordSafe-box .safe-cross-back{
+	background-image:url("/images/promptdialogbox_yellow_cross_3_3.png");
+}
+.howPasswordSafe-box .tips-smallbox-safe{
+	border:1px solid #aaa;
+	padding:12px 10px 7px;
+	color:#333;
+	font-size:12px;
+	width:148px;
+	overflow:hidden;
+}
+.howPasswordSafe-box .tips-smallbox-safe ul{
+	margin-top:10px;
+	width:148px;
+}
+.howPasswordSafe-box .tips-smallbox-safe ul li{
+	padding-bottom:6px;
+	list-style-type:disc;
+	list-style-position:inside;
+}
+.howPasswordSafe-box .bottom-blue{
+	background-position:0 0px;
+	background-repeat:repeat-x;
+	width:165px;
+	height:3px;
+	position:absolute;
+	left:3px;
+	bottom:-1px;
+	overflow:hidden;
+}
+.howPasswordSafe-box .right-blue{
+	background-position:0 0px;
+	background-repeat:repeat-y;
+	width:3px;
+	height:106px;
+	height:102px\9;
+	*height:107px;
+	_height:105px;
+	position:absolute;
+	right:-1px;
+	top:4px;
+	overflow:hidden;
+}
+.howPasswordSafe-box .arrow{
+	width:13px;
+	height:8px;
+	position:absolute;
+	background-position:0 -16px;
+	background-repeat:no-repeat;
+	left:35px;
+	top:-7px;
+	overflow:hidden;
+}
+.howPasswordSafe-box .top-left{
+	position:absolute;
+	width:3px;
+	height:3px;
+	background-position:0px 0px;
+	left:0px;
+	top:0px;
+	overflow:hidden;
+}
+.howPasswordSafe-box .top-right{
+	position:absolute;
+	width:4px;
+	height:4px;
+	background-position:0px -3px;
+	right:0px;
+	top:0px;
+	overflow:hidden;
+}
+.howPasswordSafe-box .bom-left{
+	position:absolute;
+	width:4px;
+	height:4px;
+	background-position:0px -7px;
+	bottom:0px;
+	left:0px;
+	overflow:hidden;
+}
+.howPasswordSafe-box .bom-right{
+	position:absolute;
+	width:5px;
+	height:5px;
+	background-position:0px -11px;
+	right:-1px;
+	bottom:-1px;
+	overflow:hidden;
+}
+.loading-ico{
+	display:none;
+	background:url("/images/loadinfo.gif") 0 3px no-repeat;
+	padding-left:30px;
+	clear:both;
+	height:31px;
+	line-height:31px;
+	float:left;
+	/*
+	width:65px;
+	*/
+	margin-right:6px;
+}
+.portrait{
+	text-decoration:none;
+	color:#99aecb;
+}
+.portrait:hover{
+	text-decoration:underline;
+}
+.my-photo img{
+	background-color:#fff;
+	border:1px solid #CCCCCC;
+	padding:3px;
+	/*
+	width:187px;
+	height:178px;
+	*/
+}
+/*用户登录*/
+#digg-dialog-login{
+	width:700px;
+}
+.user-login-area{
+	overflow:hidden;
+	clear:both;
+	padding-bottom:25px;
+	background:#fff url("/images/point_1_2.png") repeat-y scroll 350px 0;
+}
+.login-area{
+	float:left;
+	width:350px;
+}
+.reg-area{
+	float:right;
+	width:350px;
+}
+table.login-table td{
+	padding-left:73px;
+	padding-top:3px;
+}
+table.login-table td.padding2{
+	padding-left:65px;
+}
+table.login-table .td2{
+	padding-top:15px;
+}
+table.login-table td.title{
+	text-align:left;
+	padding-top:0px;
+}
+table.login-table td.title input{
+	margin-right:6px;
+	vertical-align:-2px;
+}
+table.login-table td.padding5{
+	padding-left:76px;
+}
+.forget-a{
+	display:inline-block;
+	float:left;
+	*float:none;
+	margin-top:10px;
+	margin-left:35px;
+	font-weight:normal;
+	_float:left;
+	_width:60px;
+}
+form a{
+	color:#336699;
+}
+form a:hover{
+	text-decoration:underline;
+}
+.dialog-title .zc{
+	margin-left:317px;
+}
+table.login-table .td3{
+	padding-left:3px;
+	vertical-align:middle;
+}
+table.login-table .td3 .sucess-ico{
+	margin-left:0px;
+	margin-top:0px;
+}
+.reg-lab{
+	color: #CCCCCC;
+    left: 10px;
+    position: absolute;
+    top: 8px;
+	z-index:1;
+}
+.my-photo{
+	float:left;
+}
+.mod-head-a{
+	float:right;
+	margin-right:40px;
+	margin-top:40px;
+}
+.login-er-icon{
+	background-position:-33px -274px;
+	display:none;
+	margin-right:5px;
+	vertical-align:-2px;
+	margin-top:0px;
+	margin-left:0px;
+}
+.reset-area{
+	width:710px;
+	margin:0 auto;
+}
+.padding78{
+	padding-left:78px;
+	*padding-left:74px;
+	position:relative;
+}
+.relative{
+	position:relative;
+}
+/*新改版的设置样式*/
+.set-tags {
+    height: 45px;
+    position: relative;
+	margin-left:1px;
+}
+.set-line {
+    border-bottom: 1px solid #dbe6f2;
+    height: 44px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+.set-tags .tb {
+    background-color:#f4f7fa;
+    color: #336699;
+    cursor: pointer;
+    float: left;
+    font-size: 14px;
+    height: 43px;
+    line-height: 43px;
+    margin-left: -1px;
+    position: relative;
+    text-align: center;
+    width: 122px;
+    z-index: 2;
+	border:1px solid #dbe6f2;
+	border-bottom:0px;
+}
+.set-tags .tb:hover {
+    text-decoration: underline;
+}
+.set-tags .w-active {
+    background-color:#fff;
+    border-bottom: 1px solid #FFFFFF;
+    color: #333;
+}
+.set-tags .w-active:hover {
+    border-bottom: 1px solid #FFFFFF;
+    color: #333;
+    text-decoration: none;
+}
+.set-nav{
+	height:43px;
+	line-height:43px;
+	border-bottom:1px solid #dbe6f2;
+}
+.set-nav a{
+    color: #336699;
+    text-align: center;
+	margin-right:42px;
+}
+.set-nav a:hover{
+	text-decoration:underline;
+}
+.set-nav .active{
+	color:#333;
+}
+.set-nav .active:hover{
+	text-decoration:none;
+}
+.info-table .t1{
+	width:88px;
+	text-align:left;
+	color:#666;
+}
+.info-table td{
+	padding:25px 0;
+	border-bottom:1px solid #F6F6F6;
+}
+.info-table tr{
+	border-bottom:1px solid #f6f6f6;
+}
+table .td-bottom{
+	border-bottom:1px solid #dbe6f2;
+}

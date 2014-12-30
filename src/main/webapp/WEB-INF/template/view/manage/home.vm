@@ -1,0 +1,16 @@
+<link  rel="stylesheet" href="/js/uikit/css/uikit.min.css">
+<link id="data-uikit-theme" rel="stylesheet" href="/js/uikit/css/uikit.docs.min.css">
+<link rel="stylesheet" href="/js/uikit/css/docs.css">	
+	
+<div>
+    <ul class="uk-breadcrumb">
+        <li><a href="/manage/home">Home</a></li>
+        <li class="uk-active"><span>管理后台</span></li>
+    </ul>
+</div>
+<br/>
+<br/>
+<br/>
+<div style="font-size:16px;color:blue">
+	<p class="uk-text-center uk-text-middle uk-text-warning uk-text-large">欢迎来到买买君官网管理后台!<p>
+</div>

@@ -1,0 +1,383 @@
+
+/* ======================================================== */
+/** 布局样式 */
+.notice{
+	padding: 20px 0px 60px;
+	overflow:hidden;
+}
+.notice .sum-count{
+	font-size:14px;
+	font-weight:bold;
+	color:#787878;
+	height:30px;
+}
+.notice .sum-count a{
+	float:right;
+	font-size:12px;
+	font-weight:normal;
+	margin-top:3px;
+}
+
+.notice .head{
+	border-top:1px solid #e6e6e6;
+	border-bottom:1px solid #e6e6e6;
+	background:#f8f8f8;
+	/*
+	color:#787878;
+	font-weight:bold;
+	height:30px;
+	line-height:30px;
+	*/
+	overflow:hidden;
+	clear:both;
+	padding-bottom:4px;
+	padding-left:5px;
+	height:27px;
+}
+.notice .head .send-person{
+	margin-left:45px;
+}
+.notice .head .send-title{
+	margin-left:130px;
+}
+.notice .head .send-time{
+	margin-left:403px;
+}
+.notice .contanier{
+	overflow:hidden;
+	
+}
+.notice .no-contanier{
+	background:#ffffcc;
+	color:#787878;
+	font-weight:bold;
+	padding-top:15px;
+	padding-bottom:16px;
+	text-align:center;
+	margin:30px 0;
+	border:1px solid #E6E6E6;
+	display:block;
+}
+.notice .contanier .checkbox{
+	width:13px;
+	display:inline-block;
+	
+	*display:inline;
+	*zoom:1;
+	
+}
+.notice .contanier .checkbox input{
+	height:13px;
+	width:13px;
+}
+.line{
+	border: 0px solid #E6E6E6;
+	border-bottom: 1px solid #E6E6E6;
+	background:#fff;
+	cursor:pointer;
+	
+}
+.message{
+	
+	padding: 9px 0px 8px 5px;
+	background:#ffffdd;
+	font-weight:bold;
+	display:block;
+}
+.message-readed{
+	padding: 9px 0px 8px 5px;
+	background:#fff;
+	font-weight:normal;
+	display:block;
+
+}
+.person{
+	
+	
+}
+.message2{
+	overflow:hidden;
+	overflow:hidden\9;
+	*overflow:none;
+}
+.persondiv{
+	display:inline-block;
+	*display:inline;
+	*zoom:1;
+	width:125px;
+	margin-left:22px;
+	margin-left:22px\9;
+	*margin-left:26px;
+	white-space:nowrap;
+	overflow:hidden;
+}
+.titlediv{
+	display:inline-block;
+	*display:inline;
+	*zoom:1;
+	margin-left:17px;
+	margin-left:17px\9;
+	*margin-left:21px;
+	width:680px;
+	white-space:nowrap;
+	overflow:hidden;
+}
+.title{
+	font-size:13px;
+	_font-size:12px;
+}
+.notice-name{
+	margin-right:15px;
+}
+.time{
+	display:inline-block;
+	*display:inline;
+	*zoom:1;
+	color:#787878;
+	margin-left:45px;
+	margin-left:45px\9;
+	*margin-left:49px;
+	overflow:hidden;
+	font-size:13px;
+}
+.notice-content{
+	color:#333;
+	display:none;
+	overflow:hidden;
+}
+.notice-content .content-title{
+	margin-top:12px;
+	overflow:hidden;
+	width:100%;
+}
+.notice-content .content-title .title-icon{
+	width:24px;
+	height:24px;
+	background:url("/images/speaker.gif") no-repeat 0 0 ;
+	margin-left:12px;
+	_margin-left:6px;
+	margin-right:10px;
+	display:inline-block;
+	float:left;
+}
+.notice-content .content-title .title-contanier{
+	float:left;
+	margin-top:6px;
+	/*
+	white-space:nowrap;
+	*/
+	overflow:hidden;
+	width:643px;
+}
+.notice-content .content-title .content{
+	color:#333;
+	font-size:14px;
+	font-weight:bold;
+	float:left;
+}
+.notice-content .content-title .content a{
+	color:#336699;
+}
+.notice-content .op-bottom{
+	text-align:right;
+	margin-right:20px;
+	margin-bottom:20px;
+	
+}
+.notice-content .op-bottom a{
+	margin-left:15px;
+	color:#336699;
+}
+/*
+.notice-content .op-bottom a:hover{
+	background:#6699cc;
+	color:#fff;
+}
+*/
+.notice-content .content-detail{
+	/*
+	padding:25px 42px 20px 45px;
+	*/
+	padding-top:20px;
+}
+
+.notice-content .content-detail a {
+	color: #3366cc;
+}
+
+.notice-content .content-detail a:hover {
+	text-decoration: underline;
+}
+
+.li-selected{
+	border:2px solid #c2d6ef;
+	overflow:hidden;
+}
+
+#notice-page, #mail-page{
+	border-bottom:1px solid #e6e6e6;
+	border-top:1px solid #e6e6e6;
+	background:#F8F8F8;
+	height:31px;
+	padding:4px 5px;
+	
+}
+#notice-page .pages, #mail-page .pages{
+	float:right;
+	margin-top:3px;
+}
+a.btn{
+	float:left;
+	margin-right:10px;
+	margin-top:4px;
+}
+.l_ljm{
+	float:left;
+	margin-right:10px;
+	margin-top:8px;
+	*margin-top:3px;
+}
+.l_ljm label{
+	margin-left:8px;
+}
+.l_ljm input{
+	vertical-align:-2px;
+}
+a.btn-2, a.btn-4{
+	background-position:0 -66px;
+}
+a.btn{
+	padding-left:3px;
+}
+a.btn, a.btn span{
+	background-image:url("/images/button_445_285.png");
+	color:#333;
+	display:inline-block;
+}
+a.btn-2 span, a.btn-4 span{
+	background-position:right -66px;
+}
+a.btn-4 span{
+	padding:0 12px 0 9px;
+}
+a.btn span{
+	cursor:pointer;
+	font-weight:normal;
+	font-size:12px;
+}
+a.btn-1 span, a.btn-2 span, a.btn-3 span, a.btn-4 span, a.btn-5 span{
+	height:22px;
+	line-height:22px;
+}
+a{
+	text-decoration:none;
+}
+#notice-page a.btn{
+	float:left;
+}
+#notice-page a.fanye{
+	display:inline-block;
+	margin-right:4px;
+	width:51px;
+	height:31px;
+	background-repeat:no-repeat;
+}
+
+/*私信*/
+.mail-box .item{
+	margin-top:22px;
+	padding-bottom:22px;
+	position:relative;
+	border-bottom:1px solid #f6f6f6;
+}
+.mail-box .item .checkId{
+	position:absolute;
+	top:18px;
+	left:5px;
+}
+.mail-box .item .nr-r{
+	margin-left:27px;
+	clear:both;
+	overflow:hidden;
+}
+
+.mail-box .item .noDuP{
+	position:absolute;
+	border-radius:5px;
+	background-color:#FF8207;
+	display:block;
+	width:8px;
+	height:8px;
+	left:70px;
+	top:-2px;
+}
+.mail-box .item .nr-r .imgs{
+	float:left;
+}
+.mail-box .item .nr-r .nr-r-r{
+	padding-left:60px;
+}
+.mail-box .r1{
+	padding-top:3px;
+}
+.mail-box .r2{
+	padding-top:10px;
+	overflow:hidden;
+}
+.mail-box .r1 .nick{
+	color:#0b79e9;
+}
+.mail-box .r1 .nick:hover{
+	text-decoration:underline;
+}
+.mail-box .r1 .nr{
+	margin-left:10px;
+	color:#333;
+	line-height:18px;
+}
+.mail-box .r2 .sj{
+	float:left;
+	color:#666;
+}
+.mail-box .r2 .caozuo{
+	float:right;
+}
+.mail-box .r2 .caozuo a{
+	color:#9aafcc;
+	margin-right:32px;
+}
+.mail-box .r2 .caozuo a:hover{
+	text-decoration:underline;
+}
+.mbk-box{
+	padding-bottom:25px;
+	border-bottom:1px solid #dbe6f2;
+}
+.mbk-box .back{
+	color:#0b79e9;
+}
+.mbk-box .back:hover{
+	text-decoration:underline;
+}
+
+
+.pingbi-box{
+	position:absolute;
+	right:30px;
+	top:0;
+}
+.pingbi-box a{
+	color:#0B79E9;
+}
+.pingbi-box a:hover{
+	text-decoration:underline
+}
+.pingbie{
+	background-position:0 -16px;
+	width:15px;
+	height:15px;
+	vertical-align:-2px;
+}
+.mail-box .r2 .caozuo .delMailolny{
+	margin-right:0;
+}
