@@ -28,10 +28,11 @@ com.mmj.pet
 * 图片效果处理;
 * 支持会员话题创建发起,话题下面发布新闻;
 * xmpp通信聊天室,会员登录可直接发言,游客仅限匿名查看;
+* openfire聊天服务器;
 
 ###目前的框架:
 * 服务器:centos+nginx
-* 后端:springMVC+spring+mybatis+velocity+mysql+memcached+tomcat+GraphicsMagick
+* 后端:springMVC+spring+mybatis+velocity+mysql+memcached+tomcat+GraphicsMagick+openfire
 * 前端:jQuery+css+html+uikit
 * 项目构建:maven,svn
 * 开发工具:iTerm,vim,eclipse,sublime,chrome
