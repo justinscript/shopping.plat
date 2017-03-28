@@ -1,10 +1,11 @@
 com.mmj.pet
 ===========
 
-## www.zhiyouba.com 社交化导购平台
+##  www.zhiyouba.com 社交化导购平台
 
 
-###功能点:
+### 功能点
+
 * 支持会员登陆,注册,绑定手机,绑定邮箱,修改图像,订阅通知,加入聊天室;
 * 访客浏览发布内容,浏览评论,浏览聊天室消息;
 * 会员发布图片,链接,文本(150字以内);
@@ -30,7 +31,8 @@ com.mmj.pet
 * xmpp通信聊天室,会员登录可直接发言,游客仅限匿名查看;
 * openfire聊天服务器;
 
-###目前的框架:
+### 目前的框架
+
 * 服务器:centos+nginx
 * 后端:springMVC+spring+mybatis+velocity+mysql+memcached+tomcat+GraphicsMagick+openfire
 * 前端:jQuery+css+html+uikit
