@@ -25,7 +25,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * @author zxc Nov 30, 2014 11:40:40 PM
+ * @author luckscript Nov 30, 2014 11:40:40 PM
  */
 public class SpiderHtmlUtils {
 
@@ -106,12 +106,5 @@ public class SpiderHtmlUtils {
         Pattern pattern = Pattern.compile("[http|https]+[://]+[0-9A-Za-z:/[-]_#[?][=][.][&]]*");
         Matcher matcher = pattern.matcher("http://haitao.smzdm.com/youhui/307563");
         System.out.println(matcher.matches());
-        Matcher matcher1 = pattern.matcher("http://lawrence-zxc.github.io/2014/10/01/aboutMe/");
-        System.out.println(matcher1.matches());
-        Matcher matcher2 = pattern.matcher("http://lawrence-zxc_github_io/2014/10/01/aboutMe/?d");
-        System.out.println(matcher2.matches());
-        String html = SpiderHtmlUtils.getHtmlByUrl("http://lawrence-zxc.github.io/2014/10/01/aboutMe/");
-        String description = SpiderHtmlUtils.fetchDescriptionHtml(html);
-        System.out.println(description);
     }
 }
