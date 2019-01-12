@@ -10,7 +10,7 @@ import com.mmj.app.biz.cons.SexEnum;
 import com.mmj.app.biz.domain.MemberDO;
 
 /**
- * @author zxc Dec 2, 2014 4:34:38 PM
+ * @author justinscript Dec 2, 2014 4:34:38 PM
  */
 public class UserInfoVO {
 
