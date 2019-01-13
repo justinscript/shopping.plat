@@ -1,8 +1,5 @@
-com.mmj.pet
+导购平台
 ===========
-
-##  www.zhiyouba.com 社交化导购平台
-
 
 ### 功能点
 
